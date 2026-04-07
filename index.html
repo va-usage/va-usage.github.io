@@ -3,518 +3,281 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
+  <meta name="title" content="From Design to Use: A Systematic Study of Visual Analytics System Usage Through Agentic Literature Mining">
+  <meta name="description" content="A knowledge base and analysis of how visual analytics systems are used in practice, built from 183 papers through skill-guided agentic literature mining.">
+  <meta name="keywords" content="visual analytics, literature mining, knowledge base, agentic extraction, workflow analysis, case study analysis">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
-
-  <!-- Twitter -->
+  <meta property="og:site_name" content="VA-Usage">
+  <meta property="og:title" content="From Design to Use">
+  <meta property="og:description" content="A systematic study of how visual analytics systems are used in analytical practice.">
+  <meta property="og:image" content="static/images/schema.pdf.png">
   <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+  <meta name="twitter:title" content="From Design to Use">
+  <meta name="twitter:description" content="A systematic study of visual analytics system usage through agentic literature mining.">
+  <meta name="twitter:image" content="static/images/schema.pdf.png">
+  <meta name="theme-color" content="#194038">
 
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <title>From Design to Use | VA-Usage</title>
 
-
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet">
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
 </head>
 <body>
-
-
-  <!-- Scroll to Top Button -->
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
+  <main>
+    <section class="hero project-hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="hero-shell">
+            <!-- <div class="eyebrow">VA Usage Knowledge Base</div> -->
+            <h1 class="title publication-title">From Design to Use:<br>A Systematic Study of Visual Analytics System Usage Through Agentic Literature Mining</h1>
+            <p class="hero-summary">
+              This project builds a structured knowledge base of visual analytics usage from 183 papers, linking system design, intended workflows, and reported case-study practice through a skill-guided agentic extraction framework.
+            </p>
 
-  <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
-
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+            <div class="hero-actions">
+              <button class="button action-button is-primary" type="button">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+              </button>
+              <a class="button action-button is-light" href="https://va-usage.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fas fa-compass"></i></span>
+                <span>VA-Usage Explorer</span>
+              </a>
+              <a class="button action-button is-light" href="https://github.com/Shan-yi-shuai/va-usage" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Code</span>
+              </a>
+              <a class="button action-button is-light" href="#corpus">
+                <span class="icon"><i class="fas fa-table"></i></span>
+                <span>Corpus</span>
+              </a>
+              <button class="button action-button is-light" type="button" data-modal-trigger="knowledge-base-modal">
+                <span class="icon"><i class="fas fa-database"></i></span>
+                <span>Knowledge Base</span>
+              </button>
             </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
-
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
+    <section class="section section-tinted" id="abstract">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 abstract-title">Abstract</h2>
+        <div class="abstract-card">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            Visual analytics (VA) research has produced a large body of system papers, and prior work has characterized these systems primarily from a design perspective. However, comparatively less attention has been paid to systematically capturing how VA systems are used in analytical practice across the literature. Understanding VA usage is important because it reveals how systems support analytical work in practice and enables the identification of recurring patterns that can inform future VA theory. Yet studying VA usage at scale from the literature is difficult because such knowledge is rarely formalized in a comparable form. It is conveyed mainly through narrative case studies and must be interpreted together with system and workflow context scattered across different parts of papers. To address this gap, we develop a skill-guided agentic extraction framework for extracting structured knowledge about VA systems, intended workflows, and usage cases from the literature, and augment it with a self-evolving mechanism that iteratively refines the skills used to guide LLM-based agents. We evaluate the framework through sampled human assessment and LLM-as-a-judge evaluation, demonstrating that it can reliably extract structured usage knowledge from VA papers. Applying the framework to 183 papers, we construct a knowledge base of VA usage and conduct a large-scale analysis of patterns in case studies, patterns in intended workflows, and their relationships through comparison, thereby providing a systematic answer to how VA systems are used in analytical practice. We further demonstrate the utility of the knowledge base through two applications: an interactive web interface for browsing and inspection, and a benchmark for predicting the next analytic move constructed from the knowledge base, where its retrieval-augmented use improves prediction performance.
           </p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    </section>
 
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
+    <section class="section" id="schema-design">
+      <div class="container is-max-desktop">
+        <div class="section-header">
+          <p class="section-kicker">Schema Design</p>
+          <h2 class="title is-3">A three-layer representation for VA literature</h2>
+        </div>
+        <figure class="figure-card spotlight figure-card-large section-figure">
+          <img src="static/images/schema.pdf.png" alt="Three-layer schema for representing VA literature">
+          <figcaption>The core schema links system specification, intended workflow, and case-study usage in one comparable structure.</figcaption>
+        </figure>
+        <div class="content narrative section-copy">
+          <p>
+            The schema is designed to connect three complementary perspectives that are usually scattered across a paper: what the system contains, how the authors intend it to be used, and how it is actually used in reported case studies.
+          </p>
+          <p>
+            The first layer captures system specification, including views, subviews, capabilities, coordinations, and system-level context. The second layer models intended workflows as stages and transitions grounded in system components. The third layer represents real usage through case-study episodes and steps, linking analyst intent, operations, and outcomes to the system.
+          </p>
+          <p>
+            By designing these three layers jointly, the project makes it possible to compare design, intended process, and observed analytical practice in one common representational space.
+          </p>
+          <button class="button action-button is-light schema-button" type="button" data-modal-trigger="schema-browser-modal">
+            <span class="icon"><i class="fas fa-sitemap"></i></span>
+            <span>View Full Schema</span>
+          </button>
+        </div>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
+    </section>
+
+    <section class="section section-tinted" id="framework">
+      <div class="container is-max-desktop">
+        <div class="section-header">
+          <p class="section-kicker">Method</p>
+          <h2 class="title is-3">Skill-guided agentic extraction framework</h2>
+        </div>
+        <figure class="figure-card figure-card-large section-figure">
+          <img src="static/images/extraction.pdf.png" alt="Skill-guided agentic extraction framework">
+          <figcaption>Multimodal evidence, staged extraction, and a self-evolving review loop make structured recovery more reliable across papers.</figcaption>
+        </figure>
+        <div class="feature-stack section-copy">
+          <article class="feature-card">
+            <h3>Skill-guided extraction</h3>
+            <p>The framework relies on reusable task-specific skills that encode extraction guidance, review criteria, segmentation rules, and operating protocols for recovering structured records from VA papers.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Agentic extraction based on Codex</h3>
+            <p>Extraction is carried out by a Codex-based agent that works through staged extract, review, and revise cycles, uses a local workspace, and jointly grounds decisions in text, figures, captions, and interface crops.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Self-evolving refinement</h3>
+            <p>The framework includes a self-evolving mechanism that first stabilizes the skills through human-supervised review, then scales through dynamic and stable knowledge layers that accumulate reusable lessons across papers.</p>
+          </article>
+        </div>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+    </section>
 
+    <section class="section" id="findings">
+      <div class="container is-max-desktop">
+        <div class="section-header">
+          <p class="section-kicker">Findings</p>
+          <h2 class="title is-3">Patterns surfaced from the knowledge base</h2>
+        </div>
+        <div class="findings-grid">
+          <figure class="figure-card finding-card">
+            <img src="static/images/system_coverage_comparison.pdf.png" alt="Coverage comparison across system, workflow, and case layers">
+            <figcaption>Intended workflows cover much more of a system than case studies usually instantiate, suggesting reported usage is selective rather than exhaustive.</figcaption>
+          </figure>
+          <figure class="figure-card finding-card">
+            <img src="static/images/subview_core_scatter.pdf.png" alt="Subview family coverage and frequency scatter plot">
+            <figcaption>A small set of subview families dominates reported cases, revealing common visual carriers that recur across many systems.</figcaption>
+          </figure>
+          <figure class="figure-card finding-card">
+            <img src="static/images/intent_transition_network.pdf.png" alt="Intent transition network in case studies">
+            <figcaption>Usage steps tend to move from entry actions toward inspection and comparison, and then toward explanation and validation.</figcaption>
+          </figure>
+          <figure class="figure-card finding-card">
+            <img src="static/images/workflow_case_sequence_alignment.pdf.png" alt="Workflow-case alignment plot">
+            <figcaption>Most reported cases remain structurally consistent with workflows, but only instantiate a subset of the designed analytical path.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
 
+    <section class="section section-tinted" id="resources">
+      <div class="container is-max-desktop">
+        <div class="section-header">
+          <p class="section-kicker">Resources</p>
+          <h2 class="title is-3">Explorer, code, and released materials</h2>
+        </div>
+        <div class="resource-grid">
+          <article class="resource-card resource-card-wide">
+            <div class="resource-copy">
+              <h3>VA-Usage Explorer</h3>
+              <p>An interactive interface for browsing the corpus, inspecting extracted records, and examining workflow-case mappings.</p>
+              <a href="https://va-usage.vercel.app/" target="_blank" rel="noopener noreferrer">Open Explorer</a>
+            </div>
+            <img src="static/images/explorer.pdf.png" alt="VA-Usage Explorer interface overview">
+          </article>
+          <article class="resource-card">
+            <h3>Open-source code</h3>
+            <p>The repository contains the extraction framework, released artifacts, and supporting code for the project.</p>
+            <a href="https://github.com/Shan-yi-shuai/va-usage" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          </article>
+          <article class="resource-card">
+            <h3>Corpus list</h3>
+            <p>The 183-paper corpus used for analysis is listed below and available as a downloadable spreadsheet.</p>
+            <a href="assets/paper-list.xlsx" target="_blank" rel="noopener noreferrer">Download XLSX</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <section class="section" id="corpus">
+      <div class="container is-max-desktop">
+        <div class="section-header">
+          <p class="section-kicker">Corpus</p>
+          <h2 class="title is-3">183 visual analytics papers</h2>
+        </div>
+        <div class="corpus-toolbar">
+          <div class="search-wrap">
+            <label class="is-sr-only" for="corpus-search">Search corpus</label>
+            <input id="corpus-search" class="input corpus-search" type="search" placeholder="Search by title or year">
+          </div>
+          <div class="toolbar-actions">
+            <label class="select sort-select">
+              <select id="corpus-sort">
+                <option value="year-desc">Year: newest first</option>
+                <option value="year-asc">Year: oldest first</option>
+                <option value="title-asc">Title: A to Z</option>
+              </select>
+            </label>
+            <a class="button is-light download-button" href="assets/paper-list.xlsx" target="_blank" rel="noopener noreferrer">
+              <span class="icon"><i class="fas fa-download"></i></span>
+              <span>Download XLSX</span>
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
-
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
+        <p class="corpus-status" id="corpus-status">Loading corpus...</p>
+        <div class="table-shell">
+          <table class="table corpus-table is-fullwidth">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody id="corpus-table-body"></tbody>
+          </table>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
+    </section>
 
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
+  </main>
 
   <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
+    <div class="container is-max-desktop">
+      <div class="content footer-content">
+        <p>This page summarizes the VA-Usage project, including the paper, explorer, code repository, and released corpus materials.</p>
+      </div>
+    </div>
+  </footer>
 
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
+  <div class="modal-shell" id="knowledge-base-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="knowledge-base-title">
+      <button class="modal-close" type="button" aria-label="Close" data-modal-close>
+        <i class="fas fa-times"></i>
+      </button>
+      <p class="section-kicker">Knowledge Base</p>
+      <h2 class="modal-title" id="knowledge-base-title">Coming soon</h2>
+      <p class="modal-text">The knowledge base will be released after the paper is accepted.</p>
+    </div>
+  </div>
 
-        </div>
+  <div class="modal-shell modal-shell-wide" id="schema-browser-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-card modal-card-wide" role="dialog" aria-modal="true" aria-labelledby="schema-browser-title">
+      <button class="modal-close" type="button" aria-label="Close" data-modal-close>
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="schema-browser-header">
+        <p class="section-kicker">Schema Browser</p>
+        <h2 class="modal-title" id="schema-browser-title">Full three-layer schema design</h2>
+        <p class="modal-text">Browse example paper artifacts and the core field dictionary copied from the supplementary schema materials.</p>
+      </div>
+      <div class="schema-tabs" role="tablist" aria-label="Schema browser sections">
+        <button class="schema-tab is-active" type="button" data-schema-tab="examples">Examples</button>
+        <button class="schema-tab" type="button" data-schema-tab="fields">Field Dictionary</button>
+      </div>
+      <div class="schema-browser-body">
+        <section class="schema-panel is-active" data-schema-panel="examples"></section>
+        <section class="schema-panel" data-schema-panel="fields"></section>
       </div>
     </div>
   </div>
-</footer>
-
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+</body>
+</html>

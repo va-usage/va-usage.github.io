@@ -1,0 +1,1100 @@
+[
+  {
+    "title": "BDIViz: An Interactive Visualization System for Biomedical Schema Matching with LLM-Powered Validation",
+    "article_number": 11299421,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11299421/"
+  },
+  {
+    "title": "ConceptViz: A Visual Analytics Approach for Exploring Concepts in Large Language Models",
+    "article_number": 11267036,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11267036/"
+  },
+  {
+    "title": "HypoChainer: A Collaborative System Combining LLMs and Knowledge Graphs for Hypothesis-Driven Scientific Discovery",
+    "article_number": 11273075,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11273075/"
+  },
+  {
+    "title": "#FluxFlow: Visual Analysis of Anomalous Information Spreading on Social Media",
+    "article_number": 6876013,
+    "year": 2014,
+    "url": "https://ieeexplore.ieee.org/document/6876013/"
+  },
+  {
+    "title": "HydroQual: Visual analysis of river water quality",
+    "article_number": 7042488,
+    "year": 2014,
+    "url": "https://ieeexplore.ieee.org/document/7042488/"
+  },
+  {
+    "title": "FairSight: Visual Analytics for Fairness in Decision Making",
+    "article_number": 8805420,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8805420/"
+  },
+  {
+    "title": "In Search of Patient Zero: Visual Analytics of Pathogen Transmission Pathways in Hospitals",
+    "article_number": 9286903,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9286903/"
+  },
+  {
+    "title": "Visual Analysis and Dissemination of Scientific Literature Collections with SurVis",
+    "article_number": 7192633,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7192633/"
+  },
+  {
+    "title": "GUIRO: User-Guided Matrix Reordering",
+    "article_number": 8807245,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8807245/"
+  },
+  {
+    "title": "MotionExplorer: Exploratory Search in Human Motion Capture Data Based on Hierarchical Aggregation",
+    "article_number": 6634102,
+    "year": 2013,
+    "url": "https://ieeexplore.ieee.org/document/6634102/"
+  },
+  {
+    "title": "Selection-Bias-Corrected Visualization via Dynamic Reweighting",
+    "article_number": 9233264,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9233264/"
+  },
+  {
+    "title": "TargetVue: Visual Analysis of Anomalous User Behaviors in Online Communication Systems",
+    "article_number": 7185421,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7185421/"
+  },
+  {
+    "title": "Action-Evaluator: A Visualization Approach for Player Action Evaluation in Soccer",
+    "article_number": 10296094,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10296094/"
+  },
+  {
+    "title": "Motion Browser: Visualizing and Understanding Complex Upper Limb Movement Under Obstetrical Brachial Plexus Injuries",
+    "article_number": 8809920,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8809920/"
+  },
+  {
+    "title": "Interactive Visual Discovering of Movement Patterns from Sparsely Sampled Geo-tagged Social Media Data",
+    "article_number": 7192688,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7192688/"
+  },
+  {
+    "title": "RISeer: Inspecting the Status and Dynamics of Regional Industrial Structure via Visual Analytics",
+    "article_number": 9903340,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9903340/"
+  },
+  {
+    "title": "VBridge: Connecting the Dots Between Features and Data to Explain Healthcare Models",
+    "article_number": 9555810,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9555810/"
+  },
+  {
+    "title": "TIVEE: Visual Exploration and Explanation of Badminton Tactics in Immersive Visualizations",
+    "article_number": 9557225,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9557225/"
+  },
+  {
+    "title": "Compass: Towards Better Causal Analysis of Urban Time Series",
+    "article_number": 9557222,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9557222/"
+  },
+  {
+    "title": "CcNav: Understanding Compiler Optimizations in Binary Code",
+    "article_number": 9222367,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9222367/"
+  },
+  {
+    "title": "DemographicVis: Analyzing demographic information based on user generated content",
+    "article_number": 7347631,
+    "year": 2015,
+    "url": "https://ieeexplore.ieee.org/document/7347631/"
+  },
+  {
+    "title": "IRVINE: A Design Study on Analyzing Correlation Patterns of Electrical Engines",
+    "article_number": 9552903,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552903/"
+  },
+  {
+    "title": "THALIS: Human-Machine Analysis of Longitudinal Symptoms in Cancer Therapy",
+    "article_number": 9555227,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9555227/"
+  },
+  {
+    "title": "HoopInSight: Analyzing and Comparing Basketball Shooting Performance Through Visualization",
+    "article_number": 10292892,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10292892/"
+  },
+  {
+    "title": "TransforLearn: Interactive Visual Tutorial for the Transformer Model",
+    "article_number": 10297598,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10297598/"
+  },
+  {
+    "title": "VATLD: A Visual Analytics System to Assess, Understand and Improve Traffic Light Detection",
+    "article_number": 9233993,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9233993/"
+  },
+  {
+    "title": "EventThread: Visual Summarization and Stage Analysis of Event Sequence Data",
+    "article_number": 8017612,
+    "year": 2018,
+    "url": "https://ieeexplore.ieee.org/document/8017612/"
+  },
+  {
+    "title": "LiberRoad: Probing into the Journey of Chinese Classics Through Visual Analytics",
+    "article_number": 10294205,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10294205/"
+  },
+  {
+    "title": "TimeTuner: Diagnosing Time Representations for Time-Series Forecasting with Counterfactual Explanations",
+    "article_number": 10297593,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10297593/"
+  },
+  {
+    "title": "VUSphere: Visual Analysis of Video Utilization in Online Distance Education",
+    "article_number": 8802383,
+    "year": 2018,
+    "url": "https://ieeexplore.ieee.org/document/8802383/"
+  },
+  {
+    "title": "Where Can We Help? A Visual Analytics Approach to Diagnosing and Improving Semantic Segmentation of Movable Objects",
+    "article_number": 9552909,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552909/"
+  },
+  {
+    "title": "VideoPro: A Visual Analytics Approach for Interactive Video Programming",
+    "article_number": 10292616,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10292616/"
+  },
+  {
+    "title": "MolSieve: A Progressive Visual Analytics System for Molecular Dynamics Simulations",
+    "article_number": 10313127,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10313127/"
+  },
+  {
+    "title": "Visual Analysis of Hyperproperties for Understanding Model Checking Results",
+    "article_number": 9552899,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552899/"
+  },
+  {
+    "title": "Visual Evaluation for Autonomous Driving",
+    "article_number": 9597616,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9597616/"
+  },
+  {
+    "title": "Interactive Visual Study of Multiple Attributes Learning Model of X-Ray Scattering Images",
+    "article_number": 9240062,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9240062/"
+  },
+  {
+    "title": "ConceptExplainer: Interactive Explanation for Deep Neural Networks from a Concept Perspective",
+    "article_number": 9903285,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9903285/"
+  },
+  {
+    "title": "A Comparative Visual Analytics Framework for Evaluating Evolutionary Processes in Multi-Objective Optimization",
+    "article_number": 10294213,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10294213/"
+  },
+  {
+    "title": "OW-Adapter: Human-Assisted Open-World Object Detection with a Few Examples",
+    "article_number": 10290904,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10290904/"
+  },
+  {
+    "title": "MotionFlow: Visual Abstraction and Aggregation of Sequential Patterns in Human Motion Tracking Data",
+    "article_number": 7194831,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7194831/"
+  },
+  {
+    "title": "VisQA: X-raying Vision and Language Reasoning in Transformers",
+    "article_number": 9552236,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552236/"
+  },
+  {
+    "title": "HealthPrism: A Visual Analytics System for Exploring Children's Physical and Mental Health Profiles with Multimodal Data",
+    "article_number": 10294211,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10294211/"
+  },
+  {
+    "title": "Visual Causality Analysis of Event Sequence Data",
+    "article_number": 9222294,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9222294/"
+  },
+  {
+    "title": "A Visual Analytics System for Improving Attention-based Traffic Forecasting Models",
+    "article_number": 9903281,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9903281/"
+  },
+  {
+    "title": "VASSL: A Visual Analytics Toolkit for Social Spambot Labeling",
+    "article_number": 8805463,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8805463/"
+  },
+  {
+    "title": "Githru: Visual Analytics for Understanding Software Development History Through Git Metadata Analysis",
+    "article_number": 9222261,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9222261/"
+  },
+  {
+    "title": "Real-Time Visual Analysis of High-Volume Social Media Posts",
+    "article_number": 9552886,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552886/"
+  },
+  {
+    "title": "Facetto: Combining Unsupervised and Supervised Learning for Hierarchical Phenotype Analysis in Multi-Channel Image Data",
+    "article_number": 8827951,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8827951/"
+  },
+  {
+    "title": "Visual Analytics for Mobile Eye Tracking",
+    "article_number": 7539297,
+    "year": 2017,
+    "url": "https://ieeexplore.ieee.org/document/7539297/"
+  },
+  {
+    "title": "RetainVis: Visual Analytics with Interpretable and Interactive Recurrent Neural Networks on Electronic Medical Records",
+    "article_number": 8440842,
+    "year": 2019,
+    "url": "https://ieeexplore.ieee.org/document/8440842/"
+  },
+  {
+    "title": "GeoExplainer: A Visual Analytics Framework for Spatial Modeling Contextualization and Report Generation",
+    "article_number": 10297564,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10297564/"
+  },
+  {
+    "title": "EVA: Visual Analytics to Identify Fraudulent Events",
+    "article_number": 8023780,
+    "year": 2018,
+    "url": "https://ieeexplore.ieee.org/document/8023780/"
+  },
+  {
+    "title": "A Visual Analytics Approach for Understanding Reasons behind Snowballing and Comeback in MOBA Games",
+    "article_number": 7534855,
+    "year": 2017,
+    "url": "https://ieeexplore.ieee.org/document/7534855/"
+  },
+  {
+    "title": "CNNPruner: Pruning Convolutional Neural Networks with Visual Analytics",
+    "article_number": 9222510,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9222510/"
+  },
+  {
+    "title": "Causality-Based Visual Analysis of Questionnaire Responses",
+    "article_number": 10302175,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10302175/"
+  },
+  {
+    "title": "TaxThemis: Interactive Mining and Exploration of Suspicious Tax Evasion Groups",
+    "article_number": 9222068,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9222068/"
+  },
+  {
+    "title": "LargeNetVis: Visual Exploration of Large Temporal Networks Based on Community Taxonomies",
+    "article_number": 9903295,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9903295/"
+  },
+  {
+    "title": "SmartAdP: Visual Analytics of Large-scale Taxi Trajectories for Selecting Billboard Locations",
+    "article_number": 7534856,
+    "year": 2017,
+    "url": "https://ieeexplore.ieee.org/document/7534856/"
+  },
+  {
+    "title": "Visual Diagnosis of Tree Boosting Methods",
+    "article_number": 8017582,
+    "year": 2018,
+    "url": "https://ieeexplore.ieee.org/document/8017582/"
+  },
+  {
+    "title": "An Interactive Method to Improve Crowdsourced Annotations",
+    "article_number": 8440116,
+    "year": 2019,
+    "url": "https://ieeexplore.ieee.org/document/8440116/"
+  },
+  {
+    "title": "ECoalVis: Visual Analysis of Control Strategies in Coal-fired Power Plants",
+    "article_number": 9908527,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9908527/"
+  },
+  {
+    "title": "RankAxis: Towards a Systematic Combination of Projection and Ranking in Multi-Attribute Data Exploration",
+    "article_number": 9903343,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9903343/"
+  },
+  {
+    "title": "Explaining Vulnerabilities to Adversarial Machine Learning through Visual Analytics",
+    "article_number": 8812988,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8812988/"
+  },
+  {
+    "title": "A Visual Analytics Framework for Explaining and Diagnosing Transfer Learning Processes",
+    "article_number": 9219240,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9219240/"
+  },
+  {
+    "title": "Sequen-C: A Multilevel Overview of Temporal Event Sequences",
+    "article_number": 9557226,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9557226/"
+  },
+  {
+    "title": "E-ffective: A Visual Analytic System for Exploring the Emotion and Effectiveness of Inspirational Speeches",
+    "article_number": 9555490,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9555490/"
+  },
+  {
+    "title": "RuleMatrix: Visualizing and Understanding Classifiers with Rules",
+    "article_number": 8440085,
+    "year": 2019,
+    "url": "https://ieeexplore.ieee.org/document/8440085/"
+  },
+  {
+    "title": "ProtoSteer: Steering Deep Sequence Model with Prototypes",
+    "article_number": 8827944,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8827944/"
+  },
+  {
+    "title": "SafetyLens: Visual Data Analysis of Functional Safety of Vehicles",
+    "article_number": 9222266,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9222266/"
+  },
+  {
+    "title": "VITALITY: Promoting Serendipitous Discovery of Academic Literature with Transformers & Visual Analytics",
+    "article_number": 9552447,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552447/"
+  },
+  {
+    "title": "A Visual Analytics Approach for Ecosystem Dynamics based on Empirical Dynamic Modeling",
+    "article_number": 9216532,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9216532/"
+  },
+  {
+    "title": "VASABI: Hierarchical User Profiles for Interactive Visual User Behaviour Analytics",
+    "article_number": 8807354,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8807354/"
+  },
+  {
+    "title": "Leveraging Historical Medical Records as a Proxy via Multimodal Modeling and Visualization to Enrich Medical Diagnostic Learning",
+    "article_number": 10295394,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10295394/"
+  },
+  {
+    "title": "MovExp: A Versatile Visualization Tool for Human-Computer Interaction Studies with 3D Performance and Biomechanical Data",
+    "article_number": 6876050,
+    "year": 2014,
+    "url": "https://ieeexplore.ieee.org/document/6876050/"
+  },
+  {
+    "title": "Visually Exploring Transportation Schedules",
+    "article_number": 7192706,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7192706/"
+  },
+  {
+    "title": "ConceptVector: Text Visual Analytics via Interactive Lexicon Building Using Word Embedding",
+    "article_number": 8023823,
+    "year": 2018,
+    "url": "https://ieeexplore.ieee.org/document/8023823/"
+  },
+  {
+    "title": "ConTour: Data-Driven Exploration of Multi-Relational Datasets for Drug Discovery",
+    "article_number": 6875994,
+    "year": 2014,
+    "url": "https://ieeexplore.ieee.org/document/6875994/"
+  },
+  {
+    "title": "DeepEyes: Progressive Visual Analytics for Designing Deep Neural Networks",
+    "article_number": 8019872,
+    "year": 2018,
+    "url": "https://ieeexplore.ieee.org/document/8019872/"
+  },
+  {
+    "title": "CourtTime: Generating Actionable Insights into Tennis Matches Using Visual Analytics",
+    "article_number": 8795584,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8795584/"
+  },
+  {
+    "title": "ChemVA: Interactive Visual Analysis of Chemical Compound Similarity in Virtual Screening",
+    "article_number": 9222282,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9222282/"
+  },
+  {
+    "title": "Marjorie: Visualizing Type 1 Diabetes Data to Support Pattern Exploration",
+    "article_number": 10294207,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10294207/"
+  },
+  {
+    "title": "StreetVizor: Visual Exploration of Human-Scale Urban Forms Based on Street Views",
+    "article_number": 8017655,
+    "year": 2018,
+    "url": "https://ieeexplore.ieee.org/document/8017655/"
+  },
+  {
+    "title": "QEVIS: Multi-Grained Visualization of Distributed Query Execution",
+    "article_number": 10297121,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10297121/"
+  },
+  {
+    "title": "MedChemLens: An Interactive Visual Tool to Support Direction Selection in Interdisciplinary Experimental Research of Medicinal Chemistry",
+    "article_number": 9904486,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9904486/"
+  },
+  {
+    "title": "Interactive Learning for Identifying Relevant Tweets to Support Real-time Situational Awareness",
+    "article_number": 8807283,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8807283/"
+  },
+  {
+    "title": "Interactive Visual Pattern Search on Graph Data via Graph Representation Learning",
+    "article_number": 9552902,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552902/"
+  },
+  {
+    "title": "LiteVis: Integrated Visualization for Simulation-Based Decision Support in Lighting Design",
+    "article_number": 7192703,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7192703/"
+  },
+  {
+    "title": "LSTMVis: A Tool for Visual Analysis of Hidden State Dynamics in Recurrent Neural Networks",
+    "article_number": 8017583,
+    "year": 2018,
+    "url": "https://ieeexplore.ieee.org/document/8017583/"
+  },
+  {
+    "title": "Doccurate: A Curation-Based Approach for Clinical Text Visualization",
+    "article_number": 8440832,
+    "year": 2019,
+    "url": "https://ieeexplore.ieee.org/document/8440832/"
+  },
+  {
+    "title": "PlanningVis: A Visual Analytics Approach to Production Planning in Smart Factories",
+    "article_number": 8805466,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8805466/"
+  },
+  {
+    "title": "SightBi: Exploring Cross-View Data Relationships with Biclusters",
+    "article_number": 9555226,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9555226/"
+  },
+  {
+    "title": "A Visualization Approach for Monitoring Order Processing in E-Commerce Warehouse",
+    "article_number": 9557224,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9557224/"
+  },
+  {
+    "title": "VideoModerator: A Risk-aware Framework for Multimodal Video Moderation in E-Commerce",
+    "article_number": 9552250,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552250/"
+  },
+  {
+    "title": "VISPUR: Visual Aids for Identifying and Interpreting Spurious Associations in Data-Driven Decisions",
+    "article_number": 10292663,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10292663/"
+  },
+  {
+    "title": "MiningVis: Visual Analytics of the Bitcoin Mining Economy",
+    "article_number": 9555925,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9555925/"
+  },
+  {
+    "title": "NAS-Navigator: Visual Steering for Explainable One-Shot Deep Neural Network Synthesis",
+    "article_number": 9904460,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9904460/"
+  },
+  {
+    "title": "A visual reasoning approach for data-driven transport assessment on urban roads",
+    "article_number": 7042486,
+    "year": 2014,
+    "url": "https://ieeexplore.ieee.org/document/7042486/"
+  },
+  {
+    "title": "DQNViz: A Visual Analytics Approach to Understand Deep Q-Networks",
+    "article_number": 8454905,
+    "year": 2019,
+    "url": "https://ieeexplore.ieee.org/document/8454905/"
+  },
+  {
+    "title": "ConceptExplorer: Visual Analysis of Concept Drifts in Multi-source Time-series Data",
+    "article_number": 9308627,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/9308627/"
+  },
+  {
+    "title": "Tac-Simur: Tactic-based Simulative Visual Analytics of Table Tennis",
+    "article_number": 8807264,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8807264/"
+  },
+  {
+    "title": "Visual Analysis of Discrimination in Machine Learning",
+    "article_number": 9222272,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9222272/"
+  },
+  {
+    "title": "Seek for Success: A Visualization Approach for Understanding the Dynamics of Academic Careers",
+    "article_number": 9552870,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552870/"
+  },
+  {
+    "title": "ThreadStates: State-based Visual Analysis of Disease Progression",
+    "article_number": 9552435,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552435/"
+  },
+  {
+    "title": "Extending the Nested Model for User-Centric XAI: A Design Study on GNN-based Drug Repurposing",
+    "article_number": 9916585,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9916585/"
+  },
+  {
+    "title": "HetVis: A Visual Analysis Approach for Identifying Data Heterogeneity in Horizontal Federated Learning",
+    "article_number": 9912364,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9912364/"
+  },
+  {
+    "title": "CommonsenseVIS: Visualizing and Understanding Commonsense Reasoning Capabilities of Natural Language Models",
+    "article_number": 10297594,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10297594/"
+  },
+  {
+    "title": "InnovationInsights: A Visual Analytics Approach for Understanding the Dual Frontiers of Science and Technology",
+    "article_number": 10296058,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10296058/"
+  },
+  {
+    "title": "Visinity: Visual Spatial Neighborhood Analysis for Multiplexed Tissue Imaging Data",
+    "article_number": 9904770,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9904770/"
+  },
+  {
+    "title": "Quantivine: A Visualization Approach for Large-Scale Quantum Circuit Representation and Analysis",
+    "article_number": 10296051,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10296051/"
+  },
+  {
+    "title": "SRVis: Towards Better Spatial Integration in Ranking Visualization",
+    "article_number": 8456575,
+    "year": 2019,
+    "url": "https://ieeexplore.ieee.org/document/8456575/"
+  },
+  {
+    "title": "Towards Better Bus Networks: A Visual Analytics Approach",
+    "article_number": 9222274,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9222274/"
+  },
+  {
+    "title": "BoundarySeer: Visual analysis of 2D boundary changes",
+    "article_number": 7042490,
+    "year": 2014,
+    "url": "https://ieeexplore.ieee.org/document/7042490/"
+  },
+  {
+    "title": "TelCoVis: Visual Exploration of Co-occurrence in Urban Human Mobility Based on Telco Data",
+    "article_number": 7192730,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7192730/"
+  },
+  {
+    "title": "egoSlider: Visual Analysis of Egocentric Network Evolution",
+    "article_number": 7192725,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7192725/"
+  },
+  {
+    "title": "ForVizor: Visualizing Spatio-Temporal Team Formations in Soccer",
+    "article_number": 8440804,
+    "year": 2019,
+    "url": "https://ieeexplore.ieee.org/document/8440804/"
+  },
+  {
+    "title": "TacticFlow: Visual Analytics of Ever-Changing Tactics in Racket Sports",
+    "article_number": 9552436,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552436/"
+  },
+  {
+    "title": "OBTracker: Visual Analytics of Off-ball Movements in Basketball",
+    "article_number": 9904482,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9904482/"
+  },
+  {
+    "title": "RASIPAM: Interactive Pattern Mining of Multivariate Event Sequences in Racket Sports",
+    "article_number": 9906966,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9906966/"
+  },
+  {
+    "title": "LiveRetro: Visual Analytics for Strategic Retrospect in Livestream E-Commerce",
+    "article_number": 10295389,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10295389/"
+  },
+  {
+    "title": "VAET: A Visual Analytics Approach for E-Transactions Time-Series",
+    "article_number": 6876015,
+    "year": 2014,
+    "url": "https://ieeexplore.ieee.org/document/6876015/"
+  },
+  {
+    "title": "Auditing the Sensitivity of Graph-based Ranking with Visual Analytics",
+    "article_number": 9216512,
+    "year": 2021,
+    "url": "https://ieeexplore.ieee.org/document/9216512/"
+  },
+  {
+    "title": "FairRankVis: A Visual Analytics Framework for Exploring Algorithmic Fairness in Graph Mining Models",
+    "article_number": 9552229,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552229/"
+  },
+  {
+    "title": "ViDX: Visual Diagnostics of Assembly Line Performance in Smart Factories",
+    "article_number": 7536610,
+    "year": 2017,
+    "url": "https://ieeexplore.ieee.org/document/7536610/"
+  },
+  {
+    "title": "CloudDet: Interactive Visual Analysis of Anomalous Performances in Cloud Computing Systems",
+    "article_number": 8807232,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8807232/"
+  },
+  {
+    "title": "Visual Analysis of Neural Architecture Spaces for Summarizing Design Principles",
+    "article_number": 9908550,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9908550/"
+  },
+  {
+    "title": "sPortfolio: Stratified Visual Analysis of Stock Portfolios",
+    "article_number": 8807302,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8807302/"
+  },
+  {
+    "title": "EmoCo: Visual Analysis of Emotion Coherence in Presentation Videos",
+    "article_number": 8807235,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8807235/"
+  },
+  {
+    "title": "CohortVA: A Visual Analytic System for Interactive Exploration of Cohorts based on Historical Data",
+    "article_number": 9912359,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9912359/"
+  },
+  {
+    "title": "PromotionLens: Inspecting Promotion Strategies of Online E-commerce via Visual Analytics",
+    "article_number": 9903289,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9903289/"
+  },
+  {
+    "title": "PEARL: An interactive visual analytic tool for understanding personal emotion style derived from social media",
+    "article_number": 7042496,
+    "year": 2014,
+    "url": "https://ieeexplore.ieee.org/document/7042496/"
+  },
+  {
+    "title": "SkyLens: Visual Analysis of Skyline on Multi-Dimensional Data",
+    "article_number": 8019873,
+    "year": 2018,
+    "url": "https://ieeexplore.ieee.org/document/8019873/"
+  },
+  {
+    "title": "iForest: Interpreting Random Forests via Visual Analytics",
+    "article_number": 8454906,
+    "year": 2019,
+    "url": "https://ieeexplore.ieee.org/document/8454906/"
+  },
+  {
+    "title": "Visual Analytics for Electromagnetic Situation Awareness in Radio Monitoring and Management",
+    "article_number": 8807351,
+    "year": 2020,
+    "url": "https://ieeexplore.ieee.org/document/8807351/"
+  },
+  {
+    "title": "Human-in-the-loop Extraction of Interpretable Concepts in Deep Learning Models",
+    "article_number": 9552218,
+    "year": 2022,
+    "url": "https://ieeexplore.ieee.org/document/9552218/"
+  },
+  {
+    "title": "DPVisCreator: Incorporating Pattern Constraints to Privacy-preserving Visualizations via Differential Privacy",
+    "article_number": 9904449,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9904449/"
+  },
+  {
+    "title": "BitExTract: Interactive Visualization for Extracting Bitcoin Exchange Intelligence",
+    "article_number": 8440044,
+    "year": 2019,
+    "url": "https://ieeexplore.ieee.org/document/8440044/"
+  },
+  {
+    "title": "PUREsuggest: Citation-Based Literature Search and Visual Exploration with Keyword-Controlled Rankings",
+    "article_number": 10670434,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10670434/"
+  },
+  {
+    "title": "Compress and Compare: Interactively Evaluating Efficiency and Behavior Across ML Model Compression Experiments",
+    "article_number": 10672545,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10672545/"
+  },
+  {
+    "title": "Team-Scouter: Simulative Visual Analytics of Soccer Player Scouting",
+    "article_number": 10670523,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10670523/"
+  },
+  {
+    "title": "HuBar: A Visual Analytics Tool to Explore Human Behavior Based on fNIRS in AR Guidance Systems",
+    "article_number": 10669782,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10669782/"
+  },
+  {
+    "title": "FSLens: A Visual Analytics Approach to Evaluating and Optimizing the Spatial Layout of Fire Stations",
+    "article_number": 10295565,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10295565/"
+  },
+  {
+    "title": "StuGPTViz: A Visual Analytics Approach to Understand Student-ChatGPT Interactions",
+    "article_number": 10689494,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10689494"
+  },
+  {
+    "title": "Conch: Competitive Debate Analysis via Visualizing Clash Points and Hierarchical Strategies",
+    "article_number": 11264377,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11264377/"
+  },
+  {
+    "title": "Visualizing Large-Scale Spatial Time Series with GeoChron",
+    "article_number": 10297582,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10297582/"
+  },
+  {
+    "title": "AdversaFlow: Visual Red Teaming for Large Language Models with Multi-Level Adversarial Flow",
+    "article_number": 10681029,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10681029/"
+  },
+  {
+    "title": "PromptMagician: Interactive Prompt Engineering for Text-to-Image Creation",
+    "article_number": 10296017,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10296017/"
+  },
+  {
+    "title": "Dataopsy: Scalable and Fluid Visual Exploration using Aggregate Query Sculpting",
+    "article_number": 10292608,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10292608/"
+  },
+  {
+    "title": "SLInterpreter: An Exploratory and Iterative Human-AI Collaborative System for GNN-Based Synthetic Lethal Prediction",
+    "article_number": 10693324,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10693324/"
+  },
+  {
+    "title": "ClimateSOM: A Visual Analysis Workflow for Climate Ensemble Datasets",
+    "article_number": 11271132,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11271132/"
+  },
+  {
+    "title": "PhenoFlow: A Human-LLM Driven Visual Analytics System for Exploring Large and Complex Stroke Datasets",
+    "article_number": 10689638,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10689638/"
+  },
+  {
+    "title": "Who Let the Guards Out: Visual Support for Patrolling Games",
+    "article_number": 10684132,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10684132/"
+  },
+  {
+    "title": "Towards Dataset-Scale and Feature-Oriented Evaluation of Text Summarization in Large Language Model Prompts",
+    "article_number": 10669798,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10669798/"
+  },
+  {
+    "title": "Calli-VA: A Visual Analytics System for Analyzing and Comparing Chinese Calligraphic Styles",
+    "article_number": 11264378,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11264378/"
+  },
+  {
+    "title": "Causality-based Visual Analytics of Sentiment Contagion in Social Media Topics",
+    "article_number": 11281557,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11281557/"
+  },
+  {
+    "title": "InsightChaser: Enhancing Visual Reasoning of Sports Tactical Visualization with Visual-Text Linking",
+    "article_number": 11267480,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11267480/"
+  },
+  {
+    "title": "Ferry: Toward Better Understanding of Input/Output Space for Data Wrangling Scripts",
+    "article_number": 10670464,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10670464/"
+  },
+  {
+    "title": "EventBox: A Novel Visual Encoding for Interactive Analysis of Temporal and Multivariate Attributes in Event Sequences",
+    "article_number": 11273175,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11273175/"
+  },
+  {
+    "title": "Cell2Cell: Explorative Cell Interaction Analysis in Multi-Volumetric Tissue Data",
+    "article_number": 10672552,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10672552/"
+  },
+  {
+    "title": "Guided Visual Analytics for Image Selection in Time and Space",
+    "article_number": 10308619,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10308619/"
+  },
+  {
+    "title": "Data Type Agnostic Visual Sensitivity Analysis",
+    "article_number": 10308617,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10308617/"
+  },
+  {
+    "title": "SkiVis: Visual Exploration and Route Planning in Ski Resorts",
+    "article_number": 10294204,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10294204"
+  },
+  {
+    "title": "Cluster-Based Random Forest Visualization and Interpretation",
+    "article_number": 11271271,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11271271/"
+  },
+  {
+    "title": "ViMO - Visual Analysis of Neuronal Connectivity Motifs",
+    "article_number": 10298029,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10298029/"
+  },
+  {
+    "title": "Defogger: A Visual Analysis Approach for Data Exploration of Sensitive Data Protected by Differential Privacy",
+    "article_number": 10670438,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10670438/"
+  },
+  {
+    "title": "VisMoDAl: Visual Analytics for Evaluating and Improving Corruption Robustness of Vision-Language Models",
+    "article_number": 11264374,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/11264374/"
+  },
+  {
+    "title": "TrajLens: Visual Analysis for Constructing Cell Developmental Trajectories in Cross-Sample Exploration",
+    "article_number": 11262809,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11262809/"
+  },
+  {
+    "title": "SEAL: Spatially-resolved Embedding Analysis with Linked Imaging Data",
+    "article_number": 11298380,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11298380/"
+  },
+  {
+    "title": "Envisage: Towards Expressive Visual Graph Querying",
+    "article_number": 11268334,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11268334/"
+  },
+  {
+    "title": "DaedalusData: Exploration, Knowledge Externalization and Labeling of Particles in Medical Manufacturing — A Design Study",
+    "article_number": 10689477,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10689477/"
+  },
+  {
+    "title": "Sel3DCraft: Interactive Visual Prompts for User-Friendly Text-to-3D Generation",
+    "article_number": 11271758,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11271758/"
+  },
+  {
+    "title": "Visualizing Historical Book Trade Data: An Iterative Design Study with Close Collaboration with Domain Experts",
+    "article_number": 10292899,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10292899/"
+  },
+  {
+    "title": "OwnershipTracker: A Visual Analytics Approach to Uncovering Historical Book Ownership Patterns",
+    "article_number": 11261391,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11261391/"
+  },
+  {
+    "title": "Story Ribbons: Reimagining Storyline Visualizations with Large Language Models",
+    "article_number": 11278504,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11278504/"
+  },
+  {
+    "title": "Blowing Seeds Across Gardens: Visualizing Implicit Propagation of Cross-Platform Social Media Posts",
+    "article_number": 10670503,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10670503/"
+  },
+  {
+    "title": "Revealing Interaction Dynamics: Multi-Level Visual Exploration of User Strategies with an Interactive Digital Environment",
+    "article_number": 10670552,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10670552/"
+  },
+  {
+    "title": "Visual Extraction of Interaction Patterns Guided by Hierarchical Clustering and Process Mining",
+    "article_number": 11261866,
+    "year": 2026,
+    "url": "https://ieeexplore.ieee.org/document/11261866/"
+  },
+  {
+    "title": "CSLens: Towards Better Deploying Charging Stations via Visual Analytics — a Coupled Networks Perspective",
+    "article_number": 10670473,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10670473/"
+  },
+  {
+    "title": "ParetoTracker: Understanding Population Dynamics in Multi-Objective Evolutionary Algorithms Through Visual Analytics",
+    "article_number": 10670520,
+    "year": 2025,
+    "url": "https://ieeexplore.ieee.org/document/10670520/"
+  },
+  {
+    "title": "PROWIS: A Visual Approach for Building, Managing, and Analyzing Weather Simulation Ensembles at Runtime",
+    "article_number": 10290915,
+    "year": 2024,
+    "url": "https://ieeexplore.ieee.org/document/10290915/"
+  },
+  {
+    "title": "D-Map: Visual analysis of ego-centric information diffusion patterns in social media",
+    "article_number": 7883510,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7883510/"
+  },
+  {
+    "title": "ErgoExplorer: Interactive Ergonomic Risk Assessment from Video Collections",
+    "article_number": 9912348,
+    "year": 2023,
+    "url": "https://ieeexplore.ieee.org/document/9912348"
+  },
+  {
+    "title": "VisOHC: Designing Visual Analytics for Online Health Communities",
+    "article_number": 7192683,
+    "year": 2016,
+    "url": "https://ieeexplore.ieee.org/document/7192683"
+  },
+  {
+    "title": "Visplause: Visual Data Quality Assessment of Many Time Series Using Plausibility Checks",
+    "article_number": 7536111,
+    "year": 2017,
+    "url": "https://ieeexplore.ieee.org/document/7536111"
+  }
+]

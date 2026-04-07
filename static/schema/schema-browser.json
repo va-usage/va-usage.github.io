@@ -1,0 +1,619 @@
+{
+  "fieldDictionary": [
+    {
+      "title": "1. System Specification",
+      "objects": [
+        {
+          "title": "Top-level object: `SystemSpec`",
+          "fields": [
+            {
+              "field": "paperName",
+              "type": "string",
+              "meaning": "Paper identifier used in the project"
+            },
+            {
+              "field": "systemInfo",
+              "type": "object",
+              "meaning": "High-level metadata about the system"
+            },
+            {
+              "field": "viewsInfo",
+              "type": "list",
+              "meaning": "Canonical top-level views in the system"
+            },
+            {
+              "field": "coordinationInfo",
+              "type": "list",
+              "meaning": "Cross-view or cross-subview coordination relationships"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `systemInfo`",
+          "fields": [
+            {
+              "field": "systemName",
+              "type": "string",
+              "meaning": "Name of the VA system"
+            },
+            {
+              "field": "dataOntology",
+              "type": "object",
+              "meaning": "High-level description of the underlying data"
+            },
+            {
+              "field": "systemCategory",
+              "type": "list",
+              "meaning": "Taxonomy-based domain/task categorization"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `ViewSpec`",
+          "fields": [
+            {
+              "field": "viewId",
+              "type": "string",
+              "meaning": "Stable canonical view identifier"
+            },
+            {
+              "field": "viewName",
+              "type": "string",
+              "meaning": "Human-readable view name"
+            },
+            {
+              "field": "aliases",
+              "type": "list",
+              "meaning": "Alternate names or figure callouts"
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Functional description of the view"
+            },
+            {
+              "field": "viewImages",
+              "type": "list",
+              "meaning": "Image paths associated with the view"
+            },
+            {
+              "field": "subViews",
+              "type": "list",
+              "meaning": "Logical subregions inside the view"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `SubView`",
+          "fields": [
+            {
+              "field": "subViewId",
+              "type": "string",
+              "meaning": "Stable canonical subview identifier"
+            },
+            {
+              "field": "subViewName",
+              "type": "string",
+              "meaning": "Human-readable subview name"
+            },
+            {
+              "field": "isVisualizationView",
+              "type": "bool",
+              "meaning": "Whether the subview is visual or non-visual"
+            },
+            {
+              "field": "viewStyleInfo",
+              "type": "object",
+              "meaning": "Visual style description when the subview is visual"
+            },
+            {
+              "field": "nonVisualViewSpec",
+              "type": "object",
+              "meaning": "Structural description when the subview is non-visual"
+            },
+            {
+              "field": "viewProcessingInfo",
+              "type": "object",
+              "meaning": "Processing or modeling steps behind the subview"
+            },
+            {
+              "field": "capabilities",
+              "type": "list",
+              "meaning": "User-visible capabilities supported by the subview"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `SubviewCapability`",
+          "fields": [
+            {
+              "field": "capabilityId",
+              "type": "string",
+              "meaning": "Stable canonical capability identifier"
+            },
+            {
+              "field": "capabilityKind",
+              "type": "enum",
+              "meaning": "Whether the capability is Interaction or Information"
+            },
+            {
+              "field": "capabilityName",
+              "type": "string",
+              "meaning": "Short capability label"
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "What the user can do or read from the subview"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `ViewCoordinationInfo`",
+          "fields": [
+            {
+              "field": "coordinationId",
+              "type": "string",
+              "meaning": "Stable canonical coordination identifier"
+            },
+            {
+              "field": "source",
+              "type": "object",
+              "meaning": "Source view or subview"
+            },
+            {
+              "field": "sourceCapabilityRef",
+              "type": "object",
+              "meaning": "Source capability that triggers the coordination"
+            },
+            {
+              "field": "targets",
+              "type": "list",
+              "meaning": "Target view or subview nodes"
+            },
+            {
+              "field": "targetCapabilityRefs",
+              "type": "list",
+              "meaning": "Target capabilities affected by the coordination"
+            },
+            {
+              "field": "coordinationType",
+              "type": "string",
+              "meaning": "Type of relationship, such as drill-down or parameter binding"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2. Intended Workflow",
+      "objects": [
+        {
+          "title": "Top-level object: `PaperWorkflowSpec`",
+          "fields": [
+            {
+              "field": "paperName",
+              "type": "string",
+              "meaning": "Paper identifier"
+            },
+            {
+              "field": "systemName",
+              "type": "string",
+              "meaning": "System name"
+            },
+            {
+              "field": "systemSpecPath",
+              "type": "string",
+              "meaning": "Path to the linked system specification"
+            },
+            {
+              "field": "workflows",
+              "type": "list",
+              "meaning": "Author-intended workflows in the paper"
+            },
+            {
+              "field": "paperLevelClaims",
+              "type": "list",
+              "meaning": "Higher-level claims about intended use"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `WorkflowSpec`",
+          "fields": [
+            {
+              "field": "workflowId",
+              "type": "string",
+              "meaning": "Stable canonical workflow identifier"
+            },
+            {
+              "field": "workflowTitle",
+              "type": "string",
+              "meaning": "Name of the workflow"
+            },
+            {
+              "field": "workflowKind",
+              "type": "enum",
+              "meaning": "High-level workflow type"
+            },
+            {
+              "field": "workflowGoal",
+              "type": "string",
+              "meaning": "Main goal of the workflow"
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Free-text workflow summary"
+            },
+            {
+              "field": "targetUsers",
+              "type": "list",
+              "meaning": "Target user groups"
+            },
+            {
+              "field": "stages",
+              "type": "list",
+              "meaning": "Ordered workflow stages"
+            },
+            {
+              "field": "transitions",
+              "type": "list",
+              "meaning": "Transitions among stages"
+            },
+            {
+              "field": "expectedFinalOutcome",
+              "type": "string",
+              "meaning": "Intended final outcome"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `WorkflowStage`",
+          "fields": [
+            {
+              "field": "stageId",
+              "type": "string",
+              "meaning": "Stable stage identifier"
+            },
+            {
+              "field": "stageIndex",
+              "type": "integer",
+              "meaning": "Order of the stage in the workflow"
+            },
+            {
+              "field": "stageTitle",
+              "type": "string",
+              "meaning": "Human-readable stage label"
+            },
+            {
+              "field": "stageGoal",
+              "type": "string",
+              "meaning": "Local goal of the stage"
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Summary of the stage activity"
+            },
+            {
+              "field": "usedViews",
+              "type": "list",
+              "meaning": "Views or subviews expected in this stage"
+            },
+            {
+              "field": "usedCapabilities",
+              "type": "list",
+              "meaning": "Capabilities expected in this stage"
+            },
+            {
+              "field": "usedCoordinations",
+              "type": "list",
+              "meaning": "Coordinations relied upon in this stage"
+            },
+            {
+              "field": "expectedOutcome",
+              "type": "string",
+              "meaning": "Expected result of the stage"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `WorkflowTransition`",
+          "fields": [
+            {
+              "field": "sourceStageId",
+              "type": "string",
+              "meaning": "Source stage identifier"
+            },
+            {
+              "field": "targetStageId",
+              "type": "string",
+              "meaning": "Target stage identifier"
+            },
+            {
+              "field": "transitionType",
+              "type": "enum",
+              "meaning": "Transition type such as Next, Iterate, or DrillDown"
+            },
+            {
+              "field": "rationale",
+              "type": "string",
+              "meaning": "Why the workflow moves this way"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. Case Study Usage",
+      "objects": [
+        {
+          "title": "Top-level object: `PaperUsageSpec`",
+          "fields": [
+            {
+              "field": "paperName",
+              "type": "string",
+              "meaning": "Paper identifier"
+            },
+            {
+              "field": "systemName",
+              "type": "string",
+              "meaning": "System name"
+            },
+            {
+              "field": "systemSpecPath",
+              "type": "string",
+              "meaning": "Path to the linked system specification"
+            },
+            {
+              "field": "caseStudies",
+              "type": "list",
+              "meaning": "Case studies extracted from the paper"
+            },
+            {
+              "field": "paperLevelUsageClaims",
+              "type": "list",
+              "meaning": "Paper-level claims about usage"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `CaseStudySpec`",
+          "fields": [
+            {
+              "field": "caseId",
+              "type": "string",
+              "meaning": "Stable case identifier"
+            },
+            {
+              "field": "caseTitle",
+              "type": "string",
+              "meaning": "Human-readable case title"
+            },
+            {
+              "field": "caseStudyKind",
+              "type": "enum",
+              "meaning": "Type of case study"
+            },
+            {
+              "field": "analyst",
+              "type": "object",
+              "meaning": "Analyst or user profile"
+            },
+            {
+              "field": "scenario",
+              "type": "object",
+              "meaning": "Problem context and analysis goal"
+            },
+            {
+              "field": "questions",
+              "type": "list",
+              "meaning": "Canonical question inventory"
+            },
+            {
+              "field": "hypotheses",
+              "type": "list",
+              "meaning": "Canonical hypothesis inventory"
+            },
+            {
+              "field": "episodes",
+              "type": "list",
+              "meaning": "Main local phases in the case"
+            },
+            {
+              "field": "finalOutcome",
+              "type": "object",
+              "meaning": "Final findings and decisions"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `ScenarioContext`",
+          "fields": [
+            {
+              "field": "domainProblem",
+              "type": "string",
+              "meaning": "Domain problem in the case"
+            },
+            {
+              "field": "analysisGoal",
+              "type": "string",
+              "meaning": "Main analysis goal"
+            },
+            {
+              "field": "datasetContext",
+              "type": "string",
+              "meaning": "Short description of the data context"
+            },
+            {
+              "field": "initialQuestion",
+              "type": "string",
+              "meaning": "Initial question framing the case"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `Episode`",
+          "fields": [
+            {
+              "field": "episodeId",
+              "type": "string",
+              "meaning": "Stable episode identifier"
+            },
+            {
+              "field": "episodeTitle",
+              "type": "string",
+              "meaning": "Human-readable episode label"
+            },
+            {
+              "field": "localGoal",
+              "type": "string",
+              "meaning": "Goal of the episode"
+            },
+            {
+              "field": "focusQuestionIds",
+              "type": "list",
+              "meaning": "Main questions driving the episode"
+            },
+            {
+              "field": "strategyCanonical",
+              "type": "list",
+              "meaning": "Dominant strategy tags"
+            },
+            {
+              "field": "steps",
+              "type": "list",
+              "meaning": "Ordered analytic steps within the episode"
+            },
+            {
+              "field": "episodeOutcomeSummary",
+              "type": "string",
+              "meaning": "What the episode achieved overall"
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `UsageStep`",
+          "fields": [
+            {
+              "field": "stepId",
+              "type": "string",
+              "meaning": "Stable step identifier"
+            },
+            {
+              "field": "stepIndex",
+              "type": "integer",
+              "meaning": "Order of the step inside the episode"
+            },
+            {
+              "field": "rawNarrative",
+              "type": "string",
+              "meaning": "Original or paraphrased narrative evidence"
+            },
+            {
+              "field": "questionsAddressed",
+              "type": "list",
+              "meaning": "Questions directly addressed in this step"
+            },
+            {
+              "field": "intentCanonical",
+              "type": "list",
+              "meaning": "Normalized intent labels"
+            },
+            {
+              "field": "strategyCanonical",
+              "type": "list",
+              "meaning": "Normalized strategy labels"
+            },
+            {
+              "field": "operationCanonical",
+              "type": "list",
+              "meaning": "Normalized operation labels"
+            },
+            {
+              "field": "usedViews",
+              "type": "list",
+              "meaning": "Views or subviews used in the step"
+            },
+            {
+              "field": "usedCapabilities",
+              "type": "list",
+              "meaning": "Capabilities used in the step"
+            },
+            {
+              "field": "observations",
+              "type": "list",
+              "meaning": "Observations produced in the step"
+            },
+            {
+              "field": "producedInsights",
+              "type": "list",
+              "meaning": "Insights produced in the step"
+            },
+            {
+              "field": "decision",
+              "type": "object",
+              "meaning": "Decision made at the end of the step"
+            },
+            {
+              "field": "outcomeSummary",
+              "type": "string",
+              "meaning": "Short summary of the step result"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Relation Across Layers",
+      "objects": []
+    },
+    {
+      "title": "Implementation Files",
+      "objects": []
+    }
+  ],
+  "examples": [
+    {
+      "id": "BDIViz",
+      "paperTitle": "BDIViz: An Interactive Visualization System for Biomedical Schema Matching with LLM-Powered Validation",
+      "interfaceImage": "static/schema/system-interface-figures/BDIViz.png",
+      "paths": {
+        "system": "static/schema/examples/BDIViz/system-spec.json",
+        "workflow": "static/schema/examples/BDIViz/paper-workflow-spec.json",
+        "usage": "static/schema/examples/BDIViz/paper-usage-spec.json"
+      }
+    },
+    {
+      "id": "ConceptViz",
+      "paperTitle": "ConceptViz: A Visual Analytics Approach for Exploring Concepts in Large Language Models",
+      "interfaceImage": "static/schema/system-interface-figures/ConceptViz.png",
+      "paths": {
+        "system": "static/schema/examples/ConceptViz/system-spec.json",
+        "workflow": "static/schema/examples/ConceptViz/paper-workflow-spec.json",
+        "usage": "static/schema/examples/ConceptViz/paper-usage-spec.json"
+      }
+    },
+    {
+      "id": "DMap",
+      "paperTitle": "D-Map: Visual analysis of ego-centric information diffusion patterns in social media",
+      "interfaceImage": "static/schema/system-interface-figures/DMap.png",
+      "paths": {
+        "system": "static/schema/examples/DMap/system-spec.json",
+        "workflow": "static/schema/examples/DMap/paper-workflow-spec.json",
+        "usage": "static/schema/examples/DMap/paper-usage-spec.json"
+      }
+    },
+    {
+      "id": "FluxFlow",
+      "paperTitle": "#FluxFlow: Visual Analysis of Anomalous Information Spreading on Social Media",
+      "interfaceImage": "static/schema/system-interface-figures/FluxFlow.png",
+      "paths": {
+        "system": "static/schema/examples/FluxFlow/system-spec.json",
+        "workflow": "static/schema/examples/FluxFlow/paper-workflow-spec.json",
+        "usage": "static/schema/examples/FluxFlow/paper-usage-spec.json"
+      }
+    }
+  ]
+}

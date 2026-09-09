@@ -1,0 +1,325 @@
+{
+  "paperName": "TacSimurTacticBased",
+  "systemName": "Tac-Simur",
+  "systemSpecPath": "system-spec.json",
+  "workflows": [
+    {
+      "workflowId": "tactic-based-simulative-analysis",
+      "workflowTitle": "Tactic-based simulative analysis",
+      "workflowKind": "DecisionSupport",
+      "workflowGoal": "Identify promising tactical adjustments, evaluate their effects and feasibility, and explain how they influence play.",
+      "description": "Experts narrow the match scope, navigate tactics, explore and compare simulated tactical adjustments, and inspect the simulated stroke correlations that explain an adjustment.",
+      "applicabilityContext": "Analysis of a target table-tennis player's historical matches to improve performance in future matches.",
+      "targetUsers": [
+        "table tennis performance analysts"
+      ],
+      "stages": [
+        {
+          "stageId": "select-match-scope",
+          "displayOrder": 1,
+          "stageTitle": "Select matches",
+          "localGoal": "Choose a player and a relevant set of matches for analysis.",
+          "activitySummary": "Use the hierarchical player overview to inspect results and progressively select a player, opponent handedness, opponents, and matches.",
+          "usedSubViews": [
+            {
+              "viewId": "player-view",
+              "subViewId": "match-tree"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "player-view",
+              "subViewId": "match-tree",
+              "capabilityId": "match-tree.show-match-overview"
+            },
+            {
+              "viewId": "player-view",
+              "subViewId": "match-tree",
+              "capabilityId": "match-tree.select-matches"
+            }
+          ],
+          "expectedOutcome": "A target player and match subset are selected for tactical analysis.",
+          "evidence": {
+            "passageIds": [
+              34,
+              64,
+              72,
+              76
+            ],
+            "quotes": [
+              "they usually first target a player"
+            ],
+            "confidence": 0.98
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "stageId": "identify-tactics",
+          "displayOrder": 2,
+          "stageTitle": "Navigate tactics",
+          "localGoal": "Locate tactics of interest and understand the targeted player's playing style.",
+          "activitySummary": "Choose placement, technique, or position as the depicted tactic attribute; browse tactics by rally phase; inspect scoring and utilization rates; sort and filter the list; and select tactics for adjustment.",
+          "usedSubViews": [
+            {
+              "viewId": "tactic-view",
+              "subViewId": "tactic-list"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "tactic-view",
+              "subViewId": "tactic-list",
+              "capabilityId": "tactic-list.show-tactic-rates"
+            },
+            {
+              "viewId": "tactic-view",
+              "subViewId": "tactic-list",
+              "capabilityId": "tactic-list.select-depicted-attribute"
+            },
+            {
+              "viewId": "tactic-view",
+              "subViewId": "tactic-list",
+              "capabilityId": "tactic-list.sort-filter-tactics"
+            },
+            {
+              "viewId": "tactic-view",
+              "subViewId": "tactic-list",
+              "capabilityId": "tactic-list.select-tactic"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-select-matches-to-tactics"
+            },
+            {
+              "coordinationId": "coord-select-tactic-to-exploration",
+              "description": "Selection linking propagates the chosen tactic as the exploration target context."
+            }
+          ],
+          "expectedOutcome": "One or more tactics worth further simulative analysis are selected.",
+          "evidence": {
+            "passageIds": [
+              34,
+              65,
+              72,
+              78,
+              82
+            ],
+            "quotes": [
+              "locate those of interest for subsequent analysis"
+            ],
+            "confidence": 0.99
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "stageId": "explore-evaluate-adjustments",
+          "displayOrder": 3,
+          "stageTitle": "Explore and evaluate adjustments",
+          "localGoal": "Find feasible stroke adjustments before the sixth stroke and compare their simulated effects.",
+          "activitySummary": "For strokes before the sixth stroke, configure and sort candidate options, apply adjustments, generate or add strategies, and compare their winning-rate effects and adjustability.",
+          "usedSubViews": [
+            {
+              "viewId": "simulation-view",
+              "subViewId": "exploration-component"
+            },
+            {
+              "viewId": "simulation-view",
+              "subViewId": "evaluation-component"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "simulation-view",
+              "subViewId": "exploration-component",
+              "capabilityId": "exploration-component.show-adjustment-options"
+            },
+            {
+              "viewId": "simulation-view",
+              "subViewId": "exploration-component",
+              "capabilityId": "exploration-component.configure-options"
+            },
+            {
+              "viewId": "simulation-view",
+              "subViewId": "exploration-component",
+              "capabilityId": "exploration-component.apply-adjustment"
+            },
+            {
+              "viewId": "simulation-view",
+              "subViewId": "evaluation-component",
+              "capabilityId": "evaluation-component.compare-strategies"
+            },
+            {
+              "viewId": "simulation-view",
+              "subViewId": "evaluation-component",
+              "capabilityId": "evaluation-component.organize-strategies"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-apply-adjustment-to-evaluation"
+            }
+          ],
+          "expectedOutcome": "A promising before-sixth-stroke adjustment strategy is identified by considering both simulated effect and practical adjustability.",
+          "evidence": {
+            "passageIds": [
+              34,
+              66,
+              67,
+              72,
+              85,
+              86,
+              87,
+              92,
+              93
+            ],
+            "quotes": [
+              "evaluation and comparison"
+            ],
+            "confidence": 0.98
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "stageId": "explain-adjustment",
+          "displayOrder": 4,
+          "stageTitle": "Explain the adjustment",
+          "localGoal": "Understand why the selected adjustment performs well or poorly and how it can be implemented in practice.",
+          "activitySummary": "Inspect former and latter stroke sets, influence links, and progressively selected stroke attributes in the explanation component.",
+          "usedSubViews": [
+            {
+              "viewId": "simulation-view",
+              "subViewId": "explanation-component"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "simulation-view",
+              "subViewId": "explanation-component",
+              "capabilityId": "explanation-component.explain-adjustment"
+            },
+            {
+              "viewId": "simulation-view",
+              "subViewId": "explanation-component",
+              "capabilityId": "explanation-component.inspect-correlations"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-strategy-to-explanation"
+            }
+          ],
+          "expectedOutcome": "The analyst obtains a stroke-level account of the adjustment's influence and a practical way to communicate or train it.",
+          "evidence": {
+            "passageIds": [
+              35,
+              68,
+              72,
+              85,
+              88,
+              89,
+              90
+            ],
+            "quotes": [
+              "the manner in which an adjustment can be achieved"
+            ],
+            "confidence": 0.97
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "transitions": [
+        {
+          "sourceStageId": "select-match-scope",
+          "targetStageId": "identify-tactics",
+          "rationale": "The selected match subset determines the tactics available for navigation.",
+          "evidence": {
+            "passageIds": [
+              72,
+              76,
+              78
+            ],
+            "quotes": [
+              "Then, experts can navigate the tactics"
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "sourceStageId": "identify-tactics",
+          "targetStageId": "explore-evaluate-adjustments",
+          "rationale": "Selected tactics become the context for applying and evaluating stroke adjustments.",
+          "evidence": {
+            "passageIds": [
+              72,
+              85
+            ],
+            "quotes": [
+              "Based on the selected tactics"
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "sourceStageId": "explore-evaluate-adjustments",
+          "targetStageId": "explain-adjustment",
+          "rationale": "After identifying an adjustment, experts inspect the simulated process to understand its influence and implementation.",
+          "evidence": {
+            "passageIds": [
+              72,
+              85,
+              88
+            ],
+            "quotes": [
+              "To figure out the influence and implementation"
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "expectedFinalOutcome": "A defensible tactical adjustment whose expected effect, feasibility, causal influence, and practical implementation are understood.",
+      "evidence": {
+        "passageIds": [
+          7,
+          34,
+          35,
+          71,
+          72
+        ],
+        "quotes": [
+          "navigation, exploration, and explanation"
+        ],
+        "confidence": 0.98
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "paperLevelClaims": [
+    {
+      "claimText": "Tac-Simur is designed to let experts navigate players and tactics, explore and evaluate simulations, and explain simulation results.",
+      "evidence": {
+        "passageIds": [
+          1,
+          7,
+          9,
+          71,
+          72
+        ]
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "evidence": {
+    "passageIds": [
+      7,
+      34,
+      35,
+      71,
+      72
+    ],
+    "figureRefs": [
+      "Fig. 5",
+      "Fig. 6"
+    ]
+  }
+}

@@ -1,0 +1,986 @@
+{
+  "paperName": "RuleMatrix",
+  "systemName": "RuleMatrix",
+  "systemSpecPath": "system-spec.json",
+  "caseStudies": [
+    {
+      "caseId": "breast-cancer-scenario",
+      "caseTitle": "Understanding a Cancer Classifier",
+      "caseStudyKind": "ScenarioDemonstration",
+      "analyst": {
+        "role": "Student",
+        "domainExpertise": "Intermediate",
+        "toolExpertise": "Novice",
+        "description": "Mary is presented as a medical student learning about breast-cancer classification."
+      },
+      "scenario": {
+        "domainProblem": "Understand how a neural network classifies breast-cancer cells from cytological features.",
+        "analysisGoal": "Learn what knowledge the classifier has learned and assess the certainty and support of its rules.",
+        "datasetContext": "Breast Cancer Wisconsin (Original) dataset with 699 breast fine-needle aspirates and cytological features graded from 1 to 10.",
+        "stakes": "The scenario concerns interpreting malignancy and benign predictions.",
+        "primaryQuestionId": "breast-cancer.q1"
+      },
+      "questions": [
+        {
+          "questionId": "breast-cancer.q1",
+          "questionText": "What knowledge has the model learned?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              31,
+              97
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "questionId": "breast-cancer.q2",
+          "questionText": "How certain is the model for each piece of knowledge?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              32,
+              97
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "breast-cancer.filter-rules",
+          "narrativeOrder": 1,
+          "episodeTitle": "Reduce the Rule List",
+          "localGoal": "Identify and collapse rules with little support so attention stays on salient rules.",
+          "focusQuestionIds": [
+            "breast-cancer.q2"
+          ],
+          "steps": [
+            {
+              "stepId": "breast-cancer.filter-rules.identify",
+              "stepOrder": 1,
+              "narrativeSummary": "Mary scanned the 12 extracted rules and noticed that rules 6 through 12 had little support from the training data.",
+              "questionsAddressed": [
+                "breast-cancer.q2"
+              ],
+              "usedSubViews": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.data-flow"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.data-flow",
+                  "capabilityId": "data-flow-read-support"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "Rules 6 through 12 had little support from the training data.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "main-visualization",
+                      "subViewId": "main-visualization.data-flow"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      97
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  97
+                ]
+              }
+            },
+            {
+              "stepId": "breast-cancer.filter-rules.collapse",
+              "stepOrder": 2,
+              "narrativeSummary": "She set the rule filter's minimum evidence to 0.014, collapsing the last seven rules.",
+              "questionsAddressed": [
+                "breast-cancer.q2"
+              ],
+              "operationText": "Adjust the minimum-evidence rule filter to 0.014.",
+              "usedSubViews": [
+                {
+                  "viewId": "control-panel",
+                  "subViewId": "control-panel.controls"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "control-panel",
+                  "subViewId": "control-panel.controls",
+                  "capabilityId": "control-filter-rules"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix",
+                  "capabilityId": "rule-matrix-show-list"
+                }
+              ],
+              "documentedOutcome": "The last seven low-support rules were collapsed.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  97
+                ],
+                "figureRefs": [
+                  "Fig. 5"
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "The visible explanation was reduced to the five better-supported rules.",
+          "evidence": {
+            "passageIds": [
+              97
+            ],
+            "figureRefs": [
+              "Fig. 5"
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "breast-cancer.inspect-rules",
+          "narrativeOrder": 2,
+          "episodeTitle": "Interpret Cancer Rules",
+          "localGoal": "Interpret individual high-value rules and compare them with medical knowledge.",
+          "focusQuestionIds": [
+            "breast-cancer.q1",
+            "breast-cancer.q2"
+          ],
+          "steps": [
+            {
+              "stepId": "breast-cancer.inspect-rules.malignant",
+              "stepOrder": 1,
+              "narrativeSummary": "Mary inspected rule 1, saw malignant output probability and fidelity of 0.99, and read the marginal-adhesion condition.",
+              "questionsAddressed": [
+                "breast-cancer.q1",
+                "breast-cancer.q2"
+              ],
+              "usedSubViews": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix",
+                  "capabilityId": "rule-matrix-read-rules"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view",
+                  "capabilityId": "support-view-read-fidelity"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "Rule 1 predicts malignancy with probability 0.99 and fidelity 0.99 when marginal adhesion is greater than 5.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "main-visualization",
+                      "subViewId": "main-visualization.rule-matrix"
+                    },
+                    {
+                      "viewId": "main-visualization",
+                      "subViewId": "main-visualization.support-view"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      97
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "The learned rule agrees with her knowledge that loss of adhesion is a strong sign of cancer cells.",
+                  "relatedQuestionIds": [
+                    "breast-cancer.q1"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "main-visualization",
+                      "subViewId": "main-visualization.rule-matrix"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      97
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  97
+                ]
+              }
+            },
+            {
+              "stepId": "breast-cancer.inspect-rules.benign",
+              "stepOrder": 2,
+              "narrativeSummary": "She checked rule 3, the rule with largest dataset support, and interpreted its bland-chromatin condition as a quick indicator of benign cells.",
+              "questionsAddressed": [
+                "breast-cancer.q1",
+                "breast-cancer.q2"
+              ],
+              "usedSubViews": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.data-flow"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.data-flow",
+                  "capabilityId": "data-flow-read-support"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix",
+                  "capabilityId": "rule-matrix-read-rules"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "Rule 3 had the largest support and predicted a benign cell when bland chromatin was at most 1.",
+                  "evidence": {
+                    "passageIds": [
+                      97
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "The rule suggests benign cells may be identified quickly by checking whether the nucleus is coarse.",
+                  "relatedQuestionIds": [
+                    "breast-cancer.q1"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      97
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "Mary identified interpretable malignant and benign patterns learned by the network.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  97
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "The remaining rules yielded medically interpretable conditions for malignant and benign cells.",
+          "evidence": {
+            "passageIds": [
+              97
+            ],
+            "figureRefs": [
+              "Fig. 5"
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "claimedSystemValue": "RuleMatrix let the scenario user reduce low-support rules and relate high-support rules to medical knowledge.",
+        "evidence": {
+          "passageIds": [
+            97
+          ],
+          "figureRefs": [
+            "Fig. 5"
+          ]
+        },
+        "inferenceType": "CrossModalSynthesis"
+      },
+      "overallStrategySummary": "Filter weakly supported rules, then inspect salient rules and compare their conditions with domain knowledge.",
+      "caseNarrativeSummary": "A medical student uses RuleMatrix to collapse seven low-support rules and interpret two salient cancer-classification rules.",
+      "evidence": {
+        "passageIds": [
+          96,
+          97
+        ],
+        "figureRefs": [
+          "Fig. 5"
+        ]
+      },
+      "inferenceType": "Explicit"
+    },
+    {
+      "caseId": "diabetes-classification",
+      "caseTitle": "Improving Diabetes Classification",
+      "caseStudyKind": "RealWorldCase",
+      "analyst": {
+        "role": "Researcher",
+        "domainExpertise": "Intermediate",
+        "toolExpertise": "Expert",
+        "description": "The paper authors conduct the analysis and retraining experiment."
+      },
+      "scenario": {
+        "domainProblem": "Understand and improve a neural network that classifies diabetes status for Pima Indian women.",
+        "analysisGoal": "Interpret the learned rules, isolate dangerous false-negative conditions, and test a data-level improvement.",
+        "datasetContext": "Pima Indian Diabetes Dataset with 768 patients and eight diagnostic features; 75% training and 25% test partitions.",
+        "stakes": "False negatives may delay treatment for patients who have diabetes.",
+        "primaryQuestionId": "diabetes.q1"
+      },
+      "questions": [
+        {
+          "questionId": "diabetes.q1",
+          "questionText": "What knowledge has the model learned?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              31,
+              102
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "questionId": "diabetes.q2",
+          "questionText": "How certain is the model for each piece of knowledge?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              32,
+              102
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "questionId": "diabetes.q4",
+          "questionText": "When and where is the model likely to fail?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              34,
+              103
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "questionId": "diabetes.improve",
+          "questionText": "Can model accuracy be improved by oversampling the difficult subset?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              104
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesisId": "diabetes.difficult-subset",
+          "hypothesisText": "Patients with no obvious diabetes indicators are difficult for the neural network to classify.",
+          "status": "Supported",
+          "relatedQuestionIds": [
+            "diabetes.q4"
+          ],
+          "evidence": {
+            "passageIds": [
+              103
+            ],
+            "figureRefs": [
+              "Fig. 6C"
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "diabetes.understand-rules",
+          "narrativeOrder": 1,
+          "episodeTitle": "Understand the Extracted Rules",
+          "localGoal": "Identify broad, supported diabetes risk patterns in the 22-rule explanation.",
+          "focusQuestionIds": [
+            "diabetes.q1",
+            "diabetes.q2"
+          ],
+          "steps": [
+            {
+              "stepId": "diabetes.understand-rules.support",
+              "stepOrder": 1,
+              "narrativeSummary": "The analysts navigated the rules and observed in the Support View's evidence column that only rule 4 and the default rule had relatively large support.",
+              "questionsAddressed": [
+                "diabetes.q2"
+              ],
+              "usedSubViews": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view",
+                  "capabilityId": "support-view-read-errors"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "No rule dominated by support except rule 4 and the final default rule, whose evidence-column bars were relatively longer.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "main-visualization",
+                      "subViewId": "main-visualization.support-view"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      102
+                    ],
+                    "figureRefs": [
+                      "Fig. 6A"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "The sparse support pattern reflects a difficult prediction domain.",
+                  "relatedQuestionIds": [
+                    "diabetes.q2"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "main-visualization",
+                      "subViewId": "main-visualization.support-view"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      102
+                    ],
+                    "figureRefs": [
+                      "Fig. 6A"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  102
+                ],
+                "figureRefs": [
+                  "Fig. 6A"
+                ]
+              }
+            },
+            {
+              "stepId": "diabetes.understand-rules.conditions",
+              "stepOrder": 2,
+              "narrativeSummary": "They inspected rule 1 and rules 2 through 5, reading conditions on plasma glucose, age, and BMI and their high output probabilities.",
+              "questionsAddressed": [
+                "diabetes.q1",
+                "diabetes.q2"
+              ],
+              "usedSubViews": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix",
+                  "capabilityId": "rule-matrix-read-rules"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "Rule 1 associates plasma glucose above 176 with diabetes, while rules 2 through 5 predict negative with probabilities above 0.98.",
+                  "evidence": {
+                    "passageIds": [
+                      102
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  102
+                ],
+                "figureRefs": [
+                  "Fig. 6A"
+                ]
+              }
+            },
+            {
+              "stepId": "diabetes.understand-rules.conclude",
+              "stepOrder": 3,
+              "narrativeSummary": "After reviewing the remaining rules in the aligned Rule Matrix, they concluded that high glucose and BMI increase diabetes likelihood while younger patients are less likely to have diabetes.",
+              "questionsAddressed": [
+                "diabetes.q1"
+              ],
+              "usedSubViews": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.rule-matrix",
+                  "capabilityId": "rule-matrix-read-rules"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "Patients with high plasma glucose and high BMI are more likely to have diabetes, while young patients are less likely in general.",
+                  "relatedQuestionIds": [
+                    "diabetes.q1"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "main-visualization",
+                      "subViewId": "main-visualization.rule-matrix"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      102
+                    ],
+                    "figureRefs": [
+                      "Fig. 6A"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The analysts obtained an overall account of the model's learned diabetes risk patterns.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  102
+                ],
+                "figureRefs": [
+                  "Fig. 6A"
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "The rule list exposed broad learned relationships among glucose, BMI, age, and diabetes predictions.",
+          "evidence": {
+            "passageIds": [
+              100,
+              102
+            ],
+            "figureRefs": [
+              "Fig. 6A"
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "diabetes.find-errors",
+          "narrativeOrder": 2,
+          "episodeTitle": "Isolate False-Negative Errors",
+          "localGoal": "Find patients with diabetes whom the model is likely to classify incorrectly as healthy.",
+          "focusQuestionIds": [
+            "diabetes.q4"
+          ],
+          "steps": [
+            {
+              "stepId": "diabetes.find-errors.focus",
+              "stepOrder": 1,
+              "narrativeSummary": "The analysts focused on patients older than 32 and removed low- and high-glucose cases that were mostly classified correctly.",
+              "questionsAddressed": [
+                "diabetes.q4"
+              ],
+              "intentText": "Focus on higher-risk patients and the conditions not already classified reliably.",
+              "operationText": "Filter age above 32 and plasma glucose between 108 and 137.",
+              "usedSubViews": [
+                {
+                  "viewId": "data-filter",
+                  "subViewId": "data-filter.filter-controls"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "data-filter",
+                  "subViewId": "data-filter.filter-controls",
+                  "capabilityId": "data-filter-constrain-ranges"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view",
+                  "capabilityId": "support-view-read-errors"
+                }
+              ],
+              "decision": {
+                "description": "Concentrate on patients older than 32 with mid-range plasma glucose.",
+                "rationale": "Older patients were higher-risk, while low- and high-glucose patients were mostly classified correctly.",
+                "targetQuestionIds": [
+                  "diabetes.q4"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    103
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "The subset contained 74 instances and model accuracy dropped to 62%.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  103
+                ],
+                "figureRefs": [
+                  "Fig. 6B"
+                ]
+              }
+            },
+            {
+              "stepId": "diabetes.find-errors.refine",
+              "stepOrder": 2,
+              "narrativeSummary": "They further removed patients with BMI below 27 and patients with DPF above 1.18.",
+              "questionsAddressed": [
+                "diabetes.q4"
+              ],
+              "operationText": "Further filter BMI and diabetes pedigree function ranges.",
+              "usedSubViews": [
+                {
+                  "viewId": "data-filter",
+                  "subViewId": "data-filter.filter-controls"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "data-filter",
+                  "subViewId": "data-filter.filter-controls",
+                  "capabilityId": "data-filter-constrain-ranges"
+                },
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view",
+                  "capabilityId": "support-view-read-errors"
+                }
+              ],
+              "documentedOutcome": "The remaining subset had 62 patients and model accuracy dropped to 56%.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  103
+                ],
+                "figureRefs": [
+                  "Fig. 6B",
+                  "Fig. 6C"
+                ]
+              }
+            },
+            {
+              "stepId": "diabetes.find-errors.validate",
+              "stepOrder": 3,
+              "narrativeSummary": "They read the blue striped error boxes and found many patients with diabetes wrongly classified as healthy.",
+              "questionsAddressed": [
+                "diabetes.q4"
+              ],
+              "hypothesesTouched": [
+                "diabetes.difficult-subset"
+              ],
+              "usedSubViews": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "main-visualization",
+                  "subViewId": "main-visualization.support-view",
+                  "capabilityId": "support-view-read-errors"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "A large portion of blue striped boxes represented patients with diabetes who were wrongly classified as healthy.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "main-visualization",
+                      "subViewId": "main-visualization.support-view"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      103
+                    ],
+                    "figureRefs": [
+                      "Fig. 6C"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "Patients with no obvious indicators are difficult for the model to classify.",
+                  "relatedQuestionIds": [
+                    "diabetes.q4"
+                  ],
+                  "relatedHypothesisIds": [
+                    "diabetes.difficult-subset"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "main-visualization",
+                      "subViewId": "main-visualization.support-view"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      103
+                    ],
+                    "figureRefs": [
+                      "Fig. 6C"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The filtered error pattern validated the analysts' suspicion about the difficult subset.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  103
+                ],
+                "figureRefs": [
+                  "Fig. 6C"
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "Successive filtering isolated a 62-patient subset with 56% accuracy and many false negatives.",
+          "evidence": {
+            "passageIds": [
+              103
+            ],
+            "figureRefs": [
+              "Fig. 6B",
+              "Fig. 6C"
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "diabetes.improve-model",
+          "narrativeOrder": 3,
+          "episodeTitle": "Test Oversampling",
+          "localGoal": "Determine whether adding examples from the difficult subset improves the neural network.",
+          "focusQuestionIds": [
+            "diabetes.improve"
+          ],
+          "steps": [
+            {
+              "stepId": "diabetes.improve-model.oversample",
+              "stepOrder": 1,
+              "narrativeSummary": "The analysts oversampled the difficult subset by half, adding 31 training instances, and retrained networks with the same hyperparameters.",
+              "questionsAddressed": [
+                "diabetes.improve"
+              ],
+              "operationText": "Oversample the isolated subset and retrain the neural network.",
+              "decision": {
+                "description": "Test oversampling as a response to the identified error concentration.",
+                "rationale": "The preceding analysis isolated a subset on which the model performed poorly.",
+                "targetQuestionIds": [
+                  "diabetes.improve"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    104
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  104
+                ]
+              }
+            },
+            {
+              "stepId": "diabetes.improve-model.evaluate",
+              "stepOrder": 2,
+              "narrativeSummary": "They repeated training and sampling ten times and compared the resulting test accuracy with the original model.",
+              "questionsAddressed": [
+                "diabetes.improve"
+              ],
+              "observations": [
+                {
+                  "description": "Mean test accuracy reached 75.5% with standard deviation 2.1%, and the best model reached 78.6% versus the original best of 74.0%.",
+                  "evidence": {
+                    "passageIds": [
+                      104
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "Oversampling the difficult subset produced a significantly better best model.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  104
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "The oversampling intervention improved mean and best test accuracy.",
+          "evidence": {
+            "passageIds": [
+              104
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "description": "The classifier struggled on patients lacking obvious diabetes indicators, as shown by concentrated false negatives in the filtered subset.",
+            "relatedQuestionIds": [
+              "diabetes.q4"
+            ],
+            "relatedHypothesisIds": [
+              "diabetes.difficult-subset"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "main-visualization",
+                "subViewId": "main-visualization.support-view"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                103
+              ],
+              "figureRefs": [
+                "Fig. 6C"
+              ]
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "finalDecisions": [
+          {
+            "description": "Oversample the difficult subset and retrain the classifier.",
+            "targetQuestionIds": [
+              "diabetes.improve"
+            ],
+            "evidence": {
+              "passageIds": [
+                104
+              ]
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "claimedSystemValue": "RuleMatrix exposed a weak region of model performance that guided a successful data-level intervention.",
+        "evidence": {
+          "passageIds": [
+            99,
+            103,
+            104
+          ],
+          "figureRefs": [
+            "Fig. 6"
+          ]
+        },
+        "inferenceType": "CrossModalSynthesis"
+      },
+      "overallStrategySummary": "Interpret the global rule list, progressively filter toward the false-negative-prone subset, then oversample that subset and retrain.",
+      "caseNarrativeSummary": "The authors used RuleMatrix to interpret diabetes rules, isolate a 62-patient subset with 56% accuracy and many false negatives, and improve performance through oversampling.",
+      "evidence": {
+        "passageIds": [
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104
+        ],
+        "figureRefs": [
+          "Fig. 6"
+        ]
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "paperLevelUsageClaims": [
+    "The paper uses two cases to demonstrate how RuleMatrix supports understanding classifier behavior and can reveal error patterns that guide improvement."
+  ],
+  "evidence": {
+    "passageIds": [
+      94,
+      97,
+      99,
+      102,
+      103,
+      104
+    ],
+    "figureRefs": [
+      "Fig. 5",
+      "Fig. 6"
+    ]
+  },
+  "inferenceType": "CrossModalSynthesis"
+}

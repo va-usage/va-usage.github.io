@@ -1,0 +1,117 @@
+{
+  "counts": [
+    {
+      "key": "papers",
+      "label": "Papers",
+      "value": 183
+    },
+    {
+      "key": "workflows",
+      "label": "Intended workflows",
+      "value": 229
+    },
+    {
+      "key": "cases",
+      "label": "Documented cases",
+      "value": 471
+    },
+    {
+      "key": "episodes",
+      "label": "Episodes",
+      "value": 1189
+    },
+    {
+      "key": "steps",
+      "label": "Steps",
+      "value": 2449
+    }
+  ],
+  "system_specification": [
+    {
+      "key": "views",
+      "label": "Views",
+      "value": 864
+    },
+    {
+      "key": "subviews",
+      "label": "Subviews",
+      "value": 1694
+    },
+    {
+      "key": "capabilities",
+      "label": "Capabilities",
+      "value": 4462
+    },
+    {
+      "key": "coordinations",
+      "label": "Coordinations",
+      "value": 1556
+    }
+  ],
+  "workflow_topologies": [
+    {
+      "key": "linear",
+      "label": "Linear chains",
+      "count": 100,
+      "percent": 43.7
+    },
+    {
+      "key": "cyclic",
+      "label": "Directed cycles",
+      "count": 92,
+      "percent": 40.2
+    },
+    {
+      "key": "branching_merging",
+      "label": "Branching or merging acyclic",
+      "count": 20,
+      "percent": 8.7
+    },
+    {
+      "key": "other",
+      "label": "Other structures",
+      "count": 17,
+      "percent": 7.4
+    }
+  ],
+  "case_types": [
+    {
+      "key": "expert_walkthrough",
+      "label": "Expert walkthroughs",
+      "count": 148,
+      "percent": 31.4
+    },
+    {
+      "key": "real_world_case",
+      "label": "Real-world cases",
+      "count": 144,
+      "percent": 30.6
+    },
+    {
+      "key": "scenario_demonstration",
+      "label": "Scenario demonstrations",
+      "count": 112,
+      "percent": 23.8
+    },
+    {
+      "key": "other",
+      "label": "Other or unspecified",
+      "count": 67,
+      "percent": 14.2
+    }
+  ],
+  "shared_functionality": [
+    {
+      "label": "Subviews",
+      "total": 1694,
+      "referenced_in_both": 1278,
+      "percent_referenced_in_both": 75.4
+    },
+    {
+      "label": "Capabilities",
+      "total": 4462,
+      "referenced_in_both": 2104,
+      "percent_referenced_in_both": 47.2
+    }
+  ]
+}

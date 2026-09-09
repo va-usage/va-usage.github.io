@@ -1,0 +1,82 @@
+[
+  {
+    "index": 1,
+    "file_name": "1.png",
+    "view_id": "A",
+    "short_label": "Control Panel",
+    "description": "Left control panel for specifying visualization details including model info, dataset, styles, settings and rule filters",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 10,
+      "top": 10,
+      "right": 190,
+      "bottom": 795
+    },
+    "bbox_pixels": {
+      "left": 19,
+      "top": 10,
+      "right": 355,
+      "bottom": 792
+    }
+  },
+  {
+    "index": 2,
+    "file_name": "2.png",
+    "view_id": "B",
+    "short_label": "Rule Matrix",
+    "description": "Rule-based representation matrix where each row represents a rule and each column represents a feature",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 200,
+      "top": 10,
+      "right": 790,
+      "bottom": 810
+    },
+    "bbox_pixels": {
+      "left": 373,
+      "top": 10,
+      "right": 1474,
+      "bottom": 807
+    }
+  },
+  {
+    "index": 3,
+    "file_name": "3.png",
+    "view_id": "C",
+    "short_label": "Data Filter",
+    "description": "Data filter panel for filtering dataset and inputting customized input",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 800,
+      "top": 10,
+      "right": 985,
+      "bottom": 825
+    },
+    "bbox_pixels": {
+      "left": 1493,
+      "top": 10,
+      "right": 1838,
+      "bottom": 822
+    }
+  },
+  {
+    "index": 4,
+    "file_name": "4.png",
+    "view_id": "D",
+    "short_label": "Data Table",
+    "description": "Data table for navigating the filtered dataset",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 190,
+      "top": 820,
+      "right": 985,
+      "bottom": 985
+    },
+    "bbox_pixels": {
+      "left": 355,
+      "top": 817,
+      "right": 1838,
+      "bottom": 981
+    }
+  }
+]

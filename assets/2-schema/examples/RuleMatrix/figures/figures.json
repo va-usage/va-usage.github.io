@@ -1,0 +1,26 @@
+[
+  {
+    "fig_id": "fig_1",
+    "caption": "Fig. 1. Understanding the behavior of a trained neural network using the explanatory visual interface of RuleMatrix. The user uses the control panel (A) to specify the detail information to visualize (e.g., dataset, level of detail, rule filters). The rule-based representation is visualized as a matrix (B), where each row represents a rule, and each column is a feature used in the rules. The user can also filter the data or use a customized input in the data filter (C) and navigate the filtered dataset in the data table (D)."
+  },
+  {
+    "fig_id": "fig_2",
+    "caption": "Fig. 2. The pipeline for creating a rule-based explanation interface. The rule induction step (1) takes (A) the training data and (B) the model to be explained as input, and produces (C) a rule list that approximates the original model. Then the rule list is filtered (2) according to user-specified thresholds of support and confidence. The rule list is visualized as RuleMatrix (3) to help users navigate and analyze the rules."
+  },
+  {
+    "fig_id": "fig_3",
+    "caption": "Fig. 3. The performance of the algorithm under different sampling rates. The x-axis shows the logarithms of the sampling rates. The blue, orange, and green lines show the average fidelities and average lengths of the extracted rule lists on the Abalone, Bank Marketing and Pima datasets for 10 runs."
+  },
+  {
+    "fig_id": "fig_4",
+    "caption": "Fig. 4. The visualization design. A: The data flow visualizes the data that satisfies a rule as a flow into the rule, providing an overall sense of the order of the rules. B: The rule matrix presents each rule as a row and each feature as a column. The clauses are visualized as glyphs in the corresponding cells. Users can click to expand a glyph to see the details of the distribution and the interval of the clause. C: The support view shows the fidelity of the rule for the provided data, and the evidence of the model’s predictions and errors under a certain rule. 1 - 3 : The designs of the glyph, the fidelity visualization, and the evidence visualization."
+  },
+  {
+    "fig_id": "fig_5",
+    "caption": "Fig. 5. Using the RuleMatrix to understand a neural network trained on the Breast Cancer Wisconsin (Original) dataset."
+  },
+  {
+    "fig_id": "fig_6",
+    "caption": "Fig. 6. The use case of understanding a neural network trained on Pima Indian Diabetes dataset. A: The initial visualization of the list of 22 extracted rules, with an overall fidelity of 91%. The neural network has an accuracy of 79% on the training data. B: The applied data filter. The ranges of the features are highlighted with light blue. C: The visualization of the rule list with the filtered data. The accuracy of the original model drops to only 56%."
+  }
+]

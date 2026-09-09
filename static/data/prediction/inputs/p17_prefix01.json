@@ -1,0 +1,759 @@
+{
+  "sample_id": "p17_prefix01",
+  "task": "Predict the next meaningful local analytic advance after the completed prefix. Use A (available system functionality), B (the general intended workflow), C (the initial case context), and D (completed episodes and their attached images). The workflow is a general guide: stages can be revisited, combined, or skipped; it is not the observed case trajectory and no current workflow stage is supplied. Predict a local goal and sets of canonical subview and capability references from A, with a short rationale grounded in the available context. Do not report the outcome of an action that has not yet occurred. A documented continuation is one possible analytic move, not necessarily the only defensible move. Return a JSON object with local_goal (string), used_subviews (objects with viewId and subViewId), used_capabilities (objects with viewId, subViewId and capabilityId), and rationale (string).",
+  "system_context": {
+    "systemName": "CommonsenseVIS",
+    "views": [
+      {
+        "viewId": "global-view",
+        "viewName": "Global View",
+        "description": "Overview of model performance and relation learning across question stems and target concepts.",
+        "subViews": [
+          {
+            "subViewId": "global-view.projection-plots",
+            "subViewName": "Question and Answer Projection Plots",
+            "description": "Paired scatter plots of projected question stems and target concepts in the upper-left Global View.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "global-view.projection-plots.show-projections",
+                "capabilityName": "Show Question and Answer Projections",
+                "capabilityKind": "Information",
+                "description": "Shows clustered question-stem and target-concept embeddings for comparison."
+              },
+              {
+                "capabilityId": "global-view.projection-plots.configure-projection",
+                "capabilityName": "Configure Projection and Color",
+                "capabilityKind": "Interaction",
+                "description": "Changes projection mode and dot color scheme to emphasize correctness or relations."
+              },
+              {
+                "capabilityId": "global-view.projection-plots.semantic-zoom",
+                "capabilityName": "Semantically Zoom Projection",
+                "capabilityKind": "Interaction",
+                "description": "Navigates into areas of interest within dense projected data points."
+              },
+              {
+                "capabilityId": "global-view.projection-plots.lasso-select-instances",
+                "capabilityName": "Lasso Select Instances",
+                "capabilityKind": "Interaction",
+                "description": "Selects a group of projected instances for contextual subset or instance-detail exploration."
+              }
+            ]
+          },
+          {
+            "subViewId": "global-view.relation-summary",
+            "subViewName": "Relation Summary Bars",
+            "description": "Sorted bars between the scatter plots summarize relation frequency and accuracy.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "global-view.relation-summary.show-relation-performance",
+                "capabilityName": "Show Relation Performance",
+                "capabilityKind": "Information",
+                "description": "Summarizes each relation's frequency and model accuracy."
+              },
+              {
+                "capabilityId": "global-view.relation-summary.select-relation",
+                "capabilityName": "Select Relation",
+                "capabilityKind": "Interaction",
+                "description": "Filters instances by clicking a relation bar."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "viewId": "subset-view",
+        "viewName": "Subset View",
+        "description": "Summarizes model and ConceptNet concept alignment over selected subsets.",
+        "subViews": [
+          {
+            "subViewId": "subset-view.cluster-glyphs",
+            "subViewName": "Cluster Glyphs",
+            "description": "Rows of linked cluster glyphs summarize question concepts, question stems, and target concepts.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "subset-view.cluster-glyphs.show-alignment",
+                "capabilityName": "Show Cluster Alignment",
+                "capabilityKind": "Information",
+                "description": "Shows cluster accuracy, concept overlap, missed ConceptNet concepts, and frequent model concepts."
+              },
+              {
+                "capabilityId": "subset-view.cluster-glyphs.hover-links",
+                "capabilityName": "Hover Cluster Links",
+                "capabilityKind": "Interaction",
+                "description": "Highlights only connections relevant to the hovered cluster glyph."
+              },
+              {
+                "capabilityId": "subset-view.cluster-glyphs.select-cluster",
+                "capabilityName": "Select Cluster",
+                "capabilityKind": "Interaction",
+                "description": "Selects a cluster for instance-level exploration."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "viewId": "instance-view",
+        "viewName": "Instance View",
+        "description": "Shows selected-subset statistics and local explanations, and supports querying and model probing.",
+        "subViews": [
+          {
+            "subViewId": "instance-view.subset-statistics",
+            "subViewName": "Subset Statistics",
+            "description": "Upper statistics area containing accuracy, hit-ratio, and model-concept frequency summaries.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "instance-view.subset-statistics.show-statistics",
+                "capabilityName": "Show Subset Statistics",
+                "capabilityKind": "Information",
+                "description": "Shows model accuracy, question-concept hit ratio, and frequent model concepts."
+              },
+              {
+                "capabilityId": "instance-view.subset-statistics.filter-correctness",
+                "capabilityName": "Filter by Correctness",
+                "capabilityKind": "Interaction",
+                "description": "Filters to correctly or incorrectly predicted instances through stacked-bar segments."
+              }
+            ]
+          },
+          {
+            "subViewId": "instance-view.instance-explanations",
+            "subViewName": "Instance Explanations and Probing",
+            "description": "Individual question, answer, attribution, and editable probing area in the lower Instance View.",
+            "isVisualizationView": false,
+            "capabilities": [
+              {
+                "capabilityId": "instance-view.instance-explanations.inspect-instance",
+                "capabilityName": "Inspect Instance Explanation",
+                "capabilityKind": "Information",
+                "description": "Shows attributed question text, answer choices, correctness, and relations for an individual instance."
+              },
+              {
+                "capabilityId": "instance-view.instance-explanations.paginate-instances",
+                "capabilityName": "Paginate Instances",
+                "capabilityKind": "Interaction",
+                "description": "Moves through individual instances and explanations."
+              },
+              {
+                "capabilityId": "instance-view.instance-explanations.hover-answer-choice-relations",
+                "capabilityName": "Inspect Answer-Choice Relations",
+                "capabilityKind": "Interaction",
+                "description": "Hovering an answer choice reveals its relations with ConceptNet concepts in the question stem."
+              },
+              {
+                "capabilityId": "instance-view.instance-explanations.edit-and-rerun",
+                "capabilityName": "Edit and Rerun Question",
+                "capabilityKind": "Interaction",
+                "description": "Edits question text or answer choices and reruns the model to test a hypothesis."
+              },
+              {
+                "capabilityId": "instance-view.instance-explanations.bookmark-instance",
+                "capabilityName": "Bookmark Instance",
+                "capabilityKind": "Interaction",
+                "description": "Saves an instance for targeted model editing."
+              }
+            ]
+          },
+          {
+            "subViewId": "instance-view.search-control",
+            "subViewName": "Instance Search",
+            "description": "Search field at the top of the Instance View.",
+            "isVisualizationView": false,
+            "capabilities": [
+              {
+                "capabilityId": "instance-view.search-control.search-patterns",
+                "capabilityName": "Search Words and Patterns",
+                "capabilityKind": "Interaction",
+                "description": "Searches instances containing selected words or linguistic structures."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "viewId": "model-editing-panel",
+        "viewName": "Model Editing Panel",
+        "description": "Collects bookmarked instances, applies targeted model edits, and reports edit performance.",
+        "subViews": [
+          {
+            "subViewId": "model-editing-panel.editing-table",
+            "subViewName": "Editing Instance Table",
+            "description": "Table of bookmarked questions, relations, ground truths, and model results.",
+            "isVisualizationView": false,
+            "capabilities": [
+              {
+                "capabilityId": "model-editing-panel.editing-table.show-editing-instances",
+                "capabilityName": "Show Editing Instances",
+                "capabilityKind": "Information",
+                "description": "Shows questions, relations, ground truths, and model results for bookmarked instances."
+              },
+              {
+                "capabilityId": "model-editing-panel.editing-table.show-edit-performance",
+                "capabilityName": "Show Editing Performance",
+                "capabilityKind": "Information",
+                "description": "Reports editing accuracy and model performance after edits."
+              }
+            ]
+          },
+          {
+            "subViewId": "model-editing-panel.editing-controls",
+            "subViewName": "Model Editing Controls",
+            "description": "Controls for applying model edits and loading the edited model.",
+            "isVisualizationView": false,
+            "capabilities": [
+              {
+                "capabilityId": "model-editing-panel.editing-controls.apply-model-edits",
+                "capabilityName": "Apply Model Edits",
+                "capabilityKind": "Interaction",
+                "description": "Applies targeted edits using bookmarked instances."
+              },
+              {
+                "capabilityId": "model-editing-panel.editing-controls.load-edited-model",
+                "capabilityName": "Load Edited Model",
+                "capabilityKind": "Interaction",
+                "description": "Loads the edited model for further exploration."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "coordinations": [
+      {
+        "coordinationId": "coord-global-lasso-subset",
+        "source": {
+          "viewId": "global-view",
+          "subViewId": "global-view.projection-plots"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "global-view",
+          "subViewId": "global-view.projection-plots",
+          "capabilityId": "global-view.projection-plots.lasso-select-instances"
+        },
+        "targets": [
+          {
+            "viewId": "subset-view",
+            "subViewId": "subset-view.cluster-glyphs"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "subset-view",
+            "subViewId": "subset-view.cluster-glyphs",
+            "capabilityId": "subset-view.cluster-glyphs.show-alignment"
+          }
+        ],
+        "coordinationType": "FilterLinking"
+      },
+      {
+        "coordinationId": "coord-global-selection-instance-details",
+        "source": {
+          "viewId": "global-view",
+          "subViewId": "global-view.projection-plots"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "global-view",
+          "subViewId": "global-view.projection-plots",
+          "capabilityId": "global-view.projection-plots.lasso-select-instances"
+        },
+        "targets": [
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.subset-statistics"
+          },
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.instance-explanations"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.subset-statistics",
+            "capabilityId": "instance-view.subset-statistics.show-statistics"
+          },
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.instance-explanations",
+            "capabilityId": "instance-view.instance-explanations.inspect-instance"
+          }
+        ],
+        "coordinationType": "DetailsOnDemand"
+      },
+      {
+        "coordinationId": "coord-relation-filter-global-subset",
+        "source": {
+          "viewId": "global-view",
+          "subViewId": "global-view.relation-summary"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "global-view",
+          "subViewId": "global-view.relation-summary",
+          "capabilityId": "global-view.relation-summary.select-relation"
+        },
+        "targets": [
+          {
+            "viewId": "global-view",
+            "subViewId": "global-view.projection-plots"
+          },
+          {
+            "viewId": "subset-view",
+            "subViewId": "subset-view.cluster-glyphs"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "global-view",
+            "subViewId": "global-view.projection-plots",
+            "capabilityId": "global-view.projection-plots.show-projections"
+          },
+          {
+            "viewId": "subset-view",
+            "subViewId": "subset-view.cluster-glyphs",
+            "capabilityId": "subset-view.cluster-glyphs.show-alignment"
+          }
+        ],
+        "coordinationType": "FilterLinking"
+      },
+      {
+        "coordinationId": "coord-cluster-instance-details",
+        "source": {
+          "viewId": "subset-view",
+          "subViewId": "subset-view.cluster-glyphs"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "subset-view",
+          "subViewId": "subset-view.cluster-glyphs",
+          "capabilityId": "subset-view.cluster-glyphs.select-cluster"
+        },
+        "targets": [
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.subset-statistics"
+          },
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.instance-explanations"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.subset-statistics",
+            "capabilityId": "instance-view.subset-statistics.show-statistics"
+          },
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.instance-explanations",
+            "capabilityId": "instance-view.instance-explanations.inspect-instance"
+          }
+        ],
+        "coordinationType": "DetailsOnDemand"
+      },
+      {
+        "coordinationId": "coord-correctness-filter-instance",
+        "source": {
+          "viewId": "instance-view",
+          "subViewId": "instance-view.subset-statistics"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "instance-view",
+          "subViewId": "instance-view.subset-statistics",
+          "capabilityId": "instance-view.subset-statistics.filter-correctness"
+        },
+        "targets": [
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.instance-explanations"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.instance-explanations",
+            "capabilityId": "instance-view.instance-explanations.inspect-instance"
+          }
+        ],
+        "coordinationType": "FilterLinking"
+      },
+      {
+        "coordinationId": "coord-search-instance-results",
+        "source": {
+          "viewId": "instance-view",
+          "subViewId": "instance-view.search-control"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "instance-view",
+          "subViewId": "instance-view.search-control",
+          "capabilityId": "instance-view.search-control.search-patterns"
+        },
+        "targets": [
+          {
+            "viewId": "global-view",
+            "subViewId": "global-view.projection-plots"
+          },
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.instance-explanations"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "global-view",
+            "subViewId": "global-view.projection-plots",
+            "capabilityId": "global-view.projection-plots.show-projections"
+          },
+          {
+            "viewId": "instance-view",
+            "subViewId": "instance-view.instance-explanations",
+            "capabilityId": "instance-view.instance-explanations.inspect-instance"
+          }
+        ],
+        "coordinationType": "QueryResultBinding"
+      },
+      {
+        "coordinationId": "coord-bookmark-editing-table",
+        "source": {
+          "viewId": "instance-view",
+          "subViewId": "instance-view.instance-explanations"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "instance-view",
+          "subViewId": "instance-view.instance-explanations",
+          "capabilityId": "instance-view.instance-explanations.bookmark-instance"
+        },
+        "targets": [
+          {
+            "viewId": "model-editing-panel",
+            "subViewId": "model-editing-panel.editing-table"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "model-editing-panel",
+            "subViewId": "model-editing-panel.editing-table",
+            "capabilityId": "model-editing-panel.editing-table.show-editing-instances"
+          }
+        ],
+        "coordinationType": "StateTransfer"
+      },
+      {
+        "coordinationId": "coord-apply-model-edits",
+        "source": {
+          "viewId": "model-editing-panel",
+          "subViewId": "model-editing-panel.editing-controls"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "model-editing-panel",
+          "subViewId": "model-editing-panel.editing-controls",
+          "capabilityId": "model-editing-panel.editing-controls.apply-model-edits"
+        },
+        "targets": [
+          {
+            "viewId": "model-editing-panel",
+            "subViewId": "model-editing-panel.editing-table"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "model-editing-panel",
+            "subViewId": "model-editing-panel.editing-table",
+            "capabilityId": "model-editing-panel.editing-table.show-edit-performance"
+          }
+        ],
+        "coordinationType": "EditPropagation"
+      }
+    ]
+  },
+  "workflow_context": {
+    "interpretation": "All reported intended workflows are supplied uniformly for this system. Transitions express allowed or suggested progressions; inferred transitions are labeled and are not compulsory. No workflow-to-current-case alignment is given.",
+    "workflows": [
+      {
+        "workflowId": "systematic-model-diagnosis-and-editing",
+        "workflowTitle": "Exploration–Explanation–Editing Workflow",
+        "workflowGoal": "Systematically understand, diagnose, probe, and refine a QA model's commonsense reasoning over concepts and relations.",
+        "description": "Start from global summaries, narrow to contextual subsets and individual explanations, probe suspected behavior, and edit deficient knowledge areas.",
+        "applicabilityContext": "For NLP experts evaluating a commonsense question-answering model against knowledge-graph context across a large benchmark dataset.",
+        "stages": [
+          {
+            "stageId": "gain-global-overview",
+            "stageTitle": "Global Overview",
+            "localGoal": "Assess model performance across concepts and relations and evaluate overall relation learning.",
+            "activitySummary": "Compare projected question stems and target concepts, change relation/correctness encodings, and read relation frequency and accuracy summaries.",
+            "expectedOutcome": "A global assessment of which concepts and relations the model handles well or poorly.",
+            "usedSubViews": [
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.projection-plots"
+              },
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.relation-summary"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.projection-plots",
+                "capabilityId": "global-view.projection-plots.show-projections"
+              },
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.projection-plots",
+                "capabilityId": "global-view.projection-plots.configure-projection"
+              },
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.relation-summary",
+                "capabilityId": "global-view.relation-summary.show-relation-performance"
+              }
+            ]
+          },
+          {
+            "stageId": "inspect-subset-alignment",
+            "stageTitle": "Subset Exploration",
+            "localGoal": "Pinpoint error subsets and compare model-important concepts with ConceptNet concepts in context.",
+            "activitySummary": "Select relation bars or lasso projected instances, then scan cluster glyphs and their linked concept summaries.",
+            "expectedOutcome": "A semantically coherent error subset and contextual summary suitable for local inspection.",
+            "usedSubViews": [
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.projection-plots"
+              },
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.relation-summary"
+              },
+              {
+                "viewId": "subset-view",
+                "subViewId": "subset-view.cluster-glyphs"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.projection-plots",
+                "capabilityId": "global-view.projection-plots.lasso-select-instances"
+              },
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.relation-summary",
+                "capabilityId": "global-view.relation-summary.select-relation"
+              },
+              {
+                "viewId": "subset-view",
+                "subViewId": "subset-view.cluster-glyphs",
+                "capabilityId": "subset-view.cluster-glyphs.show-alignment"
+              },
+              {
+                "viewId": "subset-view",
+                "subViewId": "subset-view.cluster-glyphs",
+                "capabilityId": "subset-view.cluster-glyphs.hover-links"
+              }
+            ]
+          },
+          {
+            "stageId": "examine-local-explanations",
+            "stageTitle": "Instance Explanation",
+            "localGoal": "Inspect aggregate statistics and local explanations for selected instances.",
+            "activitySummary": "Select instances directly in the Global View or select a Subset View cluster, then inspect aggregate statistics, filter by correctness, paginate instances, and compare attributed question text with model answers and ConceptNet relations.",
+            "expectedOutcome": "A detailed diagnosis of the concepts and contexts associated with model successes or failures.",
+            "usedSubViews": [
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.projection-plots"
+              },
+              {
+                "viewId": "subset-view",
+                "subViewId": "subset-view.cluster-glyphs"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.subset-statistics"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.instance-explanations"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.projection-plots",
+                "capabilityId": "global-view.projection-plots.lasso-select-instances"
+              },
+              {
+                "viewId": "subset-view",
+                "subViewId": "subset-view.cluster-glyphs",
+                "capabilityId": "subset-view.cluster-glyphs.select-cluster"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.subset-statistics",
+                "capabilityId": "instance-view.subset-statistics.show-statistics"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.subset-statistics",
+                "capabilityId": "instance-view.subset-statistics.filter-correctness"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.instance-explanations",
+                "capabilityId": "instance-view.instance-explanations.inspect-instance"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.instance-explanations",
+                "capabilityId": "instance-view.instance-explanations.paginate-instances"
+              }
+            ]
+          },
+          {
+            "stageId": "probe-and-verify",
+            "stageTitle": "Model Probing",
+            "localGoal": "Form and validate hypotheses about whether the model learned a relation or relied on superficial context.",
+            "activitySummary": "Search related instances, hover answer choices to inspect their ConceptNet relations, edit question stems or choices, rerun the model, and compare the new answers.",
+            "expectedOutcome": "Evidence that supports or challenges a hypothesis about the model's relational reasoning.",
+            "usedSubViews": [
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.search-control"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.instance-explanations"
+              },
+              {
+                "viewId": "global-view",
+                "subViewId": "global-view.projection-plots"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.search-control",
+                "capabilityId": "instance-view.search-control.search-patterns"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.instance-explanations",
+                "capabilityId": "instance-view.instance-explanations.hover-answer-choice-relations"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.instance-explanations",
+                "capabilityId": "instance-view.instance-explanations.edit-and-rerun"
+              },
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.instance-explanations",
+                "capabilityId": "instance-view.instance-explanations.inspect-instance"
+              }
+            ]
+          },
+          {
+            "stageId": "refine-model",
+            "stageTitle": "Targeted Model Refinement",
+            "localGoal": "Improve specific knowledge areas that the model does not learn well while checking editing performance.",
+            "activitySummary": "Bookmark deficient instances, review them in the editing table, apply model edits, inspect editing accuracy, and optionally load the edited model.",
+            "expectedOutcome": "A targeted model update with measured editing performance and a model available for further exploration.",
+            "usedSubViews": [
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.instance-explanations"
+              },
+              {
+                "viewId": "model-editing-panel",
+                "subViewId": "model-editing-panel.editing-table"
+              },
+              {
+                "viewId": "model-editing-panel",
+                "subViewId": "model-editing-panel.editing-controls"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "instance-view",
+                "subViewId": "instance-view.instance-explanations",
+                "capabilityId": "instance-view.instance-explanations.bookmark-instance"
+              },
+              {
+                "viewId": "model-editing-panel",
+                "subViewId": "model-editing-panel.editing-table",
+                "capabilityId": "model-editing-panel.editing-table.show-editing-instances"
+              },
+              {
+                "viewId": "model-editing-panel",
+                "subViewId": "model-editing-panel.editing-controls",
+                "capabilityId": "model-editing-panel.editing-controls.apply-model-edits"
+              },
+              {
+                "viewId": "model-editing-panel",
+                "subViewId": "model-editing-panel.editing-table",
+                "capabilityId": "model-editing-panel.editing-table.show-edit-performance"
+              },
+              {
+                "viewId": "model-editing-panel",
+                "subViewId": "model-editing-panel.editing-controls",
+                "capabilityId": "model-editing-panel.editing-controls.load-edited-model"
+              }
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "sourceStageId": "gain-global-overview",
+            "targetStageId": "inspect-subset-alignment",
+            "rationale": "Users narrow from global relation and error patterns to selected contextual subsets.",
+            "inferenceType": "Explicit"
+          },
+          {
+            "sourceStageId": "gain-global-overview",
+            "targetStageId": "examine-local-explanations",
+            "rationale": "Users may select instances in the Global View and inspect their statistics and local explanations directly in the Instance View.",
+            "inferenceType": "Explicit"
+          },
+          {
+            "sourceStageId": "inspect-subset-alignment",
+            "targetStageId": "examine-local-explanations",
+            "rationale": "Selecting a subset or cluster reveals statistics and local instance explanations.",
+            "inferenceType": "Explicit"
+          },
+          {
+            "sourceStageId": "examine-local-explanations",
+            "targetStageId": "probe-and-verify",
+            "rationale": "Local explanations motivate direct manipulation to test model-learning hypotheses.",
+            "inferenceType": "Explicit"
+          },
+          {
+            "sourceStageId": "probe-and-verify",
+            "targetStageId": "refine-model",
+            "rationale": "Instances exposing deficient knowledge are bookmarked for targeted refinement.",
+            "inferenceType": "Explicit"
+          }
+        ]
+      }
+    ]
+  },
+  "case_context": {
+    "initial_context": "Diagnose a commonsense model’s handling of the atlocation relation."
+  },
+  "completed_prefix": [
+    {
+      "episode": 1,
+      "local_goal": "Locate a low-accuracy subset in the global relation view.",
+      "completed_steps": [
+        "E5 selected atlocation, observed good overall transformed-cluster correspondence but a dense red group, and lassoed that group for further exploration."
+      ],
+      "images": [
+        "../next-analytic-move-v2-pilot-r2-2026-09-08/images/commonsensevis_case_1/ep_01_01.png"
+      ]
+    }
+  ]
+}

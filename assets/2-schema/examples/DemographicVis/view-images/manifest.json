@@ -1,0 +1,82 @@
+[
+  {
+    "index": 1,
+    "file_name": "1.png",
+    "view_id": "A",
+    "short_label": "Parallel Sets with word cloud view",
+    "description": "Connects demographic groups to user generated content",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 25,
+      "top": 20,
+      "right": 535,
+      "bottom": 615
+    },
+    "bbox_pixels": {
+      "left": 47,
+      "top": 20,
+      "right": 1006,
+      "bottom": 608
+    }
+  },
+  {
+    "index": 2,
+    "file_name": "2.png",
+    "view_id": "B",
+    "short_label": "User cluster view",
+    "description": "Groups users based on topic interests",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 545,
+      "top": 20,
+      "right": 975,
+      "bottom": 615
+    },
+    "bbox_pixels": {
+      "left": 1025,
+      "top": 20,
+      "right": 1833,
+      "bottom": 608
+    }
+  },
+  {
+    "index": 3,
+    "file_name": "3.png",
+    "view_id": "C",
+    "short_label": "Feature ranking view",
+    "description": "Presents the predicative power of various features",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 25,
+      "top": 620,
+      "right": 380,
+      "bottom": 960
+    },
+    "bbox_pixels": {
+      "left": 47,
+      "top": 613,
+      "right": 714,
+      "bottom": 948
+    }
+  },
+  {
+    "index": 4,
+    "file_name": "4.png",
+    "view_id": "D",
+    "short_label": "Posts view",
+    "description": "Shows details on demand for posts",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 385,
+      "top": 620,
+      "right": 975,
+      "bottom": 960
+    },
+    "bbox_pixels": {
+      "left": 724,
+      "top": 613,
+      "right": 1833,
+      "bottom": 948
+    }
+  }
+]

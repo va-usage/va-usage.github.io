@@ -1,0 +1,322 @@
+{
+  "paperName": "RuleMatrix",
+  "systemName": "RuleMatrix",
+  "systemSpecPath": "system-spec.json",
+  "workflows": [
+    {
+      "workflowId": "understand-then-verify-classifier",
+      "workflowTitle": "Understand and Verify a Classifier",
+      "workflowKind": "OverviewToDetail",
+      "workflowGoal": "Build sufficient trust to use a classifier by understanding its learned rules and certainty and then verifying its predictions and failure conditions.",
+      "description": "Domain experts inspect a global rule-based explanation, its support and confidence, then focus on selected data or custom inputs to verify individual predictions and locate likely failures.",
+      "applicabilityContext": "For domain experts with little machine-learning expertise who need to assess a trained classifier before adoption or verify it after deployment.",
+      "targetUsers": [
+        "Domain experts with little knowledge of machine learning"
+      ],
+      "stages": [
+        {
+          "stageId": "understand-global-behavior",
+          "displayOrder": 1,
+          "stageTitle": "Understand Learned Knowledge and Certainty",
+          "localGoal": "Understand what the classifier has learned and how strongly each rule is supported and approximates the model.",
+          "activitySummary": "Navigate and compare the aligned rules, use the data flow to read rule support and order, inspect rule fidelity, filter low-support or low-confidence rules when necessary, re-expand collapsed rule groups when needed, and request clause text or distribution details for closer comparison.",
+          "usedSubViews": [
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.controls"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.data-flow"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.support-view"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.controls",
+              "capabilityId": "control-filter-rules"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.data-flow",
+              "capabilityId": "data-flow-read-order"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.data-flow",
+              "capabilityId": "data-flow-read-support"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix",
+              "capabilityId": "rule-matrix-read-rules"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix",
+              "capabilityId": "rule-matrix-expand-collapse-groups"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix",
+              "capabilityId": "rule-matrix-hover-clause"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix",
+              "capabilityId": "rule-matrix-expand-clause"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix",
+              "capabilityId": "rule-matrix-inspect-clause"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.support-view",
+              "capabilityId": "support-view-read-fidelity"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-rule-filter",
+              "description": "Support and confidence thresholds reduce and collapse the displayed rule list across the aligned main components."
+            },
+            {
+              "coordinationId": "coord-clause-details",
+              "description": "Selecting a rule cell expands its distribution so clause intervals can be inspected and compared."
+            }
+          ],
+          "expectedOutcome": "A global understanding of the model's learned rules and the support and fidelity of those rules.",
+          "evidence": {
+            "passageIds": [
+              30,
+              31,
+              32,
+              74,
+              78,
+              80,
+              85,
+              87
+            ],
+            "quotes": [
+              "Before they can fully adopt a model, adequate trust about how the model generally behaves need to be established."
+            ],
+            "confidence": 0.96
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "stageId": "explain-selected-prediction",
+          "displayOrder": 2,
+          "stageTitle": "Explain a Selected Prediction",
+          "localGoal": "Inspect what rule-based knowledge the model uses to predict a selected instance or subset.",
+          "activitySummary": "Enter a customized input, request the original model's prediction and highlighted satisfied rule, and read the aligned rule clauses and output that explain the prediction.",
+          "usedSubViews": [
+            {
+              "viewId": "data-filter",
+              "subViewId": "data-filter.filter-controls"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "data-filter",
+              "subViewId": "data-filter.filter-controls",
+              "capabilityId": "data-filter-custom-input"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix",
+              "capabilityId": "rule-matrix-highlight-match"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix",
+              "capabilityId": "rule-matrix-read-rules"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-custom-input",
+              "description": "A customized input is bound to its model prediction and highlighted satisfied rule."
+            }
+          ],
+          "expectedOutcome": "An explanation of the model's prediction in terms of the satisfied rule, its conditions, and its output.",
+          "evidence": {
+            "passageIds": [
+              33,
+              74,
+              92
+            ],
+            "quotes": [
+              "What knowledge does the model utilize to make a prediction?",
+              "request the system to present the prediction of the original model and highlight the satisfied rule"
+            ],
+            "confidence": 0.97
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "stageId": "locate-failure-conditions",
+          "displayOrder": 3,
+          "stageTitle": "Locate Failure Conditions",
+          "localGoal": "Identify subsets and conditions under which the model is likely to fail.",
+          "activitySummary": "Filter feature ranges to focus on data of interest, inspect the updated rule evidence and prediction errors, and browse the supporting filtered records when needed.",
+          "usedSubViews": [
+            {
+              "viewId": "data-filter",
+              "subViewId": "data-filter.filter-controls"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.support-view"
+            },
+            {
+              "viewId": "data-table",
+              "subViewId": "data-table.records"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "data-filter",
+              "subViewId": "data-filter.filter-controls",
+              "capabilityId": "data-filter-constrain-ranges"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.rule-matrix",
+              "capabilityId": "rule-matrix-show-list"
+            },
+            {
+              "viewId": "main-visualization",
+              "subViewId": "main-visualization.support-view",
+              "capabilityId": "support-view-read-errors"
+            },
+            {
+              "viewId": "data-table",
+              "subViewId": "data-table.records",
+              "capabilityId": "data-table-browse-records"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-data-filter",
+              "description": "Feature-range filtering updates the displayed explanation, error evidence, and supporting records."
+            }
+          ],
+          "expectedOutcome": "An evidence-based characterization of the subset or conditions where the classifier should not be fully trusted.",
+          "evidence": {
+            "passageIds": [
+              34,
+              80,
+              82,
+              89
+            ],
+            "quotes": [
+              "When and where is the model likely to fail?"
+            ],
+            "confidence": 0.96
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "transitions": [
+        {
+          "sourceStageId": "understand-global-behavior",
+          "targetStageId": "explain-selected-prediction",
+          "rationale": "After global understanding, the Q3 branch supports verifying why the model predicts a selected instance or subset.",
+          "evidence": {
+            "passageIds": [
+              30,
+              33
+            ],
+            "quotes": [
+              "this question is about verifying the model's prediction on a single instance or a subset of instances, instead of understanding the model in general"
+            ]
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "sourceStageId": "understand-global-behavior",
+          "targetStageId": "locate-failure-conditions",
+          "rationale": "After global understanding, the Q4 branch supports identifying conditions where predictions should not be fully trusted.",
+          "evidence": {
+            "passageIds": [
+              30,
+              34
+            ],
+            "quotes": [
+              "we need to provide guidance on when and where the model is likely to fail"
+            ]
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "expectedFinalOutcome": "A domain expert can understand the classifier's rule-based behavior and decide when its predictions are sufficiently supported or require caution.",
+      "evidence": {
+        "passageIds": [
+          27,
+          30,
+          31,
+          32,
+          33,
+          34,
+          44
+        ],
+        "figureRefs": [
+          "Fig. 1"
+        ],
+        "confidence": 0.94
+      },
+      "inferenceType": "CrossModalSynthesis"
+    }
+  ],
+  "paperLevelClaims": [
+    {
+      "claimText": "RuleMatrix is intended to help users with little machine-learning expertise understand, explore, and validate predictive models.",
+      "evidence": {
+        "passageIds": [
+          3,
+          29,
+          30
+        ],
+        "quotes": [
+          "help users with little expertise in machine learning to understand, explore and validate predictive models"
+        ]
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "evidence": {
+    "passageIds": [
+      3,
+      27,
+      30,
+      31,
+      32,
+      33,
+      34,
+      69,
+      85
+    ],
+    "figureRefs": [
+      "Fig. 1"
+    ]
+  }
+}

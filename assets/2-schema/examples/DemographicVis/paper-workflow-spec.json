@@ -1,0 +1,576 @@
+{
+  "paperName": "DemographicVis",
+  "systemName": "DemographicVis",
+  "systemSpecPath": "system-spec.json",
+  "workflows": [
+    {
+      "workflowId": "explore-group-interests",
+      "workflowTitle": "Explore demographic-group interests",
+      "workflowKind": "OverviewToDetail",
+      "workflowGoal": "Determine what different demographic groups are interested in from their Reddit posts.",
+      "description": "Use the Parallel Sets to establish a demographic group, reveal its modeled topics and ranked bigrams, and inspect matching posts when a term needs interpretation.",
+      "applicabilityContext": "Applies to T1 when an analyst starts with one or more demographic dimensions and wants to understand the topics discussed by a group.",
+      "targetUsers": [
+        "industry partners performing demographic analysis for marketing",
+        "academic professors studying online behavior of demographic groups"
+      ],
+      "stages": [
+        {
+          "stageId": "configure-and-read-demographics",
+          "displayOrder": 1,
+          "stageTitle": "Establish demographic context",
+          "localGoal": "Choose and read the demographic dimensions and group combinations to examine.",
+          "activitySummary": "Choose the starting Parallel Sets dimension when needed, then read the sex, age, and education categories and ribbon widths.",
+          "usedSubViews": [
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "parallel-sets"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "display-controls"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "display-controls",
+              "capabilityId": "display-controls.choose-starting-dimension"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "parallel-sets",
+              "capabilityId": "parallel-sets.read-demographic-flows"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-starting-dimension-parsets",
+              "description": "The chosen starting dimension sets the first Parallel Sets dimension and its color assignment."
+            }
+          ],
+          "expectedOutcome": "A demographic ordering and group combination are established for interest exploration.",
+          "evidence": {
+            "passageIds": [
+              59,
+              60
+            ],
+            "quotes": [
+              "permits interactive selection of the starting dimension"
+            ],
+            "confidence": 0.97
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "stageId": "connect-groups-to-topics",
+          "displayOrder": 2,
+          "stageTitle": "Connect groups to topics",
+          "localGoal": "Identify the topics and ranked terms that describe a demographic group's interests.",
+          "activitySummary": "Hover a demographic ribbon to highlight linked topic streams and word-cloud terms, or hover a topic to trace it back to interested groups.",
+          "usedSubViews": [
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "parallel-sets"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "topic-streams"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "word-cloud"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "parallel-sets",
+              "capabilityId": "parallel-sets.hover-demographic-group"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "topic-streams",
+              "capabilityId": "topic-streams.show-linked-topics"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "topic-streams",
+              "capabilityId": "topic-streams.hover-topic"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "word-cloud",
+              "capabilityId": "word-cloud.read-ranked-bigrams"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "word-cloud",
+              "capabilityId": "word-cloud.show-linked-topic-terms"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-parsets-topics-hover",
+              "description": "A hovered demographic group highlights its topics."
+            },
+            {
+              "coordinationId": "coord-topic-parsets-hover",
+              "description": "A hovered topic highlights interested demographic groups."
+            }
+          ],
+          "expectedOutcome": "The analyst obtains a concise, interpretable topic summary for the group and can reverse-trace a topic to groups.",
+          "evidence": {
+            "passageIds": [
+              57,
+              61,
+              63,
+              64
+            ],
+            "figureRefs": [
+              "Figure 1A",
+              "Figure 4"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "stageId": "inspect-topic-posts",
+          "displayOrder": 3,
+          "stageTitle": "Inspect posts for topic context",
+          "localGoal": "Interpret an unfamiliar or concerning topic term in the underlying user-generated content.",
+          "activitySummary": "Click a bigram and read the matching post list and selected post with its user, subreddit, timestamp, and votes.",
+          "usedSubViews": [
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "word-cloud"
+            },
+            {
+              "viewId": "posts-view",
+              "subViewId": "posts-table"
+            },
+            {
+              "viewId": "posts-view",
+              "subViewId": "post-detail"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "word-cloud",
+              "capabilityId": "word-cloud.open-bigram-posts"
+            },
+            {
+              "viewId": "posts-view",
+              "subViewId": "posts-table",
+              "capabilityId": "posts-table.show-matching-posts"
+            },
+            {
+              "viewId": "posts-view",
+              "subViewId": "post-detail",
+              "capabilityId": "post-detail.read-bigram-context"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-bigram-post-details",
+              "description": "A selected bigram opens its matching source posts."
+            }
+          ],
+          "expectedOutcome": "The selected bigram becomes understandable in authentic post context.",
+          "evidence": {
+            "passageIds": [
+              65
+            ],
+            "figureRefs": [
+              "Figure 1D"
+            ],
+            "quotes": [
+              "Seeing how a bigram is mentioned in the detailed posts helps users to understand certain keywords"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "transitions": [
+        {
+          "sourceStageId": "configure-and-read-demographics",
+          "targetStageId": "connect-groups-to-topics",
+          "rationale": "After locating a group in the Parallel Sets, the interface is designed to connect it to corresponding topics through hover highlighting.",
+          "evidence": {
+            "passageIds": [
+              60,
+              61,
+              64
+            ],
+            "figureRefs": [
+              "Figure 1A"
+            ],
+            "confidence": 0.94
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "sourceStageId": "connect-groups-to-topics",
+          "targetStageId": "inspect-topic-posts",
+          "rationale": "When a bigram is obscure, the paper explicitly directs users to click it to see detailed posts.",
+          "evidence": {
+            "passageIds": [
+              65
+            ],
+            "quotes": [
+              "To help users better understand the topics, clicking on a bigram in a topic brings up a list of posts"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "expectedFinalOutcome": "An interpretable account of a demographic group's topic interests grounded, when needed, in source posts.",
+      "evidence": {
+        "passageIds": [
+          55,
+          56,
+          57,
+          64,
+          65
+        ],
+        "figureRefs": [
+          "Figure 1A",
+          "Figure 1D"
+        ],
+        "confidence": 0.99
+      },
+      "inferenceType": "CrossModalSynthesis"
+    },
+    {
+      "workflowId": "compare-interest-overlap",
+      "workflowTitle": "Compare distinct and shared interests",
+      "workflowKind": "ComparativeAnalysis",
+      "workflowGoal": "Determine which demographic groups have distinct interests and which share similar interests.",
+      "description": "Inspect the user clusters formed from topic similarity and use coordinated highlighting to relate cluster composition to demographic groups and topics.",
+      "applicabilityContext": "Applies to T2 when analysts need to compare topic-interest cohesion or overlap among demographic groups.",
+      "targetUsers": [
+        "industry partners performing demographic analysis for marketing",
+        "academic professors studying online behavior of demographic groups"
+      ],
+      "stages": [
+        {
+          "stageId": "inspect-user-clusters",
+          "displayOrder": 1,
+          "stageTitle": "Inspect interest clusters",
+          "localGoal": "Find cohesive, separable, and mixed groups of users based on topic interests.",
+          "activitySummary": "Read t-SNE glyph clusters, decode their demographic variables with the legend, and hover glyphs to emphasize users in the same group.",
+          "usedSubViews": [
+            {
+              "viewId": "user-cluster-view",
+              "subViewId": "user-cluster-plot"
+            },
+            {
+              "viewId": "user-cluster-view",
+              "subViewId": "glyph-legend"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "user-cluster-view",
+              "subViewId": "user-cluster-plot",
+              "capabilityId": "user-cluster-plot.read-interest-clusters"
+            },
+            {
+              "viewId": "user-cluster-view",
+              "subViewId": "user-cluster-plot",
+              "capabilityId": "user-cluster-plot.hover-demographic-group"
+            },
+            {
+              "viewId": "user-cluster-view",
+              "subViewId": "glyph-legend",
+              "capabilityId": "glyph-legend.decode-glyphs"
+            }
+          ],
+          "expectedOutcome": "Candidate groups with cohesive, distinct, or overlapping interests are identified.",
+          "evidence": {
+            "passageIds": [
+              67,
+              68,
+              69,
+              70
+            ],
+            "figureRefs": [
+              "Figure 1B"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "stageId": "trace-clusters-to-groups-and-topics",
+          "displayOrder": 2,
+          "stageTitle": "Trace clusters to groups and topics",
+          "localGoal": "Identify the demographic groups and shared topics represented by an interesting cluster.",
+          "activitySummary": "Hover a group in the cluster view and read the corresponding highlighted group in Parallel Sets and topics; optionally trace a highlighted group or topic back into the cluster view.",
+          "usedSubViews": [
+            {
+              "viewId": "user-cluster-view",
+              "subViewId": "user-cluster-plot"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "parallel-sets"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "topic-streams"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "word-cloud"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "user-cluster-view",
+              "subViewId": "user-cluster-plot",
+              "capabilityId": "user-cluster-plot.hover-demographic-group"
+            },
+            {
+              "viewId": "user-cluster-view",
+              "subViewId": "user-cluster-plot",
+              "capabilityId": "user-cluster-plot.show-linked-users"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "parallel-sets",
+              "capabilityId": "parallel-sets.hover-demographic-group"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "parallel-sets",
+              "capabilityId": "parallel-sets.show-linked-demographic-group"
+            },
+            {
+              "viewId": "demographic-topic-view",
+              "subViewId": "topic-streams",
+              "capabilityId": "topic-streams.show-linked-topics"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-cluster-demographic-topics-hover"
+            },
+            {
+              "coordinationId": "coord-parsets-cluster-hover"
+            },
+            {
+              "coordinationId": "coord-topic-cluster-hover"
+            }
+          ],
+          "expectedOutcome": "The analyst can explain a cluster in terms of demographic composition and the topics shared or separated by its users.",
+          "evidence": {
+            "passageIds": [
+              70,
+              71
+            ],
+            "quotes": [
+              "The cluster view is coordinated with other views."
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "transitions": [
+        {
+          "sourceStageId": "inspect-user-clusters",
+          "targetStageId": "trace-clusters-to-groups-and-topics",
+          "rationale": "After a cluster or demographic group is noticed, the explicitly coordinated hover interaction reveals its corresponding demographic group and topics.",
+          "evidence": {
+            "passageIds": [
+              70,
+              71
+            ],
+            "confidence": 0.99
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "expectedFinalOutcome": "A comparison of which demographic groups have cohesive or overlapping interests, together with the topics that explain the pattern.",
+      "evidence": {
+        "passageIds": [
+          55,
+          67,
+          70,
+          71
+        ],
+        "figureRefs": [
+          "Figure 1B"
+        ],
+        "confidence": 1.0
+      },
+      "inferenceType": "CrossModalSynthesis"
+    },
+    {
+      "workflowId": "assess-predictive-features",
+      "workflowTitle": "Assess predictive feature power",
+      "workflowKind": "ExploratoryAnalysis",
+      "workflowGoal": "Analyze how topical, linguistic, and peripheral features contribute to predicting demographic information.",
+      "description": "Compare contribution and cumulative AUC values in the feature table, then expand linguistic features and inspect definitions for finer-grained interpretation.",
+      "applicabilityContext": "Applies to T3 when demographic ground truth is scarce and an analyst wants to understand which features from posts and metadata support demographic classification.",
+      "targetUsers": [
+        "industry partners performing demographic analysis for marketing",
+        "academic professors studying online behavior of demographic groups"
+      ],
+      "stages": [
+        {
+          "stageId": "compare-feature-power",
+          "displayOrder": 1,
+          "stageTitle": "Compare feature power",
+          "localGoal": "Compare individual feature contribution and cumulative predictive accuracy across demographic variables.",
+          "activitySummary": "Read the upper contribution table and lower cumulative-AUC table across feature rows and demographic columns.",
+          "usedSubViews": [
+            {
+              "viewId": "feature-ranking-view",
+              "subViewId": "feature-ranking-table"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "feature-ranking-view",
+              "subViewId": "feature-ranking-table",
+              "capabilityId": "feature-ranking-table.read-feature-contributions"
+            },
+            {
+              "viewId": "feature-ranking-view",
+              "subViewId": "feature-ranking-table",
+              "capabilityId": "feature-ranking-table.read-cumulative-accuracy"
+            }
+          ],
+          "expectedOutcome": "The strongest individual features and effective cumulative feature combinations are identified for each demographic prediction.",
+          "evidence": {
+            "passageIds": [
+              48,
+              49,
+              50,
+              73,
+              74
+            ],
+            "figureRefs": [
+              "Figure 5"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "stageId": "inspect-linguistic-drivers",
+          "displayOrder": 2,
+          "stageTitle": "Inspect linguistic drivers",
+          "localGoal": "Interpret the specific linguistic dimensions that contribute most strongly for demographic groups.",
+          "activitySummary": "Expand the linguistic feature row to see the five highest-ranked dimensions and hover cells for definitions.",
+          "usedSubViews": [
+            {
+              "viewId": "feature-ranking-view",
+              "subViewId": "feature-ranking-table"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "feature-ranking-view",
+              "subViewId": "feature-ranking-table",
+              "capabilityId": "feature-ranking-table.expand-linguistic-features"
+            },
+            {
+              "viewId": "feature-ranking-view",
+              "subViewId": "feature-ranking-table",
+              "capabilityId": "feature-ranking-table.inspect-feature-definition"
+            }
+          ],
+          "expectedOutcome": "The analyst obtains interpretable, finer-grained linguistic explanations behind demographic predictions.",
+          "evidence": {
+            "passageIds": [
+              76,
+              77
+            ],
+            "figureRefs": [
+              "Figure 5"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "transitions": [
+        {
+          "sourceStageId": "compare-feature-power",
+          "targetStageId": "inspect-linguistic-drivers",
+          "rationale": "The interface supports expanding the linguistic feature after inspecting aggregate feature rankings to obtain detailed ranking information.",
+          "evidence": {
+            "passageIds": [
+              73,
+              74,
+              76
+            ],
+            "figureRefs": [
+              "Figure 5"
+            ],
+            "confidence": 0.93
+          },
+          "inferenceType": "WeakInference"
+        }
+      ],
+      "expectedFinalOutcome": "An interpretable assessment of which feature families and linguistic dimensions are most useful for demographic prediction.",
+      "evidence": {
+        "passageIds": [
+          42,
+          50,
+          55,
+          72,
+          73,
+          76
+        ],
+        "confidence": 0.99
+      },
+      "inferenceType": "CrossModalSynthesis"
+    }
+  ],
+  "paperLevelClaims": [
+    {
+      "claimText": "The interface is intended to support sensemaking and comparison of demographic groups and identification of features useful for demographic prediction.",
+      "evidence": {
+        "passageIds": [
+          52,
+          53,
+          55
+        ],
+        "confidence": 1.0
+      },
+      "inferenceType": "Explicit"
+    },
+    {
+      "claimText": "The system makes the connection between categorical demographic information and textual content directly explorable.",
+      "evidence": {
+        "passageIds": [
+          8,
+          11,
+          53
+        ],
+        "confidence": 1.0
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "evidence": {
+    "passageIds": [
+      52,
+      53,
+      54,
+      55
+    ],
+    "figureRefs": [
+      "Figure 1"
+    ],
+    "confidence": 1.0
+  }
+}

@@ -1,80 +1,30 @@
-# Academic Project Page Template
+# VA-Usage project website
 
-> **Update (September 2025)**: This template has been modernized with better design, SEO, and mobile support. For the original version, see the [original-version branch](https://github.com/eliahuhorwitz/Academic-project-page-template/tree/original-version).
+Project page for **From Design to Use: Understanding Documented Usage of Visual Analytics Systems**.
 
-A clean, responsive template for academic project pages.
+The site presents the paper, three-layer knowledge base, Explorer, extraction framework, corpus analysis, workflow prediction study, and all 183 corpus papers.
 
+## Local preview
 
-Example project pages built using this template are:
-- https://horwitz.ai/probex
-- https://vision.huji.ac.il/probegen
-- https://horwitz.ai/mother
-- https://horwitz.ai/spectral_detuning
-- https://vision.huji.ac.il/ladeda
-- https://vision.huji.ac.il/dsire
-- https://horwitz.ai/podd
-- https://dreamix-video-editing.github.io
-- https://horwitz.ai/conffusion
-- https://horwitz.ai/3d_ads/
-- https://vision.huji.ac.il/ssrl_ad
-- https://vision.huji.ac.il/deepsim
+Run `python3 -m http.server 8765` in this directory and open `http://localhost:8765/`.
 
+## Content
 
+- `index.html`: paper text, figures, analysis overview, three findings, and complete corpus table.
+- `static/css/index.css`: responsive page styles.
+- `static/js/index.js`: corpus search/sort and schema field dictionary.
+- `static/js/prediction.js`: three prediction examples, including all six models and three rounds in both conditions.
+- `static/data/prediction/`: frozen study inputs, reference evidence, and predictions for ECoalVis (`p04_prefix01`), CommonsenseVIS (`p17_prefix01`), and Action-Evaluator (`p11_prefix01`).
+- `assets/2-schema/examples/`: current Tac-Simur, DemographicVis, and RuleMatrix records and evidence.
+- `assets/paper.pdf` and `assets/figures/`: the fixed paper and its original figures. The corresponding web images are in `static/images/`.
+- `static/data/corpus.json` and `static/data/paper-list.xlsx`: complete corpus resources.
 
-## Start using the template
-To start using the template click on `Use this Template`.
+The homepage uses plain HTML, CSS, and JavaScript and is served directly by GitHub Pages. The existing `explorer/` application has its own build and data configuration.
 
-The template uses html for controlling the content and css for controlling the style. 
-To edit the websites contents edit the `index.html` file. It contains different HTML "building blocks", use whichever ones you need and comment out the rest.  
+## Updating the paper
 
-**IMPORTANT!** Make sure to replace the `favicon.ico` under `static/images/` with one of your own, otherwise your favicon is going to be a dreambooth image of me.
+Update the title, abstract, original figures, raster previews, statistics, and the sample data together. The model/round scores in the prediction viewer are individual results; the sample averages combine 18 predictions per condition. Do not replace one with the other.
 
-## What's New
+The schema modal reads `static/schema/schema-browser.json`; its example links point to the current records under `assets/2-schema/examples/`.
 
-- Modern, clean design with better mobile support
-- Improved SEO with proper meta tags and structured data
-- Performance improvements (lazy loading, optimized assets)
-- More Works dropdown
-- Copy button for BibTeX citations
-- Better accessibility
-
-## Components
-
-- Teaser video
-- Image carousel
-- YouTube video embedding
-- Video carousel
-- PDF poster viewer
-- BibTeX citation
-
-## Customization
-
-The HTML file has TODO comments showing what to replace:
-
-- Paper title, authors, institution, conference
-- Links (arXiv, GitHub, etc.)
-- Abstract and descriptions  
-- Videos, images, and PDFs
-- Related works in the dropdown
-- Meta tags for SEO and social sharing
-
-### Meta Tags
-The template includes meta tags for better search engine visibility and social media sharing. These appear in the `<head>` section and help with:
-- Google Scholar indexing
-- Social media previews (Twitter, Facebook, LinkedIn)
-- Search engine optimization
-
-Create a 1200x630px social preview image at `static/images/social_preview.png`.
-
-## Tips
-
-- Compress images with [TinyPNG](https://tinypng.com)
-- Use YouTube for large videos (>10MB)  
-- Replace the favicon in `static/images/`
-- Works with GitHub Pages
-
-## Acknowledgments
-Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
-
-## Website License
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+The original website template was adapted from the [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template).

@@ -1,0 +1,1119 @@
+{
+  "paperName": "RuleMatrix",
+  "systemInfo": {
+    "systemName": "RuleMatrix",
+    "dataOntology": {
+      "datasetType": [
+        "Tables"
+      ],
+      "dataType": [
+        "Items",
+        "Attributes"
+      ],
+      "attributeType": [
+        "Categorical",
+        "Quantitative"
+      ]
+    },
+    "systemCategory": [
+      {
+        "level1": "A DS/ML",
+        "level2": [
+          "A1 XAI / Model Understanding"
+        ]
+      }
+    ]
+  },
+  "viewsInfo": [
+    {
+      "viewId": "control-panel",
+      "viewName": "Control Panel",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1A",
+        "Controls"
+      ],
+      "description": "Left-side controls for choosing data and visualization settings and for filtering rules.",
+      "viewImages": [
+        "view-images/1.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          1,
+          69,
+          92
+        ],
+        "figureRefs": [
+          "Fig. 1A"
+        ],
+        "quotes": [
+          "the interface contains a control panel (A)"
+        ],
+        "confidence": 1.0
+      },
+      "subViews": [
+        {
+          "subViewId": "control-panel.controls",
+          "subViewName": "Controls",
+          "nameSource": "explicit",
+          "description": "Grouped model, dataset, style, detail-setting, and rule-filter controls.",
+          "evidence": {
+            "passageIds": [
+              1,
+              87,
+              91,
+              92
+            ],
+            "figureRefs": [
+              "source-corpus/view-images/RuleMatrix/1.png"
+            ]
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Control",
+            "subKind": "others(grouped controls)",
+            "description": "Controls dataset selection, visual styling, conditional and error-detail display, and minimum support and confidence thresholds.",
+            "evidence": {
+              "passageIds": [
+                87,
+                91
+              ],
+              "figureRefs": [
+                "Fig. 1A"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "control-select-dataset",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select Dataset",
+              "description": "Choose the training, test, or sampled dataset shown by the interface.",
+              "evidence": {
+                "passageIds": [
+                  1
+                ],
+                "figureRefs": [
+                  "source-corpus/view-images/RuleMatrix/1.png"
+                ]
+              }
+            },
+            {
+              "capabilityId": "control-filter-rules",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Filter Rules",
+              "description": "Adjust minimum support/evidence and confidence to reduce or expand the rules shown.",
+              "evidence": {
+                "passageIds": [
+                  87,
+                  92
+                ],
+                "figureRefs": [
+                  "Fig. 1A"
+                ]
+              }
+            },
+            {
+              "capabilityId": "control-display-settings",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Modify Detail Settings",
+              "description": "Show conditional distributions or hide striped error boxes.",
+              "evidence": {
+                "passageIds": [
+                  91
+                ],
+                "figureRefs": [
+                  "source-corpus/view-images/RuleMatrix/1.png"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "main-visualization",
+      "viewName": "RuleMatrix",
+      "nameSource": "explicit",
+      "aliases": [
+        "Fig. 1B",
+        "main visualization"
+      ],
+      "description": "Coordinated visual explanation of an ordered decision-rule list and the classifier behavior it approximates.",
+      "viewImages": [
+        "view-images/2.png",
+        "figures/fig_4.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          44,
+          69,
+          71,
+          72
+        ],
+        "figureRefs": [
+          "Fig. 1B",
+          "Fig. 4"
+        ],
+        "confidence": 1.0
+      },
+      "subViews": [
+        {
+          "subViewId": "main-visualization.data-flow",
+          "subViewName": "Data Flow",
+          "nameSource": "explicit",
+          "aliases": [
+            "Fig. 4A"
+          ],
+          "description": "Waterfall-like Sankey diagram on the left showing how labeled data flows through the ordered rules.",
+          "evidence": {
+            "passageIds": [
+              71,
+              78
+            ],
+            "figureRefs": [
+              "Fig. 4A"
+            ]
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "data-flow.paths",
+                "markType": "flow",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "data label",
+                      "type": "categorical",
+                      "description": "Flow color encodes the class label."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "data quantity",
+                      "type": "quantitative",
+                      "description": "Flow width encodes the amount of data."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "data-flow.rule-bars",
+                "markType": "bar",
+                "encoding": {
+                  "y": [
+                    {
+                      "field": "rule order",
+                      "type": "ordinal",
+                      "description": "Horizontal rule bars are aligned vertically in decision-list order."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                78
+              ],
+              "figureRefs": [
+                "Fig. 4A"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "data-flow-read-order",
+              "capabilityKind": "Information",
+              "capabilityName": "Read Rule Order",
+              "description": "Maintain an overall sense of how data is classified by the ordered decision-rule list.",
+              "evidence": {
+                "passageIds": [
+                  78
+                ],
+                "figureRefs": [
+                  "Fig. 4A"
+                ]
+              }
+            },
+            {
+              "capabilityId": "data-flow-read-support",
+              "capabilityKind": "Information",
+              "capabilityName": "Read Data Quantity",
+              "description": "Read the amount and labels of data satisfying each rule from flow widths and colors.",
+              "evidence": {
+                "passageIds": [
+                  78
+                ],
+                "figureRefs": [
+                  "Fig. 4A"
+                ]
+              }
+            },
+            {
+              "capabilityId": "data-flow-hover-count",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Inspect Data Amount",
+              "description": "Hover over parts of the flow to see the actual amount of data.",
+              "evidence": {
+                "passageIds": [
+                  91
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "main-visualization.rule-matrix",
+          "subViewName": "Rule Matrix",
+          "nameSource": "explicit",
+          "aliases": [
+            "Fig. 4B"
+          ],
+          "description": "Matrix with rules as rows, features as columns, clause glyphs in cells, and rule outputs at row ends.",
+          "evidence": {
+            "passageIds": [
+              71,
+              74,
+              75,
+              76
+            ],
+            "figureRefs": [
+              "Fig. 4B"
+            ]
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "rule-matrix.feature-headers",
+                "markType": "bar",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "feature importance",
+                      "type": "quantitative",
+                      "description": "Feature columns are ordered by an importance score computed from how many instances use the feature for discrimination."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "feature occurrence frequency",
+                      "type": "quantitative",
+                      "description": "The length of the bar beneath each feature name encodes how frequently that feature occurs in the decision rules."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "feature name",
+                      "type": "categorical",
+                      "description": "Each matrix column is labeled with its input-feature name."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "rule-matrix.clauses",
+                "markType": "rect",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "feature",
+                      "type": "categorical",
+                      "description": "Columns align input features across rules."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "rule",
+                      "type": "ordinal",
+                      "description": "Rows encode ordered decision rules."
+                    }
+                  ],
+                  "opacity": [
+                    {
+                      "field": "clause satisfaction",
+                      "type": "quantitative",
+                      "description": "Higher opacity highlights the portion of data satisfying a clause."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "clause interval",
+                      "type": "quantitative",
+                      "description": "The covered horizontal range represents the interval of a clause."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "rule-matrix.distributions",
+                "markType": "bar",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "feature value",
+                      "type": "quantitative",
+                      "description": "Histogram or categorical positions show feature distributions."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "frequency",
+                      "type": "quantitative",
+                      "description": "Compact histogram or bar height represents frequency."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "rule-matrix.outputs",
+                "markType": "text",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "output label",
+                      "type": "categorical",
+                      "description": "Output-number color identifies the predicted label."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "label probability",
+                      "type": "quantitative",
+                      "description": "The number shows the probability of the output label."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "rule-matrix.output-distributions",
+                "markType": "stacked bar",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "class label",
+                      "type": "categorical",
+                      "description": "Stack colors distinguish the possible output labels."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "class probability",
+                      "type": "quantitative",
+                      "description": "Each vertical stack segment shows the detailed probability of its label."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                74,
+                75,
+                76
+              ],
+              "figureRefs": [
+                "Fig. 4B"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "rule-matrix-read-rules",
+              "capabilityKind": "Information",
+              "capabilityName": "Compare Rules",
+              "description": "Read, search, and compare aligned clauses and outputs across rules.",
+              "evidence": {
+                "passageIds": [
+                  74,
+                  75,
+                  76
+                ]
+              }
+            },
+            {
+              "capabilityId": "rule-matrix-read-feature-prevalence",
+              "capabilityKind": "Information",
+              "capabilityName": "Read Feature Prevalence and Importance",
+              "description": "Read how often features occur from header-bar lengths and scan features in importance-score order.",
+              "evidence": {
+                "passageIds": [
+                  74
+                ],
+                "figureRefs": [
+                  "Fig. 4B"
+                ]
+              }
+            },
+            {
+              "capabilityId": "rule-matrix-read-output-distribution",
+              "capabilityKind": "Information",
+              "capabilityName": "Read Rule Output Distribution",
+              "description": "Read the winning-label probability from the colored number and the probability of every label from the adjacent vertically stacked bar.",
+              "evidence": {
+                "passageIds": [
+                  74,
+                  76
+                ],
+                "figureRefs": [
+                  "Fig. 4B"
+                ]
+              }
+            },
+            {
+              "capabilityId": "rule-matrix-show-list",
+              "capabilityKind": "Information",
+              "capabilityName": "Show Filtered Rule List",
+              "description": "Display the current rule list while retaining filtered rules as collapsed groups.",
+              "evidence": {
+                "passageIds": [
+                  87
+                ]
+              }
+            },
+            {
+              "capabilityId": "rule-matrix-expand-collapse-groups",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Expand or Collapse Rule Groups",
+              "description": "Expand a collapsed group to see its rules in full detail or collapse grouped rules to reduce the visible list.",
+              "evidence": {
+                "passageIds": [
+                  87
+                ],
+                "figureRefs": [
+                  "Fig. 4B",
+                  "source-corpus/view-images/RuleMatrix/2.png"
+                ]
+              }
+            },
+            {
+              "capabilityId": "rule-matrix-hover-clause",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Read Clause Text",
+              "description": "Hover a cell to check the textual description of its clause.",
+              "evidence": {
+                "passageIds": [
+                  91
+                ]
+              }
+            },
+            {
+              "capabilityId": "rule-matrix-expand-clause",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Expand Clause Distribution",
+              "description": "Click a cell to expand its data distribution and interval details.",
+              "evidence": {
+                "passageIds": [
+                  72,
+                  91
+                ],
+                "figureRefs": [
+                  "Fig. 4B"
+                ]
+              }
+            },
+            {
+              "capabilityId": "rule-matrix-inspect-clause",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Clause Distribution",
+              "description": "Read expanded stream plots or stacked bars and compare clause intervals with a vertical ruler.",
+              "evidence": {
+                "passageIds": [
+                  91
+                ]
+              }
+            },
+            {
+              "capabilityId": "rule-matrix-highlight-match",
+              "capabilityKind": "Information",
+              "capabilityName": "Highlight Satisfied Rule",
+              "description": "Highlight the rule satisfied by a customized input and present the model prediction.",
+              "evidence": {
+                "passageIds": [
+                  92
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "main-visualization.support-view",
+          "subViewName": "Support View",
+          "nameSource": "explicit",
+          "aliases": [
+            "Fig. 4C"
+          ],
+          "description": "Per-rule fidelity and evidence visualizations showing approximation quality, predictions, and errors.",
+          "evidence": {
+            "passageIds": [
+              71,
+              80,
+              81,
+              82,
+              83
+            ],
+            "figureRefs": [
+              "Fig. 4C"
+            ]
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "support-view.fidelity",
+                "markType": "arc",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "fidelity level",
+                      "type": "ordinal",
+                      "description": "Green, yellow, and red denote high, medium, and low fidelity."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "fidelity",
+                      "type": "quantitative",
+                      "description": "A number from 0 to 100 reports rule fidelity."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "fidelity",
+                      "type": "quantitative",
+                      "description": "Arc angle encodes the fidelity value."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "support-view.evidence",
+                "markType": "bar",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "predicted class",
+                      "type": "categorical",
+                      "description": "Box color encodes the class predicted by the original model."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "prediction count",
+                      "type": "quantitative",
+                      "description": "Box width encodes the amount of data for a prediction type."
+                    }
+                  ],
+                  "opacity": [
+                    {
+                      "field": "prediction correctness",
+                      "type": "categorical",
+                      "description": "Striped boxes distinguish erroneous predictions."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                81,
+                82
+              ],
+              "figureRefs": [
+                "Fig. 4C"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "support-view-read-fidelity",
+              "capabilityKind": "Information",
+              "capabilityName": "Read Rule Fidelity",
+              "description": "Assess how accurately each extracted rule represents the original model on its subset.",
+              "evidence": {
+                "passageIds": [
+                  80,
+                  81
+                ]
+              }
+            },
+            {
+              "capabilityId": "support-view-read-errors",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Predictions and Errors",
+              "description": "See prediction counts and locate erroneous predictions for each rule.",
+              "evidence": {
+                "passageIds": [
+                  80,
+                  82,
+                  83
+                ]
+              }
+            },
+            {
+              "capabilityId": "support-view-hover-count",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Inspect Evidence Amount",
+              "description": "Hover evidence bars to see the actual amount of data.",
+              "evidence": {
+                "passageIds": [
+                  91
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "data-filter",
+      "viewName": "Data Filter",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1C",
+        "data filter panel"
+      ],
+      "description": "Right-side feature-range filter and custom-input panel.",
+      "viewImages": [
+        "view-images/3.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          1,
+          69,
+          89,
+          92
+        ],
+        "figureRefs": [
+          "Fig. 1C"
+        ]
+      },
+      "subViews": [
+        {
+          "subViewId": "data-filter.filter-controls",
+          "subViewName": "Data Filter Controls",
+          "nameSource": "inferred",
+          "description": "Per-feature range controls and custom-input values for focusing the current analysis.",
+          "evidence": {
+            "passageIds": [
+              89,
+              92
+            ],
+            "figureRefs": [
+              "source-corpus/view-images/RuleMatrix/3.png"
+            ]
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Control",
+            "subKind": "RangeSlider",
+            "description": "Range sliders filter the dataset and input controls specify a customized instance.",
+            "evidence": {
+              "passageIds": [
+                89,
+                92
+              ],
+              "figureRefs": [
+                "Fig. 1C"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "data-filter-constrain-ranges",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Filter Data",
+              "description": "Constrain feature ranges to focus on a subset of records and associated rules.",
+              "evidence": {
+                "passageIds": [
+                  89
+                ]
+              }
+            },
+            {
+              "capabilityId": "data-filter-custom-input",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Enter Custom Input",
+              "description": "Specify an input and request its model prediction and satisfied rule.",
+              "evidence": {
+                "passageIds": [
+                  92
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "data-table",
+      "viewName": "Data Table",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1D"
+      ],
+      "description": "Tabular record view for navigating the current filtered dataset.",
+      "viewImages": [
+        "view-images/4.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          1,
+          69,
+          89
+        ],
+        "figureRefs": [
+          "Fig. 1D"
+        ]
+      },
+      "subViews": [
+        {
+          "subViewId": "data-table.records",
+          "subViewName": "Data Records",
+          "nameSource": "inferred",
+          "description": "Rows of labels and feature values belonging to the selected dataset subset.",
+          "evidence": {
+            "passageIds": [
+              1,
+              89
+            ],
+            "figureRefs": [
+              "source-corpus/view-images/RuleMatrix/4.png"
+            ]
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "TableView",
+            "subKind": "Table",
+            "description": "A scrollable table of filtered data entries and their feature values.",
+            "evidence": {
+              "passageIds": [
+                1,
+                89
+              ],
+              "figureRefs": [
+                "Fig. 1D"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "data-table-browse-records",
+              "capabilityKind": "Information",
+              "capabilityName": "Browse Supporting Records",
+              "description": "Navigate entries in the filtered dataset that support the displayed rules.",
+              "evidence": {
+                "passageIds": [
+                  1,
+                  89
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coordinationInfo": [
+    {
+      "coordinationId": "coord-rule-filter",
+      "source": {
+        "viewId": "control-panel",
+        "subViewId": "control-panel.controls"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "control-panel",
+        "subViewId": "control-panel.controls",
+        "capabilityId": "control-filter-rules"
+      },
+      "targets": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.data-flow"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.support-view"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.data-flow",
+          "capabilityId": "data-flow-read-support"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix",
+          "capabilityId": "rule-matrix-show-list"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.support-view",
+          "capabilityId": "support-view-read-errors"
+        }
+      ],
+      "coordinationType": "FilterLinking",
+      "evidence": {
+        "passageIds": [
+          71,
+          85,
+          87
+        ],
+        "figureRefs": [
+          "Fig. 4",
+          "Fig. 5"
+        ],
+        "quotes": [
+          "filtered rules are grouped into collapsed \"rules\" so that users can keep track of them"
+        ]
+      }
+    },
+    {
+      "coordinationId": "coord-dataset-selection",
+      "source": {
+        "viewId": "control-panel",
+        "subViewId": "control-panel.controls"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "control-panel",
+        "subViewId": "control-panel.controls",
+        "capabilityId": "control-select-dataset"
+      },
+      "targets": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.data-flow"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.support-view"
+        },
+        {
+          "viewId": "data-table",
+          "subViewId": "data-table.records"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.data-flow",
+          "capabilityId": "data-flow-read-support"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix",
+          "capabilityId": "rule-matrix-read-rules"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.support-view",
+          "capabilityId": "support-view-read-errors"
+        },
+        {
+          "viewId": "data-table",
+          "subViewId": "data-table.records",
+          "capabilityId": "data-table-browse-records"
+        }
+      ],
+      "coordinationType": "ParameterBinding",
+      "evidence": {
+        "passageIds": [
+          1,
+          82
+        ],
+        "figureRefs": [
+          "Fig. 1A",
+          "Fig. 1B",
+          "Fig. 1D",
+          "source-corpus/view-images/RuleMatrix/1.png",
+          "source-corpus/view-images/RuleMatrix/4.png"
+        ],
+        "quotes": [
+          "users can switch between training or test set"
+        ]
+      }
+    },
+    {
+      "coordinationId": "coord-data-filter",
+      "source": {
+        "viewId": "data-filter",
+        "subViewId": "data-filter.filter-controls"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "data-filter",
+        "subViewId": "data-filter.filter-controls",
+        "capabilityId": "data-filter-constrain-ranges"
+      },
+      "targets": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.data-flow"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.support-view"
+        },
+        {
+          "viewId": "data-table",
+          "subViewId": "data-table.records"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix",
+          "capabilityId": "rule-matrix-show-list"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.data-flow",
+          "capabilityId": "data-flow-read-support"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.support-view",
+          "capabilityId": "support-view-read-errors"
+        },
+        {
+          "viewId": "data-table",
+          "subViewId": "data-table.records",
+          "capabilityId": "data-table-browse-records"
+        }
+      ],
+      "coordinationType": "FilterLinking",
+      "evidence": {
+        "passageIds": [
+          89
+        ],
+        "quotes": [
+          "by filtering, users can identify the data entries in the data table (Fig. 1D) that support specific rules"
+        ]
+      }
+    },
+    {
+      "coordinationId": "coord-custom-input",
+      "source": {
+        "viewId": "data-filter",
+        "subViewId": "data-filter.filter-controls"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "data-filter",
+        "subViewId": "data-filter.filter-controls",
+        "capabilityId": "data-filter-custom-input"
+      },
+      "targets": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix",
+          "capabilityId": "rule-matrix-highlight-match"
+        }
+      ],
+      "coordinationType": "QueryResultBinding",
+      "evidence": {
+        "passageIds": [
+          92
+        ],
+        "quotes": [
+          "request the system to present the prediction of the original model and highlight the satisfied rule"
+        ]
+      }
+    },
+    {
+      "coordinationId": "coord-clause-details",
+      "source": {
+        "viewId": "main-visualization",
+        "subViewId": "main-visualization.rule-matrix"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "main-visualization",
+        "subViewId": "main-visualization.rule-matrix",
+        "capabilityId": "rule-matrix-expand-clause"
+      },
+      "targets": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix",
+          "capabilityId": "rule-matrix-inspect-clause"
+        }
+      ],
+      "coordinationType": "DetailsOnDemand",
+      "evidence": {
+        "passageIds": [
+          91
+        ],
+        "quotes": [
+          "users can click on a cell, which expand the cell and show a stream plot"
+        ]
+      }
+    },
+    {
+      "coordinationId": "coord-display-settings",
+      "source": {
+        "viewId": "control-panel",
+        "subViewId": "control-panel.controls"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "control-panel",
+        "subViewId": "control-panel.controls",
+        "capabilityId": "control-display-settings"
+      },
+      "targets": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.support-view"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.rule-matrix",
+          "capabilityId": "rule-matrix-inspect-clause"
+        },
+        {
+          "viewId": "main-visualization",
+          "subViewId": "main-visualization.support-view",
+          "capabilityId": "support-view-read-errors"
+        }
+      ],
+      "coordinationType": "ParameterBinding",
+      "evidence": {
+        "passageIds": [
+          91
+        ],
+        "quotes": [
+          "Users can view the conditional distribution or hide the striped error boxes by modifying the settings in the control panel."
+        ]
+      }
+    }
+  ]
+}

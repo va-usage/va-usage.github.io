@@ -1,0 +1,490 @@
+{
+  "p04_prefix01": {
+    "paper": "ECoalVis",
+    "case_id": "ecoalvis_case_2",
+    "source_case_id": "forward-unbalanced-burning",
+    "observed_episode_provenance": {
+      "index": 1,
+      "goal": "Specify the burning/remedy pattern and select a historical strategy.",
+      "completed_steps": [
+        "The user encoded increasing right-furnace temperature followed by wider opening of the right-side water valves.",
+        "The user compared ranked alternatives and selected the first because its efficiency change was more dramatic than the second."
+      ],
+      "images": [
+        "images/ecoalvis_case_2/ep_01_01.png"
+      ],
+      "source_episode_ids": [
+        "forward-specify-patterns"
+      ],
+      "source_step_ids": [
+        "forward-specify-patterns.step-1",
+        "forward-specify-patterns.step-2"
+      ],
+      "source_passage_orders": [
+        103
+      ],
+      "used_subviews": [
+        {
+          "viewId": "filter-view",
+          "subViewId": "query-input-panel"
+        },
+        {
+          "viewId": "filter-view",
+          "subViewId": "strategy-ranking-panel"
+        }
+      ],
+      "used_capabilities": [
+        {
+          "viewId": "filter-view",
+          "subViewId": "query-input-panel",
+          "capabilityId": "query-input-panel.specify-partial-strategy"
+        },
+        {
+          "viewId": "filter-view",
+          "subViewId": "strategy-ranking-panel",
+          "capabilityId": "strategy-ranking-panel.compare-strategies"
+        },
+        {
+          "viewId": "filter-view",
+          "subViewId": "strategy-ranking-panel",
+          "capabilityId": "strategy-ranking-panel.compare-efficiency-traces"
+        },
+        {
+          "viewId": "filter-view",
+          "subViewId": "strategy-ranking-panel",
+          "capabilityId": "strategy-ranking-panel.select-strategy"
+        }
+      ],
+      "image_provenance": [
+        {
+          "source": "data/benchmarks/next-analytic-move/assets/ECoalVis/fig_7_a.png",
+          "source_sha256": "a68b624c491a3e0adbc8c74a5680513ad6662c6e376ce5534bfa91f17a4be3e1",
+          "bbox_xyxy": [
+            0,
+            0,
+            1560,
+            1042
+          ],
+          "output": "images/ecoalvis_case_2/ep_01_01.png",
+          "size": [
+            1560,
+            1042
+          ]
+        }
+      ],
+      "notes": ""
+    },
+    "reference_episode_provenance": {
+      "index": 2,
+      "goal": "Trace spatial propagation of the selected adjustment.",
+      "completed_steps": [
+        "In relationship-oriented mode, the user clicked highlighted circles in the desuperheater and traced negative correlation to the superheater, then positive correlation to fly-ash carbon and efficiency."
+      ],
+      "images": [
+        "images/ecoalvis_case_2/ep_02_01.png"
+      ],
+      "source_episode_ids": [
+        "forward-explore-propagation"
+      ],
+      "source_step_ids": [
+        "forward-explore-propagation.step-1"
+      ],
+      "source_passage_orders": [
+        104
+      ],
+      "used_subviews": [
+        {
+          "viewId": "graph-view",
+          "subViewId": "propagation-graph"
+        }
+      ],
+      "used_capabilities": [
+        {
+          "viewId": "graph-view",
+          "subViewId": "propagation-graph",
+          "capabilityId": "propagation-graph.switch-layout-mode"
+        },
+        {
+          "viewId": "graph-view",
+          "subViewId": "propagation-graph",
+          "capabilityId": "propagation-graph.reveal-sensor-impact"
+        },
+        {
+          "viewId": "graph-view",
+          "subViewId": "propagation-graph",
+          "capabilityId": "propagation-graph.inspect-spatial-propagation"
+        }
+      ],
+      "image_provenance": [
+        {
+          "source": "data/benchmarks/next-analytic-move/assets/ECoalVis/fig_7_b.png",
+          "source_sha256": "e09c58ea6c52110ef256874a29461ac797a9a584d8efe7c7e54a45c935629fc1",
+          "bbox_xyxy": [
+            0,
+            0,
+            1774,
+            1038
+          ],
+          "output": "images/ecoalvis_case_2/ep_02_01.png",
+          "size": [
+            1774,
+            1038
+          ]
+        }
+      ],
+      "notes": ""
+    },
+    "source_passages": [
+      {
+        "type": "paragraph",
+        "order": 103,
+        "text": "Step 1: Specify desired patterns. The user observed the burning in the furnace was not balanced and geared to the right from the log history. According to his expertise, the user should adjust the water valve on the right side to alleviate this situation. However, the user knew little about the possible cascading effects and how long it took to affect the efficiency. Therefore, the user edited the filter view to specify the control strategy. The user first added the increasing event of the right furnace temperature and then added the opening wider event of the right-side water valves (Fig. 7A1). After the possible control strategies were shown, the user browsed the alternatives from top to bottom as they were sorted decreasingly by scores. The user selected the first one because the user found a more dramatic change of efficiency in it than that in the second one (Fig. 7A2)."
+      },
+      {
+        "type": "paragraph",
+        "order": 104,
+        "text": "Step 2: Explore the propagation. The user explored the spatial propagation of the selected control strategy. To focus more on the relationship and gain insights into the correlation between sensors and components, the user used the relationship-oriented mode of the graph view (Fig. 7B). The user clicked the highlighted circles in the desuperheater to see the impact of water valve adjustment. The colored links revealed that the desuperheater was negatively correlated with the superheater (B1→B2). Then, the positive correlation spread further to fly ash carbon (B2→B3) and finally affected efficiency (B3 →B4) in Fig. 7B. Though the user knew the correlation between each pair of sensors, the user still wondered about the exact time lags."
+      }
+    ]
+  },
+  "p17_prefix01": {
+    "paper": "CommonsenseVIS",
+    "case_id": "commonsensevis_case_1",
+    "source_case_id": "relation-context-limitation",
+    "observed_episode_provenance": {
+      "index": 1,
+      "goal": "Locate a low-accuracy subset in the global relation view.",
+      "completed_steps": [
+        "E5 selected atlocation, observed good overall transformed-cluster correspondence but a dense red group, and lassoed that group for further exploration."
+      ],
+      "images": [
+        "images/commonsensevis_case_1/ep_01_01.png"
+      ],
+      "source_episode_ids": [
+        "relation-context-limitation.global-localization"
+      ],
+      "source_step_ids": [
+        "relation-context-limitation.global-localization.step-1"
+      ],
+      "source_passage_orders": [
+        87
+      ],
+      "used_subviews": [
+        {
+          "viewId": "global-view",
+          "subViewId": "global-view.relation-summary"
+        },
+        {
+          "viewId": "global-view",
+          "subViewId": "global-view.projection-plots"
+        }
+      ],
+      "used_capabilities": [
+        {
+          "viewId": "global-view",
+          "subViewId": "global-view.relation-summary",
+          "capabilityId": "global-view.relation-summary.select-relation"
+        },
+        {
+          "viewId": "global-view",
+          "subViewId": "global-view.projection-plots",
+          "capabilityId": "global-view.projection-plots.configure-projection"
+        },
+        {
+          "viewId": "global-view",
+          "subViewId": "global-view.projection-plots",
+          "capabilityId": "global-view.projection-plots.lasso-select-instances"
+        }
+      ],
+      "image_provenance": [
+        {
+          "source": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/source-corpus/figures/CommonsenseVIS/crops/fig_5.png",
+          "source_sha256": "c49f3ead206b7aae9b381eac3bad26c9bac228871d049aee552fa898cce5aec5",
+          "bbox_xyxy": [
+            33,
+            35,
+            633,
+            380
+          ],
+          "output": "images/commonsensevis_case_1/ep_01_01.png",
+          "size": [
+            600,
+            345
+          ]
+        }
+      ],
+      "notes": ""
+    },
+    "reference_episode_provenance": {
+      "index": 2,
+      "goal": "Identify a problematic cluster and inspect its model concepts.",
+      "completed_steps": [
+        "E5 compared three clusters, hovered over the lowest-accuracy cluster, found mostly function words among its top model concepts, and selected it for instance inspection."
+      ],
+      "images": [
+        "images/commonsensevis_case_1/ep_02_01.png"
+      ],
+      "source_episode_ids": [
+        "relation-context-limitation.subset-assessment"
+      ],
+      "source_step_ids": [
+        "relation-context-limitation.subset-assessment.step-1"
+      ],
+      "source_passage_orders": [
+        88
+      ],
+      "used_subviews": [
+        {
+          "viewId": "subset-view",
+          "subViewId": "subset-view.cluster-glyphs"
+        }
+      ],
+      "used_capabilities": [
+        {
+          "viewId": "subset-view",
+          "subViewId": "subset-view.cluster-glyphs",
+          "capabilityId": "subset-view.cluster-glyphs.show-alignment"
+        },
+        {
+          "viewId": "subset-view",
+          "subViewId": "subset-view.cluster-glyphs",
+          "capabilityId": "subset-view.cluster-glyphs.hover-links"
+        },
+        {
+          "viewId": "subset-view",
+          "subViewId": "subset-view.cluster-glyphs",
+          "capabilityId": "subset-view.cluster-glyphs.select-cluster"
+        }
+      ],
+      "image_provenance": [
+        {
+          "source": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/source-corpus/figures/CommonsenseVIS/crops/fig_5.png",
+          "source_sha256": "c49f3ead206b7aae9b381eac3bad26c9bac228871d049aee552fa898cce5aec5",
+          "bbox_xyxy": [
+            33,
+            389,
+            633,
+            648
+          ],
+          "output": "images/commonsensevis_case_1/ep_02_01.png",
+          "size": [
+            600,
+            259
+          ]
+        }
+      ],
+      "notes": ""
+    },
+    "source_passages": [
+      {
+        "type": "paragraph",
+        "order": 87,
+        "text": "Global Summary (R1, R2) Another expert E5 used our system to investigate under what circumstances the model might fail to use contexts for relational reasoning over concepts. He first chose the largest relation group (i.e., atlocation, the first green bar) in the Global View (Figure 5A). And he found good correspondence between question stem and target concept clusters under the \"Relation X Transformed\" projection scheme. It implies good learning of atlocation in general. E5 wondered when the model might fail to reason about contexts. Then, he noticed that a group of dense red dots appear at the bottom left (Figure 5A). The accuracy of this group is low, and E5 decided to lasso the group for further exploration."
+      },
+      {
+        "type": "paragraph",
+        "order": 88,
+        "text": "Subset Exploration (R1, R2, R3) In the Subset View, E5 noticed that QSs fall into three clusters with varied accuracies (as suggested by the green bars) (Figure 5B). Particularly, he was interested in the leftmost cluster since it has the lowest accuracy yet a similarly high question stem hit ratio (also indicated by tall dark blue bars at the left), compared to the other two. As he hovered over the cluster glyph (Figure 5B), he discovered that the top model concepts are not so meaningful (e.g., a, the, to, you). He speculated that the model frequently relies on superficial information in question stems for answering the questions. E5 then clicked the cluster to explore the instances and model explanations."
+      }
+    ]
+  },
+  "p11_prefix01": {
+    "paper": "ActionEvaluator",
+    "case_id": "actionevaluator_case_2",
+    "source_case_id": "mbappe-improvement",
+    "observed_episode_provenance": {
+      "index": 1,
+      "goal": "Identify a forward with underperforming action choices.",
+      "completed_steps": [
+        "E2 filtered to French forwards, found Mbappé had the most shots but no goal and a low reward score, and selected him for improvement analysis."
+      ],
+      "images": [
+        "images/actionevaluator_case_2/ep_01_01.png"
+      ],
+      "source_episode_ids": [
+        "mbappe-identify-problem"
+      ],
+      "source_step_ids": [
+        "mbappe-select-target"
+      ],
+      "source_passage_orders": [
+        129
+      ],
+      "used_subviews": [
+        {
+          "viewId": "player-view",
+          "subViewId": "player-ranking-list"
+        },
+        {
+          "viewId": "player-view",
+          "subViewId": "player-projection"
+        }
+      ],
+      "used_capabilities": [
+        {
+          "viewId": "player-view",
+          "subViewId": "player-ranking-list",
+          "capabilityId": "player-ranking-list.filter-players"
+        },
+        {
+          "viewId": "player-view",
+          "subViewId": "player-ranking-list",
+          "capabilityId": "player-ranking-list.show-ranked-players"
+        },
+        {
+          "viewId": "player-view",
+          "subViewId": "player-projection",
+          "capabilityId": "player-projection.show-similar-players"
+        },
+        {
+          "viewId": "player-view",
+          "subViewId": "player-projection",
+          "capabilityId": "player-projection.select-player"
+        }
+      ],
+      "image_provenance": [
+        {
+          "source": "data/benchmarks/next-analytic-move/assets/ActionEvaluator/fig_8_a.png",
+          "source_sha256": "1e220e95ad886b378a52402f2791d631c47cd2709ae4d650cef0af1da0f8f2b2",
+          "bbox_xyxy": [
+            0,
+            0,
+            768,
+            814
+          ],
+          "output": "images/actionevaluator_case_2/ep_01_01.png",
+          "size": [
+            768,
+            814
+          ]
+        }
+      ],
+      "notes": ""
+    },
+    "reference_episode_provenance": {
+      "index": 2,
+      "goal": "Isolate a frequent low-reward situation and action choice.",
+      "completed_steps": [
+        "E2 focused on left-wing actions near goal and found Mbappé's frequent medium-pressure left-wing attack situation had the lowest reward.",
+        "E2 compared frequent choices under the selected situation and isolated passes toward goal as an improvement target.",
+        "For the identified pass-toward-goal choice, E2 unfolded the action-score histograms, selected the actions with the lowest reward scores near zero, and added them to the explanation view for further investigation."
+      ],
+      "images": [
+        "images/actionevaluator_case_2/ep_02_01.png",
+        "images/actionevaluator_case_2/ep_02_02.png"
+      ],
+      "source_episode_ids": [
+        "mbappe-isolate-choice"
+      ],
+      "source_step_ids": [
+        "mbappe-find-situation",
+        "mbappe-find-weak-choice"
+      ],
+      "source_passage_orders": [
+        130
+      ],
+      "used_subviews": [
+        {
+          "viewId": "action-view",
+          "subViewId": "match-situation-list"
+        },
+        {
+          "viewId": "action-view",
+          "subViewId": "action-score-list"
+        }
+      ],
+      "used_capabilities": [
+        {
+          "viewId": "action-view",
+          "subViewId": "match-situation-list",
+          "capabilityId": "match-situation-list.select-start-region"
+        },
+        {
+          "viewId": "action-view",
+          "subViewId": "match-situation-list",
+          "capabilityId": "match-situation-list.sort-situations"
+        },
+        {
+          "viewId": "action-view",
+          "subViewId": "match-situation-list",
+          "capabilityId": "match-situation-list.show-situations"
+        },
+        {
+          "viewId": "action-view",
+          "subViewId": "match-situation-list",
+          "capabilityId": "match-situation-list.select-situation"
+        },
+        {
+          "viewId": "action-view",
+          "subViewId": "action-score-list",
+          "capabilityId": "action-score-list.sort-action-choices"
+        },
+        {
+          "viewId": "action-view",
+          "subViewId": "action-score-list",
+          "capabilityId": "action-score-list.filter-action-choices"
+        },
+        {
+          "viewId": "action-view",
+          "subViewId": "action-score-list",
+          "capabilityId": "action-score-list.unfold-details"
+        },
+        {
+          "viewId": "action-view",
+          "subViewId": "action-score-list",
+          "capabilityId": "action-score-list.highlight-score-bin"
+        },
+        {
+          "viewId": "action-view",
+          "subViewId": "action-score-list",
+          "capabilityId": "action-score-list.add-to-explanation"
+        }
+      ],
+      "image_provenance": [
+        {
+          "source": "data/benchmarks/next-analytic-move/assets/ActionEvaluator/fig_8_c.png",
+          "source_sha256": "5a2ffd36f19464d5324e03c6886b9746507a590904053f8d425a2686bc1e13de",
+          "bbox_xyxy": [
+            0,
+            0,
+            548,
+            510
+          ],
+          "output": "images/actionevaluator_case_2/ep_02_01.png",
+          "size": [
+            548,
+            510
+          ]
+        },
+        {
+          "source": "data/benchmarks/next-analytic-move/assets/ActionEvaluator/fig_8_d.png",
+          "source_sha256": "7d006ce330c72457aa4752444fa302f497ec5ec553976ce4a38c580c4c398030",
+          "bbox_xyxy": [
+            0,
+            0,
+            984,
+            508
+          ],
+          "output": "images/actionevaluator_case_2/ep_02_02.png",
+          "size": [
+            984,
+            508
+          ]
+        }
+      ],
+      "notes": ""
+    },
+    "source_passages": [
+      {
+        "type": "paragraph",
+        "order": 129,
+        "text": "E2 started from the player view by selecting France from the drop list and switching to the forwards to try to improve the action choices of the forwards. In the player ranking list, E2 found that Kylian Mbappé finished the most shot but did not obtain a goal (Fig. 8(A1)). Besides, in the player projection component, E2 noticed that the overall reward score of Mbappé is only 0.017, which is lower than those of other main forwards. E2 indicated that as one of the most important forwards of France, the performance of Mbappé on increasing the goal chance for the team did not meet the expectation. Thus, E2 added Mbappé to the action view to analyze and improve his action choices on reward scores."
+      },
+      {
+        "type": "paragraph",
+        "order": 130,
+        "text": "In the action view, E2 selected the actions conducted in the left wing and near the opponent's goal as Mbappé is well known for his effective breakthrough from wings, and the actions on the left wing are more than those on the right wing (Fig. 8(C)). Then, E2 sorted the match situation list with the average reward score and found that the actions that Mbappé conducted in the match situation that he occurred most, attacking from the left wing when under medium pressure, are with the lowest average reward score (Fig. 8(C1)). Therefore, E2 selected this match situation and turned to the action score list to find out the action choices that could be further improved. E2 sorted the action score list with the average reward score and filtered out the action choices with a frequency of less than 10 to focus on the frequent actions with unsatisfying reward scores. E2 noticed that action choices of Mbappé under such a match situation mainly include short dribbles within the left wing and passes to the opponent's goal, and both the average reward and risk scores of the latter action choice are lower than the former one (Fig. 8(D)). Through this process, E2 concluded that passing to the opponent's goal when attacking from the left wing under medium pressure is an essential action choice for Mbappé that needs to be improved. Thus, for such an action choice, E2 further clicked to unfold the histograms of action scores, selected the actions with the lowest reward score near 0, and added them to the explanation view for further investigation and improvement (Fig. 8(D2))."
+      }
+    ]
+  }
+}

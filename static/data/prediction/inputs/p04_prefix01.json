@@ -1,0 +1,868 @@
+{
+  "sample_id": "p04_prefix01",
+  "task": "Predict the next meaningful local analytic advance after the completed prefix. Use A (available system functionality), B (the general intended workflow), C (the initial case context), and D (completed episodes and their attached images). The workflow is a general guide: stages can be revisited, combined, or skipped; it is not the observed case trajectory and no current workflow stage is supplied. Predict a local goal and sets of canonical subview and capability references from A, with a short rationale grounded in the available context. Do not report the outcome of an action that has not yet occurred. A documented continuation is one possible analytic move, not necessarily the only defensible move. Return a JSON object with local_goal (string), used_subviews (objects with viewId and subViewId), used_capabilities (objects with viewId, subViewId and capabilityId), and rationale (string).",
+  "system_context": {
+    "systemName": "ECoalVis",
+    "views": [
+      {
+        "viewId": "filter-view",
+        "viewName": "Filter View",
+        "description": "Upper-left view for specifying or brushing query conditions and comparing extracted control strategies.",
+        "subViews": [
+          {
+            "subViewId": "important-sensor-line-chart",
+            "subViewName": "Line chart",
+            "description": "Top line chart for important sensor time series and anomaly-range selection.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "important-sensor-line-chart.inspect-important-series",
+                "capabilityName": "Inspect Important Sensor Series",
+                "capabilityKind": "Information",
+                "description": "Read time-series trends for important sensors such as efficiency, NOx emissions, and furnace pressure."
+              },
+              {
+                "capabilityId": "important-sensor-line-chart.switch-sensor",
+                "capabilityName": "Switch Important Sensor",
+                "capabilityKind": "Interaction",
+                "description": "Switch among important sensor time series using tabs."
+              },
+              {
+                "capabilityId": "important-sensor-line-chart.brush-anomaly-range",
+                "capabilityName": "Brush Anomaly Range",
+                "capabilityKind": "Interaction",
+                "description": "Brush a time range containing an anomaly to invoke a backward query."
+              }
+            ]
+          },
+          {
+            "subViewId": "query-input-panel",
+            "subViewName": "Input panel",
+            "description": "Multi-column event-glyph editor for partial control strategies in forward analysis.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "query-input-panel.specify-partial-strategy",
+                "capabilityName": "Specify Partial Strategy",
+                "capabilityKind": "Interaction",
+                "description": "Arrange sensor events into columns to express co-occurrence and precedence with desired temporal trends."
+              },
+              {
+                "capabilityId": "query-input-panel.import-export-events",
+                "capabilityName": "Import or Export Events",
+                "capabilityKind": "Interaction",
+                "description": "Import or export partial-strategy event specifications."
+              },
+              {
+                "capabilityId": "query-input-panel.reenter-strategy-events",
+                "capabilityName": "Re-enter Discovered Strategy Events",
+                "capabilityKind": "Interaction",
+                "description": "Populate the partial-strategy query editor with previously discovered sensor events."
+              }
+            ]
+          },
+          {
+            "subViewId": "strategy-ranking-panel",
+            "subViewName": "Ranking panel",
+            "description": "Table-based list and group modes for comparing fuzzy-matched strategies, with result-level efficiency traces for alternative comparison.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "strategy-ranking-panel.compare-strategies",
+                "capabilityName": "Compare Strategies",
+                "capabilityKind": "Information",
+                "description": "Compare alternative strategies at sequence, column, and event levels and read match scores or support values."
+              },
+              {
+                "capabilityId": "strategy-ranking-panel.compare-efficiency-traces",
+                "capabilityName": "Compare Alternative Efficiency Traces",
+                "capabilityKind": "Information",
+                "description": "Compare the efficiency changes shown for matched alternatives before selecting a strategy."
+              },
+              {
+                "capabilityId": "strategy-ranking-panel.select-strategy",
+                "capabilityName": "Select Strategy",
+                "capabilityKind": "Interaction",
+                "description": "Select an extracted strategy of interest for further spatial and temporal analysis."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "viewId": "graph-view",
+        "viewName": "Graph View",
+        "description": "Lower-left dual-mode spatial view of propagation across components, units, and sensors.",
+        "subViews": [
+          {
+            "subViewId": "propagation-graph",
+            "subViewName": "Relationship-oriented and context-oriented visualizations",
+            "description": "Switchable node-link and schematic layouts showing sensor hierarchy, location, correlation, and propagation.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "propagation-graph.inspect-spatial-propagation",
+                "capabilityName": "Inspect Spatial Propagation",
+                "capabilityKind": "Information",
+                "description": "Read impact paths and correlations across components, units, and sensors."
+              },
+              {
+                "capabilityId": "propagation-graph.switch-layout-mode",
+                "capabilityName": "Switch Layout Mode",
+                "capabilityKind": "Interaction",
+                "description": "Switch between relationship-oriented and context-oriented layouts."
+              },
+              {
+                "capabilityId": "propagation-graph.reveal-sensor-impact",
+                "capabilityName": "Reveal Sensor Impact",
+                "capabilityKind": "Interaction",
+                "description": "Click a sensor to reveal its impact propagation links."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "viewId": "strategy-view",
+        "viewName": "Strategy View",
+        "description": "Upper-right linked topology and temporal representation of cascading strategy impact.",
+        "subViews": [
+          {
+            "subViewId": "strategy-topology",
+            "subViewName": "Topological visualization",
+            "description": "Left-side node-link topology showing cascading direction, sign, and strength.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "strategy-topology.inspect-cascade",
+                "capabilityName": "Inspect Strategy Topology",
+                "capabilityKind": "Information",
+                "description": "Read propagating direction, correlation sign, and correlation strength among sensor events."
+              },
+              {
+                "capabilityId": "strategy-topology.edit-strategy",
+                "capabilityName": "Edit Strategy",
+                "capabilityKind": "Interaction",
+                "description": "Insert, expand, or delete sensors to refine the extracted control strategy."
+              }
+            ]
+          },
+          {
+            "subViewId": "temporal-series",
+            "subViewName": "Temporal visualization",
+            "description": "Right-side rows of sampled sensor values grouped by delay and alignable for time-lag comparison.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "temporal-series.inspect-time-lags",
+                "capabilityName": "Inspect Time Lags",
+                "capabilityKind": "Information",
+                "description": "Read exact propagation delays and detailed sensor trends grouped by equal delay."
+              },
+              {
+                "capabilityId": "temporal-series.align-series",
+                "capabilityName": "Align Time Series",
+                "capabilityKind": "Interaction",
+                "description": "Align the sensor rows to compare overall trends and propagation steps."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "viewId": "detail-view",
+        "viewName": "Detail View",
+        "description": "Lower-right view for searching sensors, inspecting spatial context, and operating on raw aligned series.",
+        "subViews": [
+          {
+            "subViewId": "sensor-search-controls",
+            "subViewName": "Sensor search and aggregation controls",
+            "description": "Search box and buttons for adding sensors and applying sum, difference, average, or alignment operations.",
+            "isVisualizationView": false,
+            "capabilities": [
+              {
+                "capabilityId": "sensor-search-controls.add-sensors",
+                "capabilityName": "Add Sensors",
+                "capabilityKind": "Interaction",
+                "description": "Search for and add desired sensors to the detail view."
+              },
+              {
+                "capabilityId": "sensor-search-controls.aggregate-series",
+                "capabilityName": "Aggregate Sensor Series",
+                "capabilityKind": "Interaction",
+                "description": "Compute the sum, difference, or average of multiple sensor series."
+              },
+              {
+                "capabilityId": "sensor-search-controls.align-series",
+                "capabilityName": "Align Detail Series",
+                "capabilityKind": "Interaction",
+                "description": "Align selected sensor time series for comparison."
+              }
+            ]
+          },
+          {
+            "subViewId": "sensor-structure-diagram",
+            "subViewName": "Structure diagram",
+            "description": "Left-side plant structure diagram locating each selected sensor.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "sensor-structure-diagram.inspect-location",
+                "capabilityName": "Inspect Sensor Location",
+                "capabilityKind": "Information",
+                "description": "Read spatial context for each selected sensor in the plant structure."
+              }
+            ]
+          },
+          {
+            "subViewId": "raw-time-series",
+            "subViewName": "Time-lag-aligned time series",
+            "description": "Right-side stacked line charts of selected raw sensor series in the active time range.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "raw-time-series.inspect-raw-data",
+                "capabilityName": "Inspect Raw Sensor Data",
+                "capabilityKind": "Information",
+                "description": "Inspect raw, aligned, or aggregated sensor trends for the selected time range."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "coordinations": [
+      {
+        "coordinationId": "coord-forward-query-results",
+        "source": {
+          "viewId": "filter-view",
+          "subViewId": "query-input-panel"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "filter-view",
+          "subViewId": "query-input-panel",
+          "capabilityId": "query-input-panel.specify-partial-strategy"
+        },
+        "targets": [
+          {
+            "viewId": "filter-view",
+            "subViewId": "strategy-ranking-panel"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "filter-view",
+            "subViewId": "strategy-ranking-panel",
+            "capabilityId": "strategy-ranking-panel.compare-strategies"
+          }
+        ],
+        "coordinationType": "QueryResultBinding"
+      },
+      {
+        "coordinationId": "coord-backward-query-propagation",
+        "source": {
+          "viewId": "filter-view",
+          "subViewId": "important-sensor-line-chart"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "filter-view",
+          "subViewId": "important-sensor-line-chart",
+          "capabilityId": "important-sensor-line-chart.brush-anomaly-range"
+        },
+        "targets": [
+          {
+            "viewId": "graph-view",
+            "subViewId": "propagation-graph"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "graph-view",
+            "subViewId": "propagation-graph",
+            "capabilityId": "propagation-graph.inspect-spatial-propagation"
+          }
+        ],
+        "coordinationType": "QueryResultBinding"
+      },
+      {
+        "coordinationId": "coord-ranked-strategy-selection",
+        "source": {
+          "viewId": "filter-view",
+          "subViewId": "strategy-ranking-panel"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "filter-view",
+          "subViewId": "strategy-ranking-panel",
+          "capabilityId": "strategy-ranking-panel.select-strategy"
+        },
+        "targets": [
+          {
+            "viewId": "graph-view",
+            "subViewId": "propagation-graph"
+          },
+          {
+            "viewId": "strategy-view",
+            "subViewId": "strategy-topology"
+          },
+          {
+            "viewId": "strategy-view",
+            "subViewId": "temporal-series"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "graph-view",
+            "subViewId": "propagation-graph",
+            "capabilityId": "propagation-graph.inspect-spatial-propagation"
+          },
+          {
+            "viewId": "strategy-view",
+            "subViewId": "strategy-topology",
+            "capabilityId": "strategy-topology.inspect-cascade"
+          },
+          {
+            "viewId": "strategy-view",
+            "subViewId": "temporal-series",
+            "capabilityId": "temporal-series.inspect-time-lags"
+          }
+        ],
+        "coordinationType": "SelectionLinking"
+      },
+      {
+        "coordinationId": "coord-strategy-edit-propagation",
+        "source": {
+          "viewId": "strategy-view",
+          "subViewId": "strategy-topology"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "strategy-view",
+          "subViewId": "strategy-topology",
+          "capabilityId": "strategy-topology.edit-strategy"
+        },
+        "targets": [
+          {
+            "viewId": "strategy-view",
+            "subViewId": "strategy-topology"
+          },
+          {
+            "viewId": "strategy-view",
+            "subViewId": "temporal-series"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "strategy-view",
+            "subViewId": "strategy-topology",
+            "capabilityId": "strategy-topology.inspect-cascade"
+          },
+          {
+            "viewId": "strategy-view",
+            "subViewId": "temporal-series",
+            "capabilityId": "temporal-series.inspect-time-lags"
+          }
+        ],
+        "coordinationType": "EditPropagation"
+      },
+      {
+        "coordinationId": "coord-detail-search-results",
+        "source": {
+          "viewId": "detail-view",
+          "subViewId": "sensor-search-controls"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "detail-view",
+          "subViewId": "sensor-search-controls",
+          "capabilityId": "sensor-search-controls.add-sensors"
+        },
+        "targets": [
+          {
+            "viewId": "detail-view",
+            "subViewId": "sensor-structure-diagram"
+          },
+          {
+            "viewId": "detail-view",
+            "subViewId": "raw-time-series"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "detail-view",
+            "subViewId": "sensor-structure-diagram",
+            "capabilityId": "sensor-structure-diagram.inspect-location"
+          },
+          {
+            "viewId": "detail-view",
+            "subViewId": "raw-time-series",
+            "capabilityId": "raw-time-series.inspect-raw-data"
+          }
+        ],
+        "coordinationType": "QueryResultBinding"
+      },
+      {
+        "coordinationId": "coord-detail-aggregation",
+        "source": {
+          "viewId": "detail-view",
+          "subViewId": "sensor-search-controls"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "detail-view",
+          "subViewId": "sensor-search-controls",
+          "capabilityId": "sensor-search-controls.aggregate-series"
+        },
+        "targets": [
+          {
+            "viewId": "detail-view",
+            "subViewId": "raw-time-series"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "detail-view",
+            "subViewId": "raw-time-series",
+            "capabilityId": "raw-time-series.inspect-raw-data"
+          }
+        ],
+        "coordinationType": "ParameterBinding"
+      }
+    ]
+  },
+  "workflow_context": {
+    "interpretation": "All reported intended workflows are supplied uniformly for this system. Transitions express allowed or suggested progressions; inferred transitions are labeled and are not compulsory. No workflow-to-current-case alignment is given.",
+    "workflows": [
+      {
+        "workflowId": "forward-analysis",
+        "workflowTitle": "Forward analysis (causes to effects)",
+        "workflowGoal": "Determine the cascading impact of a partially specified control strategy across sensors and on plant efficiency.",
+        "description": "Experts formulate desired sensor-event changes, select a fuzzy-matched historical strategy, and examine its spatial, temporal, and raw-data evidence.",
+        "applicabilityContext": "Applies when an expert starts from known or contemplated valve adjustments and plant states but needs to discover their subsequent effects and timing.",
+        "stages": [
+          {
+            "stageId": "forward-specify-and-filter",
+            "stageTitle": "Specify and filter partial strategies",
+            "localGoal": "Express desired sensor-event patterns and identify matching historical control strategies.",
+            "activitySummary": "Arrange event glyphs by co-occurrence and precedence, submit the fuzzy query, compare results, and choose a strategy of interest.",
+            "expectedOutcome": "A selected historical strategy that approximately matches the expert's partial specification.",
+            "usedSubViews": [
+              {
+                "viewId": "filter-view",
+                "subViewId": "query-input-panel"
+              },
+              {
+                "viewId": "filter-view",
+                "subViewId": "strategy-ranking-panel"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "filter-view",
+                "subViewId": "query-input-panel",
+                "capabilityId": "query-input-panel.specify-partial-strategy"
+              },
+              {
+                "viewId": "filter-view",
+                "subViewId": "strategy-ranking-panel",
+                "capabilityId": "strategy-ranking-panel.compare-strategies"
+              },
+              {
+                "viewId": "filter-view",
+                "subViewId": "strategy-ranking-panel",
+                "capabilityId": "strategy-ranking-panel.select-strategy"
+              }
+            ]
+          },
+          {
+            "stageId": "forward-spatial-analysis",
+            "stageTitle": "Explore spatial propagation",
+            "localGoal": "Locate involved components, units, and sensors and identify impact paths.",
+            "activitySummary": "Inspect the selected strategy in relationship-oriented or context-oriented graph layouts and reveal propagation from sensors of interest.",
+            "expectedOutcome": "An understanding of the strategy's spatial propagation path and involved plant hierarchy.",
+            "usedSubViews": [
+              {
+                "viewId": "graph-view",
+                "subViewId": "propagation-graph"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "graph-view",
+                "subViewId": "propagation-graph",
+                "capabilityId": "propagation-graph.inspect-spatial-propagation"
+              },
+              {
+                "viewId": "graph-view",
+                "subViewId": "propagation-graph",
+                "capabilityId": "propagation-graph.switch-layout-mode"
+              },
+              {
+                "viewId": "graph-view",
+                "subViewId": "propagation-graph",
+                "capabilityId": "propagation-graph.reveal-sensor-impact"
+              }
+            ]
+          },
+          {
+            "stageId": "forward-temporal-analysis",
+            "stageTitle": "Analyze temporal cascading",
+            "localGoal": "Determine propagation order, correlation, and exact time lags among sensor events.",
+            "activitySummary": "Read the strategy topology and align delay-grouped sampled time series to compare cascading temporal patterns.",
+            "expectedOutcome": "A time-lag-aware account of how the selected strategy's impact cascades through sensors.",
+            "usedSubViews": [
+              {
+                "viewId": "strategy-view",
+                "subViewId": "strategy-topology"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "strategy-view",
+                "subViewId": "strategy-topology",
+                "capabilityId": "strategy-topology.inspect-cascade"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series",
+                "capabilityId": "temporal-series.inspect-time-lags"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series",
+                "capabilityId": "temporal-series.align-series"
+              }
+            ]
+          },
+          {
+            "stageId": "forward-refine-strategy",
+            "stageTitle": "Refine the extracted strategy",
+            "localGoal": "Correct false correlations or recover sensors missing because of long delays.",
+            "activitySummary": "Insert, expand, or delete sensors and reassess the updated topology and temporal patterns.",
+            "expectedOutcome": "A refined control-strategy topology with more credible event membership and time-lag structure.",
+            "usedSubViews": [
+              {
+                "viewId": "strategy-view",
+                "subViewId": "strategy-topology"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "strategy-view",
+                "subViewId": "strategy-topology",
+                "capabilityId": "strategy-topology.edit-strategy"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series",
+                "capabilityId": "temporal-series.inspect-time-lags"
+              }
+            ]
+          },
+          {
+            "stageId": "forward-inspect-details",
+            "stageTitle": "Inspect raw sensor details",
+            "localGoal": "Confirm conclusions by inspecting raw and aggregated sensor behavior in context.",
+            "activitySummary": "Search and add relevant sensors, locate them in the plant structure, inspect the time-lag-aligned series, and compute sums, differences, or averages when needed.",
+            "expectedOutcome": "Raw-data evidence that supports or challenges the inferred effect of the control strategy.",
+            "usedSubViews": [
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-search-controls"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-structure-diagram"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "raw-time-series"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-search-controls",
+                "capabilityId": "sensor-search-controls.add-sensors"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-search-controls",
+                "capabilityId": "sensor-search-controls.aggregate-series"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-structure-diagram",
+                "capabilityId": "sensor-structure-diagram.inspect-location"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "raw-time-series",
+                "capabilityId": "raw-time-series.inspect-raw-data"
+              }
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "sourceStageId": "forward-specify-and-filter",
+            "targetStageId": "forward-spatial-analysis",
+            "rationale": "The extracted strategy is selected for analysis of its propagation.",
+            "inferenceType": "CrossModalSynthesis"
+          },
+          {
+            "sourceStageId": "forward-spatial-analysis",
+            "targetStageId": "forward-temporal-analysis",
+            "rationale": "After locating propagation paths, experts evaluate their temporal cascade and delays.",
+            "inferenceType": "WeakInference"
+          },
+          {
+            "sourceStageId": "forward-temporal-analysis",
+            "targetStageId": "forward-refine-strategy",
+            "rationale": "Large time lags or false correlations motivate topology refinement.",
+            "inferenceType": "Explicit"
+          },
+          {
+            "sourceStageId": "forward-refine-strategy",
+            "targetStageId": "forward-inspect-details",
+            "rationale": "After strategy refinement, experts may inspect raw sensor data to confirm conclusions from the analytical views.",
+            "inferenceType": "WeakInference"
+          },
+          {
+            "sourceStageId": "forward-refine-strategy",
+            "targetStageId": "forward-temporal-analysis",
+            "rationale": "After inserting, expanding, or deleting sensors, experts reassess the updated topology and temporal evidence as part of iterative model guidance.",
+            "inferenceType": "WeakInference"
+          }
+        ]
+      },
+      {
+        "workflowId": "backward-analysis",
+        "workflowTitle": "Backward analysis (effects to causes)",
+        "workflowGoal": "Identify and evaluate a control strategy responsible for an anomalous state in an important sensor.",
+        "description": "Experts select an anomalous sensor interval, inspect the extracted responsible strategy, and evaluate its spatial, temporal, and raw-data evidence.",
+        "applicabilityContext": "Applies when an expert starts from an observed anomaly, such as an efficiency fluctuation or abnormal furnace pressure, and needs to trace it back to responsible actions.",
+        "stages": [
+          {
+            "stageId": "backward-select-anomaly",
+            "stageTitle": "Select an anomalous interval",
+            "localGoal": "Identify an anomalous period in an important sensor and request its responsible strategy.",
+            "activitySummary": "Inspect an important sensor's line chart, switch sensors if necessary, and brush the anomalous time range.",
+            "expectedOutcome": "A selected anomaly interval that launches extraction of its responsible strategy.",
+            "usedSubViews": [
+              {
+                "viewId": "filter-view",
+                "subViewId": "important-sensor-line-chart"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "filter-view",
+                "subViewId": "important-sensor-line-chart",
+                "capabilityId": "important-sensor-line-chart.inspect-important-series"
+              },
+              {
+                "viewId": "filter-view",
+                "subViewId": "important-sensor-line-chart",
+                "capabilityId": "important-sensor-line-chart.switch-sensor"
+              },
+              {
+                "viewId": "filter-view",
+                "subViewId": "important-sensor-line-chart",
+                "capabilityId": "important-sensor-line-chart.brush-anomaly-range"
+              }
+            ]
+          },
+          {
+            "stageId": "backward-spatial-analysis",
+            "stageTitle": "Explore spatial propagation",
+            "localGoal": "Trace the extracted strategy across the plant hierarchy to locate possible causes.",
+            "activitySummary": "Inspect involved components, units, sensors, and propagation links in a relationship-oriented or context-oriented layout.",
+            "expectedOutcome": "Candidate causal paths through the plant's components, units, and sensors.",
+            "usedSubViews": [
+              {
+                "viewId": "graph-view",
+                "subViewId": "propagation-graph"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "graph-view",
+                "subViewId": "propagation-graph",
+                "capabilityId": "propagation-graph.inspect-spatial-propagation"
+              },
+              {
+                "viewId": "graph-view",
+                "subViewId": "propagation-graph",
+                "capabilityId": "propagation-graph.switch-layout-mode"
+              },
+              {
+                "viewId": "graph-view",
+                "subViewId": "propagation-graph",
+                "capabilityId": "propagation-graph.reveal-sensor-impact"
+              }
+            ]
+          },
+          {
+            "stageId": "backward-temporal-analysis",
+            "stageTitle": "Analyze temporal cascading",
+            "localGoal": "Determine the order, sign, strength, and delay of impacts leading to the anomaly.",
+            "activitySummary": "Read the extracted strategy topology and align delay-grouped sampled time series.",
+            "expectedOutcome": "A time-lag-aware causal account of sensor events preceding the anomaly.",
+            "usedSubViews": [
+              {
+                "viewId": "strategy-view",
+                "subViewId": "strategy-topology"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "strategy-view",
+                "subViewId": "strategy-topology",
+                "capabilityId": "strategy-topology.inspect-cascade"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series",
+                "capabilityId": "temporal-series.inspect-time-lags"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series",
+                "capabilityId": "temporal-series.align-series"
+              }
+            ]
+          },
+          {
+            "stageId": "backward-refine-strategy",
+            "stageTitle": "Refine the extracted strategy",
+            "localGoal": "Remove false correlations or recover missing causal sensors.",
+            "activitySummary": "Insert, expand, or delete sensors and reassess the topology and time-aligned series.",
+            "expectedOutcome": "A more credible responsible-strategy topology and temporal chain.",
+            "usedSubViews": [
+              {
+                "viewId": "strategy-view",
+                "subViewId": "strategy-topology"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "strategy-view",
+                "subViewId": "strategy-topology",
+                "capabilityId": "strategy-topology.edit-strategy"
+              },
+              {
+                "viewId": "strategy-view",
+                "subViewId": "temporal-series",
+                "capabilityId": "temporal-series.inspect-time-lags"
+              }
+            ]
+          },
+          {
+            "stageId": "backward-inspect-details",
+            "stageTitle": "Inspect raw sensor details",
+            "localGoal": "Confirm the inferred cause using raw and aggregated sensor data.",
+            "activitySummary": "Search for relevant sensors, inspect their plant locations and time-lag-aligned series, and apply aggregate operations when needed.",
+            "expectedOutcome": "Raw-data evidence sufficient to support or reject the inferred responsible control strategy.",
+            "usedSubViews": [
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-search-controls"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-structure-diagram"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "raw-time-series"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-search-controls",
+                "capabilityId": "sensor-search-controls.add-sensors"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-search-controls",
+                "capabilityId": "sensor-search-controls.aggregate-series"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "sensor-structure-diagram",
+                "capabilityId": "sensor-structure-diagram.inspect-location"
+              },
+              {
+                "viewId": "detail-view",
+                "subViewId": "raw-time-series",
+                "capabilityId": "raw-time-series.inspect-raw-data"
+              }
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "sourceStageId": "backward-select-anomaly",
+            "targetStageId": "backward-spatial-analysis",
+            "rationale": "The brushed anomaly triggers extraction of a responsible strategy, whose propagation is then examined.",
+            "inferenceType": "CrossModalSynthesis"
+          },
+          {
+            "sourceStageId": "backward-spatial-analysis",
+            "targetStageId": "backward-temporal-analysis",
+            "rationale": "Candidate spatial paths are evaluated in terms of propagation order and delay.",
+            "inferenceType": "WeakInference"
+          },
+          {
+            "sourceStageId": "backward-temporal-analysis",
+            "targetStageId": "backward-refine-strategy",
+            "rationale": "Large time lags or false correlations motivate iterative editing.",
+            "inferenceType": "Explicit"
+          },
+          {
+            "sourceStageId": "backward-refine-strategy",
+            "targetStageId": "backward-inspect-details",
+            "rationale": "After strategy refinement, experts may inspect raw sensor data to confirm conclusions from the analytical views.",
+            "inferenceType": "WeakInference"
+          },
+          {
+            "sourceStageId": "backward-refine-strategy",
+            "targetStageId": "backward-temporal-analysis",
+            "rationale": "After inserting, expanding, or deleting sensors, experts reassess the updated topology and temporal evidence as part of iterative model guidance.",
+            "inferenceType": "WeakInference"
+          }
+        ]
+      }
+    ]
+  },
+  "case_context": {
+    "initial_context": "Investigate historical remedies for right-side unbalanced burning in a coal-fired boiler."
+  },
+  "completed_prefix": [
+    {
+      "episode": 1,
+      "local_goal": "Specify the burning/remedy pattern and select a historical strategy.",
+      "completed_steps": [
+        "The user encoded increasing right-furnace temperature followed by wider opening of the right-side water valves.",
+        "The user compared ranked alternatives and selected the first because its efficiency change was more dramatic than the second."
+      ],
+      "images": [
+        "../next-analytic-move-v2-pilot-r2-2026-09-08/images/ecoalvis_case_2/ep_01_01.png"
+      ]
+    }
+  ]
+}

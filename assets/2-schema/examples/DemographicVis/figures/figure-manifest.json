@@ -1,0 +1,160 @@
+{
+  "paper_name": "DemographicVis",
+  "interface_figure_id": "fig_1",
+  "needs_manual_review": false,
+  "interface_selection_reason": "Selected fig_1 as the unique interface figure because it has the highest interface score (1.00); next best score is 0.00.",
+  "figures": [
+    {
+      "fig_id": "fig_1",
+      "caption": "Figure 1: DemographicVis interface: A) Parallel Sets with word cloud view that connects demographic groups to user generated content, B) user cluster view that groups users based on topic interests, C) feature ranking view that presents the predicative power of various features, D) posts view showing details on demand.",
+      "image_path": "figures/fig_1.png",
+      "primary_role": "interface",
+      "role_scores": {
+        "interface": 1.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows the complete full system interface of DemographicVis, presenting all four coordinated main views/panels that make up the entire system layout, which fits the definition of the interface role.",
+      "interface_rank": 1,
+      "is_interface_figure": true,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_2",
+      "caption": "Figure 2: Demographic distribution on gender, age, education, and employment status based on the collected data.",
+      "image_path": "figures/fig_2.png",
+      "primary_role": "other",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 1.0
+      },
+      "rationale": "This figure shows four pie charts describing the demographic distribution of the collected dataset, which is dataset characterization that does not fit any of the other defined roles.",
+      "interface_rank": 2,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_3",
+      "caption": "Figure 3: System architecture of DemographicVis. Section 3, 4, and 5 introduce the Data Collection, Data Analysis, and Interactive Visualization component respectively.",
+      "image_path": "figures/fig_3.png",
+      "primary_role": "other",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 1.0
+      },
+      "rationale": "This figure illustrates the high-level system architecture of DemographicVis, showing its three core structural components. It is a background concept diagram that does not match any of the other defined roles.",
+      "interface_rank": 3,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_4",
+      "caption": "Figure 4: Hovering mouse over demographic group “Female, 21-29, Bachelor degree” leads to the highlighting of the two topics that summarize the interests of the group.",
+      "image_path": "figures/fig_4.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.9,
+        "intended_workflow": 0.0,
+        "case_study": 0.1,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows a single interactive view component of the system, demonstrating the highlighting effect when hovering over a specific demographic group, and it is not the complete full system interface.",
+      "interface_rank": 4,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_5",
+      "caption": "Figure 5: Feature table with linguistic features expanded. Five highest ranked linguistic features are displayed for analysis.",
+      "image_path": "figures/fig_5.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.95,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.05
+      },
+      "rationale": "This figure shows a single feature table panel, a single local interface component displaying expanded linguistic features, not the complete full system interface, so it is classified as view.",
+      "interface_rank": 5,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_6",
+      "caption": "Figure 6: Female, 17 or younger, less than high school degree and the corresponding topic of interest.",
+      "image_path": "figures/fig_6.png",
+      "primary_role": "case_study",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.2,
+        "intended_workflow": 0.0,
+        "case_study": 0.9,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure displays a concrete example analysis result, showing the corresponding topics of interest for a specific filtered demographic subset as described in the caption, matching the definition of a case study use example.",
+      "interface_rank": 6,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_7",
+      "caption": "Figure 7: Female, 18-20, Some college but no degree and related topics.",
+      "image_path": "figures/fig_7.png",
+      "primary_role": "case_study",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.2,
+        "intended_workflow": 0.0,
+        "case_study": 0.9,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure presents a concrete analysis example for a specific demographic subset (Female, 18-20, Some college but no degree) showing their related topics, which is a concrete use case and analysis walkthrough matching the case study role.",
+      "interface_rank": 7,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_8",
+      "caption": "Figure 8: Cluster view that groups Reddit users based on their topic interests. One group with two demographic groups is enlarged and their shared topic is shown.",
+      "image_path": "figures/fig_8.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 1.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows a single cluster view panel that groups Reddit users by topic interests, which is one local interface component, not the complete full system interface.",
+      "interface_rank": 8,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    }
+  ]
+}

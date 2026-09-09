@@ -1,0 +1,195 @@
+{
+  "revision": "exploratory-summary-context.r4",
+  "frozen_on": "2026-09-09",
+  "source_release": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/benchmark-products/releases/exploratory-r4-2026-09-09",
+  "source_pointer": "docs/03-benchmark/current-benchmark.json",
+  "paper_section": "docs/writing/doc/sections/6-applications.tex",
+  "original_preview_template": "docs/03-benchmark/exploratory-review-template.html",
+  "payload": "payload.json",
+  "results": "results.json",
+  "source_evidence": "source-evidence.json",
+  "defaults": {
+    "model": "Qwen3.8-Flash",
+    "round": 1
+  },
+  "counts": {
+    "samples": 3,
+    "cases": 3,
+    "papers": 3,
+    "models": 6,
+    "rounds": 3,
+    "conditions": 2,
+    "predictions": 108
+  },
+  "samples": [
+    {
+      "name": "ECoalVis",
+      "explorer_url": "https://va-usage.github.io/explorer/?sys=ECoalVis",
+      "role": "Organizing the next analytic advance",
+      "summary": "After a remedy pattern and historical strategy are selected, workflow information helps distinguish the immediate spatial investigation from the later temporal analysis.",
+      "sample_id": "p04_prefix01",
+      "case_id": "ecoalvis_case_2",
+      "prefix_length": 1,
+      "reference_episode": 2,
+      "sample_means": {
+        "goal_match": {
+          "without": 2,
+          "with": 3,
+          "delta": 1
+        },
+        "subview_f1": {
+          "without": 0.4166666666666667,
+          "with": 1.0,
+          "delta": 0.5833333333333333
+        },
+        "capability_f1": {
+          "without": 0.27248677248677244,
+          "with": 0.9333333333333333,
+          "delta": 0.6608465608465609
+        }
+      }
+    },
+    {
+      "name": "CommonsenseVIS",
+      "explorer_url": "https://va-usage.github.io/explorer/?sys=CommonsenseVIS",
+      "role": "Specifying supporting operations",
+      "summary": "After a low-accuracy subset is selected, workflow information connects cluster inspection to link hovering and cluster selection.",
+      "sample_id": "p17_prefix01",
+      "case_id": "commonsensevis_case_1",
+      "prefix_length": 1,
+      "reference_episode": 2,
+      "sample_means": {
+        "goal_match": {
+          "without": 2.611111111111111,
+          "with": 2.8333333333333335,
+          "delta": 0.22222222222222232
+        },
+        "subview_f1": {
+          "without": 0.8148148148148148,
+          "with": 0.8611111111111112,
+          "delta": 0.04629629629629639
+        },
+        "capability_f1": {
+          "without": 0.5507936507936508,
+          "with": 0.7613756613756614,
+          "delta": 0.21058201058201054
+        }
+      }
+    },
+    {
+      "name": "Action-Evaluator",
+      "explorer_url": "https://va-usage.github.io/explorer/?sys=ActionEvaluator",
+      "role": "Connecting levels of diagnosis",
+      "summary": "After Mbappé is selected for improvement analysis, workflow information connects match-situation screening to action-choice comparison and score details.",
+      "sample_id": "p11_prefix01",
+      "case_id": "actionevaluator_case_2",
+      "prefix_length": 1,
+      "reference_episode": 2,
+      "sample_means": {
+        "goal_match": {
+          "without": 2.2222222222222223,
+          "with": 2.3333333333333335,
+          "delta": 0.11111111111111116
+        },
+        "subview_f1": {
+          "without": 0.7851851851851852,
+          "with": 0.9444444444444444,
+          "delta": 0.1592592592592592
+        },
+        "capability_f1": {
+          "without": 0.3660839160839161,
+          "with": 0.6159476416829358,
+          "delta": 0.2498637255990197
+        }
+      }
+    }
+  ],
+  "source_files": {
+    "inputs.jsonl": {
+      "path": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/benchmark-products/releases/exploratory-r4-2026-09-09/inputs.jsonl",
+      "sha256": "2e14c368b49071dde3df5de62f01a2ade9f957a2cb35a0b8647da822d6a1cb33"
+    },
+    "gold.jsonl": {
+      "path": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/benchmark-products/releases/exploratory-r4-2026-09-09/gold.jsonl",
+      "sha256": "0944e5bcb1664ef22b6675e0e2a8a4a9ab5e302e26eb47bd7a47cfed88ef224a"
+    },
+    "all-rows.json": {
+      "path": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/benchmark-products/releases/exploratory-r4-2026-09-09/all-rows.json",
+      "sha256": "4ff4e651feeaa010d43bd29ef4ac8b45bae05b2897643625e770df1a2f0b6ff5"
+    },
+    "analysis.json": {
+      "path": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/benchmark-products/releases/exploratory-r4-2026-09-09/analysis.json",
+      "sha256": "03ddee8c5f4f7991273a6c3381e6be67aaa63e731eb2db3e958a0c77cd7f7bc5"
+    },
+    "sample-index.json": {
+      "path": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/benchmark-products/releases/exploratory-r4-2026-09-09/sample-index.json",
+      "sha256": "da024791a0e84ac649ad4eecdf21d01325df44e5177b02bbbab3bda82a375e55"
+    },
+    "asset-map.json": {
+      "path": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/benchmark-products/releases/exploratory-r4-2026-09-09/asset-map.json",
+      "sha256": "99f19395af4e96d6a7031ce10bfc9d65c9df30688f75d002d0b2638050bce8ea"
+    },
+    "case-manifest.json": {
+      "path": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/benchmark-products/releases/exploratory-r4-2026-09-09/case-manifest.json",
+      "sha256": "c50d21f70051badb55c28e448218c727dc7a1937597e48962b1d5e29c49a9db3"
+    },
+    "release-manifest.json": {
+      "path": "data/agentic/bundles/codex-gpt5-6-sol/v4-from-scratch-extraction/benchmark-products/releases/exploratory-r4-2026-09-09/release-manifest.json",
+      "sha256": "0ece2fdbc0a2b09dc0e7bed216102cf400be79b9787b675456205ee50daa4ffe"
+    }
+  },
+  "validation": {
+    "status": "passed",
+    "predictions_unique": 108,
+    "images_byte_identical": 7,
+    "f1_recomputed": 216,
+    "sample_mean_metrics_verified": 18,
+    "outputs_and_input_records": "Exact selected source objects; no predicted text was rewritten."
+  },
+  "files": {
+    "export_prediction_examples.py": {
+      "sha256": "5576e202fd441e8ca780119a064d0004e9606854c872e9c4e4c0b760495c5860",
+      "bytes": 8327
+    },
+    "images/298a5ea9e04a089e0a6f0bf24b7cf450e907926be834c8739f39e4301ef6bce6.png": {
+      "sha256": "298a5ea9e04a089e0a6f0bf24b7cf450e907926be834c8739f39e4301ef6bce6",
+      "bytes": 79392
+    },
+    "images/4d46bad709ebf221bbdea15441cdba4c2af536c102d14c0b5672bc277f2b69fb.png": {
+      "sha256": "4d46bad709ebf221bbdea15441cdba4c2af536c102d14c0b5672bc277f2b69fb",
+      "bytes": 73645
+    },
+    "images/7373bb60ea1f39addb308f06b2fd53e3c5c005daf591f2dbf7e0356156433e25.png": {
+      "sha256": "7373bb60ea1f39addb308f06b2fd53e3c5c005daf591f2dbf7e0356156433e25",
+      "bytes": 468228
+    },
+    "images/75ec8e70bd1c97cec5de620928aca16ad2ffe0d69ea9102b41e52568bd33571f.png": {
+      "sha256": "75ec8e70bd1c97cec5de620928aca16ad2ffe0d69ea9102b41e52568bd33571f",
+      "bytes": 681022
+    },
+    "images/898eefb2efca1294e4bec03441c49e2288146907304efe8d70a47a34abc36710.png": {
+      "sha256": "898eefb2efca1294e4bec03441c49e2288146907304efe8d70a47a34abc36710",
+      "bytes": 48227
+    },
+    "images/f0966d1e7952f6e1e39c2e5baeae49e67a8e5b2e95edb6090badfd584b1d91a6.png": {
+      "sha256": "f0966d1e7952f6e1e39c2e5baeae49e67a8e5b2e95edb6090badfd584b1d91a6",
+      "bytes": 75332
+    },
+    "images/f27627a00a9e5fdc4119a0240fae0c46906acaec1593bcc1bb9e113bf7632edf.png": {
+      "sha256": "f27627a00a9e5fdc4119a0240fae0c46906acaec1593bcc1bb9e113bf7632edf",
+      "bytes": 146150
+    },
+    "payload.json": {
+      "sha256": "ab60de58b7fe35c3fba3c3abe76e6470afa5a32691a67a11d2308b0caebc2fe1",
+      "bytes": 579754
+    },
+    "results.json": {
+      "sha256": "461c12cd904755ca01b427d9288e1625e4f18f65211ac120847d757bf455e518",
+      "bytes": 400608
+    },
+    "source-evidence.json": {
+      "sha256": "a5dd711c1c6ddf7ee46f4d92fa741b77ebf199575864068507c42357137322ed",
+      "bytes": 20226
+    }
+  }
+}

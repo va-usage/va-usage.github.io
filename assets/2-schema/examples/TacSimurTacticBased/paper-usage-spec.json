@@ -1,0 +1,1469 @@
+{
+  "paperName": "TacSimurTacticBased",
+  "systemName": "Tac-Simur",
+  "systemSpecPath": "system-spec.json",
+  "caseStudies": [
+    {
+      "caseId": "ito-mima-serve-rallies",
+      "caseTitle": "Consecutive Quick Attack to Long Backhand is the Key to Serve Rallies for Ito Mima",
+      "caseStudyKind": "RealWorldCase",
+      "analyst": {
+        "role": "DomainExpert",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Intermediate",
+        "description": "Two former professional table tennis players with more than five years of collaboration with a top national team; they learned the system before analyzing independently."
+      },
+      "scenario": {
+        "domainProblem": "Improve Ito Mima's table-tennis performance through tactic-based simulation of her serve rallies.",
+        "analysisGoal": "Identify an effective and feasible serve-rally adjustment and explain how it could be implemented.",
+        "datasetContext": "Twelve high-level-event matches of Ito Mima from 2018.",
+        "stakes": "The result is intended to guide coaching and training for future matches.",
+        "primaryQuestionId": "ito-improvement-question"
+      },
+      "questions": [
+        {
+          "questionId": "ito-improvement-question",
+          "questionText": "Which tactical adjustment could improve Ito Mima's serve-rally performance?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              99,
+              103
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesisId": "ito-attacks-first",
+          "hypothesisText": "After serving, Ito Mima tends to attack first.",
+          "status": "Supported",
+          "relatedQuestionIds": [
+            "ito-improvement-question"
+          ],
+          "evidence": {
+            "passageIds": [
+              100
+            ],
+            "quotes": [
+              "This matched the experts' hypothesis"
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "ito-select-matches",
+          "narrativeOrder": 1,
+          "episodeTitle": "Select Ito's match subset",
+          "localGoal": "Choose a match subset likely to improve Ito's overall performance.",
+          "focusQuestionIds": [
+            "ito-improvement-question"
+          ],
+          "strategyText": "Inspect the player hierarchy and use opponent handedness to narrow the matches.",
+          "steps": [
+            {
+              "stepId": "ito-choose-right-handed-matches",
+              "stepOrder": 1,
+              "narrativeSummary": "The experts selected Ito Mima, compared her left- and right-handed opponent groups, observed that she faced more right-handed opponents, and chose all matches against right-handed players.",
+              "questionsAddressed": [
+                "ito-improvement-question"
+              ],
+              "intentText": "Select matches whose improvement could most affect Ito's overall performance.",
+              "operationText": "Select Ito Mima, inspect left- and right-handed opponent groups, and retain all matches against right-handed players.",
+              "usedSubViews": [
+                {
+                  "viewId": "player-view",
+                  "subViewId": "match-tree"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "player-view",
+                  "subViewId": "match-tree",
+                  "capabilityId": "match-tree.show-match-overview"
+                },
+                {
+                  "viewId": "player-view",
+                  "subViewId": "match-tree",
+                  "capabilityId": "match-tree.select-matches"
+                }
+              ],
+              "targetDataDescription": [
+                "Ito Mima's matches against right-handed opponents"
+              ],
+              "observations": [
+                {
+                  "description": "Ito Mima competed with more right-handed players than left-handed players.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "player-view",
+                      "subViewId": "match-tree"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      99
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Analyze all of Ito Mima's matches against right-handed opponents.",
+                "rationale": "This larger opponent group offered the greatest opportunity to improve her overall performance.",
+                "targetQuestionIds": [
+                  "ito-improvement-question"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    99
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "All Ito matches against right-handed players were selected for simulative analysis.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  99
+                ],
+                "figureRefs": [
+                  "Fig. 5(A)"
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "A match subset against right-handed opponents was established.",
+          "evidence": {
+            "passageIds": [
+              99
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "ito-find-breakthrough-tactics",
+          "narrativeOrder": 2,
+          "episodeTitle": "Find a serve-phase breakthrough",
+          "localGoal": "Identify important serve-phase tactics that offer room for improvement.",
+          "focusQuestionIds": [
+            "ito-improvement-question"
+          ],
+          "strategyText": "Inspect serve tactics by technique, rank by scoring rate, and remove tactics used in at most one percent of rallies.",
+          "steps": [
+            {
+              "stepId": "ito-filter-serve-tactics",
+              "stepOrder": 1,
+              "narrativeSummary": "The experts browsed serve-phase tactics by stroke technique, sorted them by scoring rate, filtered to utilization above 1%, and selected frequent tactics whose scoring rates were inversely related to utilization.",
+              "questionsAddressed": [
+                "ito-improvement-question"
+              ],
+              "hypothesesTouched": [
+                "ito-attacks-first"
+              ],
+              "intentText": "Find highly significant serve tactics and determine whether they reveal an improvement opportunity.",
+              "operationText": "Browse serve tactics by stroke technique, sort by scoring rate, filter to utilization above 1%, inspect the four remaining tactics, and select them for adjustment.",
+              "usedSubViews": [
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.show-tactic-rates"
+                },
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.select-depicted-attribute"
+                },
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.sort-filter-tactics"
+                },
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.select-tactic"
+                }
+              ],
+              "targetDataDescription": [
+                "Ito Mima's serve-phase tactics with utilization above 1%"
+              ],
+              "observations": [
+                {
+                  "description": "In most selected tactics, the opponent received with push while Ito's third stroke was topspin.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "tactic-view",
+                      "subViewId": "tactic-list"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      100
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "description": "The selected tactics' scoring rates were inversely proportional to their utilization rates.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "tactic-view",
+                      "subViewId": "tactic-list"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      100
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "Ito tends to attack first after serving, but her frequently used serve tactics perform poorly and therefore offer a breakthrough point.",
+                  "relatedQuestionIds": [
+                    "ito-improvement-question"
+                  ],
+                  "relatedHypothesisIds": [
+                    "ito-attacks-first"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "tactic-view",
+                      "subViewId": "tactic-list"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      100
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Select the identified serve tactics for adjustment.",
+                "targetQuestionIds": [
+                  "ito-improvement-question"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    100
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "A set of important but underperforming serve tactics was selected.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  100
+                ],
+                "figureRefs": [
+                  "Fig. 7(A)"
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "The analysis identified Ito's serve tactics as a plausible improvement target.",
+          "evidence": {
+            "passageIds": [
+              100
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "ito-compare-adjustments",
+          "narrativeOrder": 3,
+          "episodeTitle": "Compare placement adjustments",
+          "localGoal": "Choose an adjustment by comparing simulated effect and adjustability.",
+          "focusQuestionIds": [
+            "ito-improvement-question"
+          ],
+          "strategyText": "Generate placement-based optimum strategies, compare stroke positions, then test a high-scoring alternative against the optimum.",
+          "steps": [
+            {
+              "stepId": "ito-compare-stroke-orders",
+              "stepOrder": 1,
+              "narrativeSummary": "The experts activated stroke placement and generated optimum strategies, finding that a third-stroke adjustment changed winning rate much more than a first-stroke adjustment.",
+              "questionsAddressed": [
+                "ito-improvement-question"
+              ],
+              "intentText": "Determine which stroke position offers the greatest simulated improvement.",
+              "operationText": "Activate stroke placement, generate optimum strategies, and compare first- and third-stroke effects.",
+              "usedSubViews": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component",
+                  "capabilityId": "exploration-component.configure-options"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component",
+                  "capabilityId": "exploration-component.show-adjustment-options"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component",
+                  "capabilityId": "evaluation-component.compare-strategies"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component",
+                  "capabilityId": "evaluation-component.organize-strategies"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "The third-stroke adjustment had a much larger winning-rate effect than the first-stroke adjustment.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "evaluation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      101
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Focus on the optimum third-stroke strategy.",
+                "rationale": "The first stroke had limited influence on the final result.",
+                "targetQuestionIds": [
+                  "ito-improvement-question"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    101
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "The third-stroke strategy became the main candidate.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  101
+                ],
+                "figureRefs": [
+                  "Fig. 7(B)"
+                ]
+              }
+            },
+            {
+              "stepId": "ito-compare-feasibility",
+              "stepOrder": 2,
+              "narrativeSummary": "The experts added the same-technique adjustment with the highest original scoring rate, observed that it had nearly the same winning-rate effect as the optimum, and chose the optimum because of adjustability.",
+              "questionsAddressed": [
+                "ito-improvement-question"
+              ],
+              "intentText": "Test whether a higher-scoring alternative is preferable to the generated optimum.",
+              "operationText": "Add the highest-scoring same-technique adjustment to evaluation and compare its effect and adjustability with the optimum.",
+              "usedSubViews": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component",
+                  "capabilityId": "exploration-component.show-adjustment-options"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component",
+                  "capabilityId": "evaluation-component.organize-strategies"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component",
+                  "capabilityId": "evaluation-component.compare-strategies"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "The added high-scoring adjustment had almost the same winning-rate effect as the optimum adjustment.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "evaluation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      101
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "The option with the highest original scoring rate is not necessarily the best tactical adjustment.",
+                  "relatedQuestionIds": [
+                    "ito-improvement-question"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "exploration-component"
+                    },
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "evaluation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      101
+                    ],
+                    "quotes": [
+                      "This is a new insight for the experts"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Choose the generated optimum adjustment.",
+                "rationale": "Its adjustability made it preferable despite nearly equal winning-rate effects.",
+                "targetQuestionIds": [
+                  "ito-improvement-question"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    101
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "The optimum third-stroke adjustment was selected for explanation.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  101
+                ],
+                "figureRefs": [
+                  "Fig. 7(B)"
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "The experts selected an optimum third-stroke placement adjustment after effect-feasibility comparison.",
+          "evidence": {
+            "passageIds": [
+              101
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "ito-explain-and-conclude",
+          "narrativeOrder": 4,
+          "episodeTitle": "Explain and translate the adjustment",
+          "localGoal": "Explain the selected adjustment's influence and derive a practical training recommendation.",
+          "focusQuestionIds": [
+            "ito-improvement-question"
+          ],
+          "strategyText": "Trace effects to later strokes, inspect the preceding stroke conditions, and convert the result into a tactic-level coaching recommendation.",
+          "steps": [
+            {
+              "stepId": "ito-trace-influence",
+              "stepOrder": 1,
+              "narrativeSummary": "The experts inspected the explanation and found that the adjustment mostly affected the fifth stroke, where Ito was likely to use quick attack to long backhand.",
+              "questionsAddressed": [
+                "ito-improvement-question"
+              ],
+              "intentText": "Understand why the optimum adjustment improves performance.",
+              "operationText": "Inspect influence lines to later strokes, select quick attack at the fifth stroke, and inspect its placement.",
+              "usedSubViews": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "explanation-component"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "explanation-component",
+                  "capabilityId": "explanation-component.explain-adjustment"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "explanation-component",
+                  "capabilityId": "explanation-component.inspect-correlations"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "The adjustment mostly affected the fifth stroke, where Ito was most likely to use quick attack to long backhand.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "explanation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      102
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "The adjustment improves performance by increasing Ito's consecutive quick-attack-to-long-backhand tactic, which should be one of her dominant tactics.",
+                  "relatedQuestionIds": [
+                    "ito-improvement-question"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "explanation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      102
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The positive effect was attributed to a consecutive quick-attack-to-long-backhand tactic.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  102
+                ],
+                "figureRefs": [
+                  "Fig. 7(C)"
+                ]
+              }
+            },
+            {
+              "stepId": "ito-trace-implementation",
+              "stepOrder": 2,
+              "narrativeSummary": "The experts inspected former strokes and found that the adjustment could be achieved mostly after opponents used topspin or flick at the second stroke.",
+              "questionsAddressed": [
+                "ito-improvement-question"
+              ],
+              "intentText": "Determine how the adjustment could arise in real play.",
+              "operationText": "Inspect the stronger incoming influence from the second stroke and examine its offensive-technique attributes.",
+              "usedSubViews": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "explanation-component"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "explanation-component",
+                  "capabilityId": "explanation-component.explain-adjustment"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "The adjustment was most achievable after the opponent used topspin or flick at the second stroke.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "explanation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      102
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "Ito can retake the initiative through the dominant tactic even when her opponent attacks first.",
+                  "relatedQuestionIds": [
+                    "ito-improvement-question"
+                  ],
+                  "relatedHypothesisIds": [
+                    "ito-attacks-first"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "explanation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      102
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The experts identified an opponent-action condition for implementing the tactic.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  102
+                ],
+                "figureRefs": [
+                  "Fig. 7(C)"
+                ]
+              }
+            },
+            {
+              "stepId": "ito-training-conclusion",
+              "stepOrder": 3,
+              "narrativeSummary": "The experts concluded that coaches should train Ito's consecutive quick attack to long backhand at the third stroke of serve rallies.",
+              "questionsAddressed": [
+                "ito-improvement-question"
+              ],
+              "intentText": "Translate the analysis into a coaching action.",
+              "decision": {
+                "description": "Focus training on Ito's consecutive quick attack to long backhand at the third stroke of serve rallies.",
+                "rationale": "The simulated and explained tactic was identified as a way to improve performance.",
+                "targetQuestionIds": [
+                  "ito-improvement-question"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    103
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "A concrete training focus was recommended to improve Ito's performance.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  103
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "The adjustment was explained and converted into a coaching recommendation.",
+          "evidence": {
+            "passageIds": [
+              102,
+              103
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "description": "Consecutive quick attack to long backhand is a key serve-rally tactic for improving Ito Mima's performance.",
+            "relatedQuestionIds": [
+              "ito-improvement-question"
+            ],
+            "relatedHypothesisIds": [
+              "ito-attacks-first"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "simulation-view",
+                "subViewId": "explanation-component"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                102,
+                103
+              ]
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "finalDecisions": [
+          {
+            "description": "Coaches should focus on training the tactic at the third stroke of Ito's serve rallies.",
+            "targetQuestionIds": [
+              "ito-improvement-question"
+            ],
+            "evidence": {
+              "passageIds": [
+                103
+              ]
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "claimedSystemValue": "The experts stated that the explanation supported a conclusion that would have been difficult to obtain previously without the system.",
+        "evidence": {
+          "passageIds": [
+            102,
+            103
+          ]
+        },
+        "inferenceType": "Explicit"
+      },
+      "overallStrategySummary": "Narrow matches by opponent handedness, find weak frequent serve tactics, compare placement adjustments by effect and adjustability, then explain the chosen adjustment through stroke correlations.",
+      "caseNarrativeSummary": "Experts analyzed Ito Mima's matches against right-handed opponents, identified serve tactics as an improvement opportunity, selected an optimum third-stroke placement adjustment, explained its downstream and preceding-stroke relationships, and recommended training consecutive quick attack to long backhand.",
+      "evidence": {
+        "passageIds": [
+          97,
+          99,
+          100,
+          101,
+          102,
+          103
+        ],
+        "figureRefs": [
+          "Fig. 7"
+        ]
+      },
+      "inferenceType": "Explicit"
+    },
+    {
+      "caseId": "ding-ning-receive-rallies",
+      "caseTitle": "Topspin to Long Forehand is the Key to Receive Rallies for Ding Ning",
+      "caseStudyKind": "RealWorldCase",
+      "analyst": {
+        "role": "DomainExpert",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Intermediate",
+        "description": "Two former professional table tennis players with more than five years of collaboration with a top national team; they learned the system before analyzing independently."
+      },
+      "scenario": {
+        "domainProblem": "Improve Ding Ning's table-tennis performance through tactic-based simulation of her receive rallies.",
+        "analysisGoal": "Find and explain an effective receive-rally adjustment.",
+        "datasetContext": "Seven high-level-event matches of Ding Ning from 2018.",
+        "stakes": "The result is intended to guide coaching and training for future matches.",
+        "primaryQuestionId": "ding-improvement-question"
+      },
+      "questions": [
+        {
+          "questionId": "ding-improvement-question",
+          "questionText": "Which tactical adjustment could improve Ding Ning's receive-rally performance?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              106,
+              110
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "ding-locate-breakthrough",
+          "narrativeOrder": 1,
+          "episodeTitle": "Locate the weaker rally phase",
+          "localGoal": "Determine whether Ding's serve or receive phase offers more room for improvement.",
+          "focusQuestionIds": [
+            "ding-improvement-question"
+          ],
+          "strategyText": "Analyze all seven matches, compare rate patterns for filtered serve and receive tactics, and choose the weaker phase.",
+          "steps": [
+            {
+              "stepId": "ding-select-all-matches",
+              "stepOrder": 1,
+              "narrativeSummary": "The experts selected Ding Ning and retained all seven of her matches for analysis.",
+              "questionsAddressed": [
+                "ding-improvement-question"
+              ],
+              "intentText": "Establish the match scope for Ding Ning's analysis.",
+              "operationText": "Select Ding Ning and retain all seven available matches.",
+              "usedSubViews": [
+                {
+                  "viewId": "player-view",
+                  "subViewId": "match-tree"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "player-view",
+                  "subViewId": "match-tree",
+                  "capabilityId": "match-tree.select-matches"
+                }
+              ],
+              "targetDataDescription": [
+                "All seven available matches of Ding Ning"
+              ],
+              "decision": {
+                "description": "Analyze all seven matches of Ding Ning.",
+                "rationale": "Only seven Ding Ning matches were available.",
+                "targetQuestionIds": [
+                  "ding-improvement-question"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    107
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "All Ding Ning matches were selected for analysis.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  107
+                ]
+              }
+            },
+            {
+              "stepId": "ding-review-serve",
+              "stepOrder": 2,
+              "narrativeSummary": "The experts inspected serve tactics by technique, sorted them by scoring rate, filtered to utilization above 1%, and found that most scoring rates exceeded 50% and increased with utilization.",
+              "questionsAddressed": [
+                "ding-improvement-question"
+              ],
+              "intentText": "Assess whether Ding's serve tactics offer meaningful room for improvement.",
+              "operationText": "Inspect serve tactics by technique, sort by scoring rate, and filter to utilization above 1%.",
+              "usedSubViews": [
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.show-tactic-rates"
+                },
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.select-depicted-attribute"
+                },
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.sort-filter-tactics"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "Serve-tactic scoring rates were proportional to utilization rates and most exceeded 50%.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "tactic-view",
+                      "subViewId": "tactic-list"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      107
+                    ],
+                    "figureRefs": [
+                      "Fig. 8(A)"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "Ding performs well in the serve phase, leaving little room for improvement there.",
+                  "relatedQuestionIds": [
+                    "ding-improvement-question"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "tactic-view",
+                      "subViewId": "tactic-list"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      107
+                    ],
+                    "figureRefs": [
+                      "Fig. 8(A)"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The serve phase was ruled out as the main improvement target.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  107
+                ],
+                "figureRefs": [
+                  "Fig. 8(A)"
+                ]
+              }
+            },
+            {
+              "stepId": "ding-switch-to-receive",
+              "stepOrder": 3,
+              "narrativeSummary": "Using the same conditions, the experts switched to receive tactics, observed that most scoring rates were below 50%, and selected all receive tactics as the improvement breakthrough.",
+              "questionsAddressed": [
+                "ding-improvement-question"
+              ],
+              "intentText": "Test the receive phase as the alternative improvement target.",
+              "operationText": "Switch to receive tactics under the same sorting and filtering conditions, compare performance with serve tactics, and select the receive tactics.",
+              "usedSubViews": [
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.show-tactic-rates"
+                },
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.sort-filter-tactics"
+                },
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.select-tactic"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "Most receive-phase tactic scoring rates were below 50%, worse than Ding's serve-phase tactics.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "tactic-view",
+                      "subViewId": "tactic-list"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      107
+                    ],
+                    "figureRefs": [
+                      "Fig. 8(B)"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "Ding often receives with push, fails to attack first, and loses the initiative; receive tactics are therefore the improvement breakthrough.",
+                  "relatedQuestionIds": [
+                    "ding-improvement-question"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "tactic-view",
+                      "subViewId": "tactic-list"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      107
+                    ],
+                    "figureRefs": [
+                      "Fig. 8(B)"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Use Ding's receive tactics as the target for adjustment.",
+                "targetQuestionIds": [
+                  "ding-improvement-question"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    107
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "All receive tactics were selected for simulation.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  107
+                ],
+                "figureRefs": [
+                  "Fig. 8(B)"
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "Receive rallies were identified as Ding's main improvement opportunity.",
+          "evidence": {
+            "passageIds": [
+              106,
+              107
+            ],
+            "figureRefs": [
+              "Fig. 8(A-B)"
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "ding-compare-adjustments",
+          "narrativeOrder": 2,
+          "episodeTitle": "Generate and challenge optimum strategies",
+          "localGoal": "Evaluate generated placement strategies and investigate a counterintuitive optimum.",
+          "focusQuestionIds": [
+            "ding-improvement-question"
+          ],
+          "strategyText": "Generate optimum placement strategies, validate a two-adjustment strategy against domain knowledge, then compare a puzzling single adjustment with a more adjustable alternative.",
+          "steps": [
+            {
+              "stepId": "ding-review-two-adjustment-strategy",
+              "stepOrder": 1,
+              "narrativeSummary": "The experts generated placement-based optimum strategies and agreed that using topspin to receive serve and continuing with topspin could raise winning rates.",
+              "questionsAddressed": [
+                "ding-improvement-question"
+              ],
+              "intentText": "Find placement-based receive adjustments that improve winning rate.",
+              "operationText": "Activate stroke placement, generate optimum strategies, and inspect a two-adjustment strategy.",
+              "usedSubViews": [
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "tactic-view",
+                  "subViewId": "tactic-list",
+                  "capabilityId": "tactic-list.show-tactic-rates"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component",
+                  "capabilityId": "exploration-component.configure-options"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component",
+                  "capabilityId": "exploration-component.show-adjustment-options"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component",
+                  "capabilityId": "evaluation-component.compare-strategies"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component",
+                  "capabilityId": "evaluation-component.organize-strategies"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "A strategy using topspin to receive serve and continuing with topspin significantly increased simulated winning rates.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "evaluation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      108
+                    ],
+                    "figureRefs": [
+                      "Fig. 8(C)"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "Consecutive topspin in receive rallies is a strong improvement strategy, consistent with its high observed scoring rate.",
+                  "relatedQuestionIds": [
+                    "ding-improvement-question"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "tactic-view",
+                      "subViewId": "tactic-list"
+                    },
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "evaluation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      108
+                    ],
+                    "figureRefs": [
+                      "Fig. 8(B1,C)"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The two-adjustment topspin strategy was accepted as plausible.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  108
+                ],
+                "figureRefs": [
+                  "Fig. 8(B1,C)"
+                ]
+              }
+            },
+            {
+              "stepId": "ding-question-single-adjustment",
+              "stepOrder": 2,
+              "narrativeSummary": "The experts found a single optimum second-stroke adjustment puzzling because an alternative had the same technique and scoring rate but greater adjustability, so they added the alternative for comparison.",
+              "questionsAddressed": [
+                "ding-improvement-question"
+              ],
+              "intentText": "Understand why the less adjustable option was identified as optimum.",
+              "operationText": "Compare the optimum against the option list and add the same-technique, same-scoring-rate, more-adjustable alternative to evaluation.",
+              "usedSubViews": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "exploration-component",
+                  "capabilityId": "exploration-component.show-adjustment-options"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component",
+                  "capabilityId": "evaluation-component.organize-strategies"
+                },
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "evaluation-component",
+                  "capabilityId": "evaluation-component.compare-strategies"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "A non-optimum option shared the optimum's stroke technique and scoring rate and had higher adjustability.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "exploration-component"
+                    },
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "evaluation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      108
+                    ],
+                    "figureRefs": [
+                      "Fig. 8(D,E,E1)"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Add the alternative adjustment for direct evaluation and explanation.",
+                "targetQuestionIds": [
+                  "ding-improvement-question"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    108
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "Two comparable single adjustments were prepared for explanation.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  108
+                ],
+                "figureRefs": [
+                  "Fig. 8(D,E,E1)"
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "A counterintuitive pair of adjustments was isolated for causal comparison.",
+          "evidence": {
+            "passageIds": [
+              108
+            ],
+            "figureRefs": [
+              "Fig. 8(B1,C-E)"
+            ]
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "ding-explain-and-conclude",
+          "narrativeOrder": 3,
+          "episodeTitle": "Explain the optimum and conclude",
+          "localGoal": "Explain the performance difference and turn it into a training recommendation.",
+          "focusQuestionIds": [
+            "ding-improvement-question"
+          ],
+          "strategyText": "Inspect each adjustment's influence on the third stroke and relate ball placement to Ding's topspin power.",
+          "steps": [
+            {
+              "stepId": "ding-compare-third-stroke-effects",
+              "stepOrder": 1,
+              "narrativeSummary": "The experts separately examined both adjustments and found that long-middle placement induced a long-middle return whereas long-forehand placement induced a long-forehand return.",
+              "questionsAddressed": [
+                "ding-improvement-question"
+              ],
+              "intentText": "Resolve why the long-forehand option outperforms the more adjustable long-middle option.",
+              "operationText": "Inspect the two adjustments separately in the explanation component and compare their influence on the third stroke.",
+              "usedSubViews": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "explanation-component"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "simulation-view",
+                  "subViewId": "explanation-component",
+                  "capabilityId": "explanation-component.explain-adjustment"
+                }
+              ],
+              "observations": [
+                {
+                  "description": "Long-middle placement led the opponent to return long middle, whereas long-forehand placement led to a long-forehand return.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "explanation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      109
+                    ],
+                    "figureRefs": [
+                      "Fig. 8(D2,E2)"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "Long-forehand placement performs better because Ding can generate more powerful topspin when receiving a ball hit to her forehand.",
+                  "relatedQuestionIds": [
+                    "ding-improvement-question"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "simulation-view",
+                      "subViewId": "explanation-component"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      109
+                    ],
+                    "quotes": [
+                      "This is a new insight for the experts"
+                    ],
+                    "figureRefs": [
+                      "Fig. 8(D2,E2)"
+                    ]
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The explanation resolved the counterintuitive optimum in favor of long forehand.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  109
+                ],
+                "figureRefs": [
+                  "Fig. 8(D2,E2)"
+                ]
+              }
+            },
+            {
+              "stepId": "ding-training-conclusion",
+              "stepOrder": 2,
+              "narrativeSummary": "The experts concluded that coaches should train Ding to receive serve with topspin to long forehand.",
+              "questionsAddressed": [
+                "ding-improvement-question"
+              ],
+              "intentText": "Translate the explained strategy into a coaching action.",
+              "decision": {
+                "description": "Focus training on receiving opponents' serves with topspin to long forehand.",
+                "rationale": "The explained adjustment better supports Ding's topspin power and improves simulated performance.",
+                "targetQuestionIds": [
+                  "ding-improvement-question"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    109,
+                    110
+                  ]
+                },
+                "inferenceType": "Explicit"
+              },
+              "documentedOutcome": "A concrete receive-rally training focus was recommended.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  110
+                ]
+              }
+            }
+          ],
+          "episodeOutcome": "The optimum adjustment was explained and converted into a training recommendation.",
+          "evidence": {
+            "passageIds": [
+              109,
+              110
+            ],
+            "figureRefs": [
+              "Fig. 8(D2,E2)"
+            ]
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "description": "Topspin to long forehand is a key receive-rally adjustment for improving Ding Ning's performance.",
+            "relatedQuestionIds": [
+              "ding-improvement-question"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "simulation-view",
+                "subViewId": "explanation-component"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                109,
+                110
+              ]
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "finalDecisions": [
+          {
+            "description": "Coaches should train Ding to receive opponents' serves with topspin to long forehand.",
+            "targetQuestionIds": [
+              "ding-improvement-question"
+            ],
+            "evidence": {
+              "passageIds": [
+                110
+              ]
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "evidence": {
+          "passageIds": [
+            109,
+            110
+          ]
+        },
+        "inferenceType": "Explicit"
+      },
+      "overallStrategySummary": "Compare Ding's serve and receive tactics, select the weaker receive phase, generate placement strategies, investigate a puzzling optimum by comparing its stroke influence, and derive a coaching action.",
+      "caseNarrativeSummary": "Experts ruled out Ding Ning's strong serve phase, selected her weak receive tactics, generated and compared placement adjustments, explained why long forehand outperformed long middle, and recommended topspin to long forehand as a training focus.",
+      "evidence": {
+        "passageIds": [
+          97,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111
+        ],
+        "figureRefs": [
+          "Fig. 8(A-G)"
+        ]
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "paperLevelUsageClaims": [
+    "The two expert case studies demonstrate how Tac-Simur supports finding, evaluating, and explaining tactical adjustments for future training."
+  ],
+  "evidence": {
+    "passageIds": [
+      95,
+      97,
+      99,
+      100,
+      101,
+      102,
+      103,
+      106,
+      107,
+      108,
+      109,
+      110
+    ]
+  },
+  "inferenceType": "Explicit"
+}

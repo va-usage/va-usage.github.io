@@ -1,0 +1,861 @@
+{
+  "paperName": "TacSimurTacticBased",
+  "systemInfo": {
+    "systemName": "Tac-Simur",
+    "dataOntology": {
+      "datasetType": [
+        "Tables",
+        "Temporal"
+      ],
+      "dataType": [
+        "Items",
+        "Attributes",
+        "Links"
+      ],
+      "attributeType": [
+        "Categorical",
+        "Quantitative"
+      ],
+      "orderingDirection": [
+        "Sequential"
+      ]
+    },
+    "systemCategory": [
+      {
+        "level1": "G Science / Engineering",
+        "level2": [
+          "G1 Simulation/Uncertainty"
+        ]
+      }
+    ]
+  },
+  "viewsInfo": [
+    {
+      "viewId": "player-view",
+      "viewName": "Player View",
+      "nameSource": "explicit",
+      "aliases": [
+        "Fig. 5(A)"
+      ],
+      "description": "Match-navigation view organized as a player, handedness, opponent, and match hierarchy.",
+      "viewImages": [
+        "view-images/1.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          71,
+          72,
+          76
+        ],
+        "figureRefs": [
+          "Fig. 5(A)"
+        ],
+        "quotes": [
+          "we design a player view for match navigation"
+        ],
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "match-tree",
+          "subViewName": "Match hierarchy",
+          "nameSource": "inferred",
+          "aliases": [
+            "A1",
+            "A2",
+            "A3"
+          ],
+          "description": "Node-link hierarchy for choosing a player, opponent handedness, opponents, and the matches to analyze.",
+          "evidence": {
+            "passageIds": [
+              64,
+              76
+            ],
+            "figureRefs": [
+              "source-corpus/view-images/TacSimurTacticBased/1.png"
+            ]
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "match-tree.nodes",
+                "markType": "node",
+                "encoding": {
+                  "text": [
+                    {
+                      "field": "player or category name",
+                      "type": "nominal",
+                      "description": "Text inside each circular node identifies a player or handedness category."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "player role",
+                      "type": "nominal",
+                      "description": "Orange identifies the targeted player and cyan identifies opponents."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "match-tree.links",
+                "markType": "edge",
+                "encoding": {
+                  "source": [
+                    {
+                      "field": "parent hierarchy item",
+                      "type": "key",
+                      "description": "Source node in the player-handedness-opponent hierarchy."
+                    }
+                  ],
+                  "target": [
+                    {
+                      "field": "child hierarchy item",
+                      "type": "key",
+                      "description": "Child node revealed by progressive navigation."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                73,
+                76
+              ],
+              "figureRefs": [
+                "Fig. 5(A)"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "match-tree.show-match-overview",
+              "capabilityKind": "Information",
+              "capabilityName": "Show match overview",
+              "description": "Shows players, opponent handedness groups, opponents, match relationships, and winning rates.",
+              "evidence": {
+                "passageIds": [
+                  64,
+                  76
+                ]
+              }
+            },
+            {
+              "capabilityId": "match-tree.select-matches",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select matches",
+              "description": "Lets experts progressively choose a player, handedness group, opponents, and corresponding matches for analysis.",
+              "evidence": {
+                "passageIds": [
+                  72,
+                  76
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "tactic-view",
+      "viewName": "Tactic View",
+      "nameSource": "explicit",
+      "aliases": [
+        "Fig. 5(B)"
+      ],
+      "description": "Navigation view listing tactics used by the targeted player in selected matches.",
+      "viewImages": [
+        "view-images/2.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          71,
+          72,
+          78
+        ],
+        "figureRefs": [
+          "Fig. 5(B)"
+        ],
+        "quotes": [
+          "The tactic view is a tactic list"
+        ],
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "tactic-list",
+          "subViewName": "Tactic list",
+          "nameSource": "explicit",
+          "aliases": [
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "B6"
+          ],
+          "description": "Sortable and filterable list of three-stroke tactics with icon encodings, scoring rates, and utilization rates.",
+          "evidence": {
+            "passageIds": [
+              78,
+              81,
+              82
+            ],
+            "figureRefs": [
+              "source-corpus/view-images/TacSimurTacticBased/2.png"
+            ]
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "tactic-list.icons",
+                "markType": "glyph",
+                "encoding": {
+                  "shape": [
+                    {
+                      "field": "stroke placement, technique, or position",
+                      "type": "categorical",
+                      "description": "Table, abbreviation, or racket glyph depicts the selected stroke attribute."
+                    }
+                  ],
+                  "row": [
+                    {
+                      "field": "tactic",
+                      "type": "item",
+                      "description": "Each row represents one tactic."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "tactic-list.scoring-donuts",
+                "markType": "arc",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "player",
+                      "type": "categorical",
+                      "description": "Orange and cyan segments divide scoring outcomes between the target player and opponent."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "tactic-list.utilization-bars",
+                "markType": "bar",
+                "encoding": {
+                  "size": [
+                    {
+                      "field": "utilization rate",
+                      "type": "quantitative",
+                      "description": "Bar length represents tactic utilization rate."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                78,
+                80,
+                81
+              ],
+              "figureRefs": [
+                "Fig. 5(B)"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "tactic-list.show-tactic-rates",
+              "capabilityKind": "Information",
+              "capabilityName": "Show tactic rates",
+              "description": "Shows each tactic with its scoring rate and utilization rate.",
+              "evidence": {
+                "passageIds": [
+                  78,
+                  81
+                ]
+              }
+            },
+            {
+              "capabilityId": "tactic-list.sort-filter-tactics",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Sort and filter tactics",
+              "description": "Lets experts sort by scoring or utilization rate, filter with sliders, and browse rally phases.",
+              "evidence": {
+                "passageIds": [
+                  65,
+                  82
+                ]
+              }
+            },
+            {
+              "capabilityId": "tactic-list.select-depicted-attribute",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select depicted tactic attribute",
+              "description": "Lets experts choose placement, technique, or position as the stroke attribute used to depict tactics.",
+              "evidence": {
+                "passageIds": [
+                  82
+                ]
+              }
+            },
+            {
+              "capabilityId": "tactic-list.select-tactic",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select tactic",
+              "description": "Lets users select tactics of interest for adjustment in the simulation view.",
+              "evidence": {
+                "passageIds": [
+                  72,
+                  85
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "simulation-view",
+      "viewName": "Simulation View",
+      "nameSource": "explicit",
+      "aliases": [
+        "Fig. 5(C)",
+        "Fig. 6(A)"
+      ],
+      "description": "Workspace for exploring optional tactical adjustments, evaluating strategies, and explaining adjustment results.",
+      "viewImages": [
+        "view-images/3.png",
+        "view-images/4.png",
+        "figures/fig_6.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          71,
+          85
+        ],
+        "figureRefs": [
+          "Fig. 5(C-E)",
+          "Fig. 6"
+        ],
+        "quotes": [
+          "The simulation view consists of an exploration component"
+        ],
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "exploration-component",
+          "subViewName": "Exploration Component",
+          "nameSource": "explicit",
+          "aliases": [
+            "Fig. 5(D)"
+          ],
+          "description": "Three aligned optional-stroke lists used to explore and apply adjustments to a selected tactic.",
+          "evidence": {
+            "passageIds": [
+              85,
+              86,
+              92
+            ],
+            "figureRefs": [
+              "source-corpus/view-images/TacSimurTacticBased/3.png"
+            ]
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "exploration-component.stroke-options",
+                "markType": "glyph",
+                "encoding": {
+                  "column": [
+                    {
+                      "field": "stroke order",
+                      "type": "ordinal",
+                      "description": "Three columns correspond to consecutive strokes in the tactic."
+                    }
+                  ],
+                  "shape": [
+                    {
+                      "field": "stroke attributes",
+                      "type": "categorical",
+                      "description": "Icons encode the selected placement, technique, or position attributes."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "exploration-component.scoring-donuts",
+                "markType": "arc",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "scoring rate",
+                      "type": "quantitative",
+                      "description": "Donut segments show the scoring rate for each option."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "exploration-component.adjustability-bars",
+                "markType": "bar",
+                "encoding": {
+                  "size": [
+                    {
+                      "field": "adjustability",
+                      "type": "quantitative",
+                      "description": "Bar length encodes normalized adjustment feasibility."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                86
+              ],
+              "figureRefs": [
+                "Fig. 5(D)"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "exploration-component.show-adjustment-options",
+              "capabilityKind": "Information",
+              "capabilityName": "Show adjustment options",
+              "description": "Enumerates candidate strokes with attributes, scoring rates, and adjustability for each of three consecutive strokes.",
+              "evidence": {
+                "passageIds": [
+                  66,
+                  86
+                ]
+              }
+            },
+            {
+              "capabilityId": "exploration-component.configure-options",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Configure adjustment options",
+              "description": "Lets experts choose displayed attributes and sort stroke options by scoring rate or adjustability.",
+              "evidence": {
+                "passageIds": [
+                  92
+                ]
+              }
+            },
+            {
+              "capabilityId": "exploration-component.apply-adjustment",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Apply adjustment",
+              "description": "Lets experts choose an adjustment option and see the simulated winning rate change.",
+              "evidence": {
+                "passageIds": [
+                  72,
+                  86
+                ]
+              }
+            },
+            {
+              "capabilityId": "exploration-component.unfold-details",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Unfold details",
+              "description": "Lets experts hover on visual elements in this Simulation View component to reveal details.",
+              "evidence": {
+                "passageIds": [
+                  93
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "evaluation-component",
+          "subViewName": "Evaluation Component",
+          "nameSource": "explicit",
+          "aliases": [
+            "Fig. 5(E)"
+          ],
+          "description": "Strategy tray that records, generates, edits, compares, and investigates tactical adjustments restricted to strokes before the sixth stroke.",
+          "evidence": {
+            "passageIds": [
+              67,
+              85,
+              87,
+              93
+            ],
+            "figureRefs": [
+              "source-corpus/view-images/TacSimurTacticBased/4.png"
+            ]
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "evaluation-component.strategy-rows",
+                "markType": "glyph",
+                "encoding": {
+                  "row": [
+                    {
+                      "field": "adjustment strategy",
+                      "type": "item",
+                      "description": "Each row records one strategy as a sequence of stroke icons."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "effect",
+                      "type": "quantitative",
+                      "description": "Exact value reports the change in winning rate."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "evaluation-component.adjustability-bars",
+                "markType": "bar",
+                "encoding": {
+                  "size": [
+                    {
+                      "field": "adjustability",
+                      "type": "quantitative",
+                      "description": "Bar length depicts the feasibility of each strategy."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                87
+              ],
+              "figureRefs": [
+                "Fig. 5(E)"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "evaluation-component.compare-strategies",
+              "capabilityKind": "Information",
+              "capabilityName": "Compare strategies",
+              "description": "Displays recorded strategies for adjustments before the sixth stroke with their effects and adjustability for comparison.",
+              "evidence": {
+                "passageIds": [
+                  67,
+                  87
+                ]
+              }
+            },
+            {
+              "capabilityId": "evaluation-component.organize-strategies",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Organize strategies",
+              "description": "Lets experts generate optimum strategies and add or edit customized strategies for adjustments before the sixth stroke.",
+              "evidence": {
+                "passageIds": [
+                  93
+                ]
+              }
+            },
+            {
+              "capabilityId": "evaluation-component.investigate-strategy",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Investigate strategy",
+              "description": "Lets experts investigate an individual adjustment strategy and request its explanation.",
+              "evidence": {
+                "passageIds": [
+                  85,
+                  88,
+                  93
+                ]
+              }
+            },
+            {
+              "capabilityId": "evaluation-component.unfold-details",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Unfold details",
+              "description": "Lets experts hover on visual elements in this Simulation View component to reveal details.",
+              "evidence": {
+                "passageIds": [
+                  93
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "explanation-component",
+          "subViewName": "Explanation Component",
+          "nameSource": "explicit",
+          "aliases": [
+            "Fig. 6(A)"
+          ],
+          "description": "Focused simulation-process explanation showing an adjustment, related former and later strokes, and their influence.",
+          "evidence": {
+            "passageIds": [
+              68,
+              85,
+              88,
+              89,
+              90
+            ],
+            "figureRefs": [
+              "Fig. 6"
+            ]
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "explanation-component.stroke-sets",
+                "markType": "glyph",
+                "encoding": {
+                  "column": [
+                    {
+                      "field": "stroke order",
+                      "type": "ordinal",
+                      "description": "Former strokes, the adjustment, and latter strokes are laid out in match order."
+                    }
+                  ],
+                  "opacity": [
+                    {
+                      "field": "influence",
+                      "type": "quantitative",
+                      "description": "Icon opacity encodes the influence of each stroke attribute."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "explanation-component.influence-links",
+                "markType": "line",
+                "encoding": {
+                  "size": [
+                    {
+                      "field": "influence weight",
+                      "type": "quantitative",
+                      "description": "Line thickness encodes the Markov influence weight."
+                    }
+                  ],
+                  "shape": [
+                    {
+                      "field": "influence direction",
+                      "type": "categorical",
+                      "description": "Dashed lines lead from former strokes to the adjustment; solid lines lead to later strokes."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                88,
+                90
+              ],
+              "figureRefs": [
+                "Fig. 6"
+              ]
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "explanation-component.explain-adjustment",
+              "capabilityKind": "Information",
+              "capabilityName": "Explain adjustment",
+              "description": "Shows how an adjustment can be achieved and why it performs well or poorly through related stroke sets and influence links.",
+              "evidence": {
+                "passageIds": [
+                  88,
+                  89,
+                  90
+                ]
+              }
+            },
+            {
+              "capabilityId": "explanation-component.inspect-correlations",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Inspect correlations",
+              "description": "Lets experts select an attribute value to highlight it and filter other attributes while examining correlations.",
+              "evidence": {
+                "passageIds": [
+                  90
+                ]
+              }
+            },
+            {
+              "capabilityId": "explanation-component.unfold-details",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Unfold details",
+              "description": "Lets experts hover on visual elements in this Simulation View component to reveal details.",
+              "evidence": {
+                "passageIds": [
+                  93
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coordinationInfo": [
+    {
+      "coordinationId": "coord-select-matches-to-tactics",
+      "source": {
+        "viewId": "player-view",
+        "subViewId": "match-tree"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "player-view",
+        "subViewId": "match-tree",
+        "capabilityId": "match-tree.select-matches"
+      },
+      "targets": [
+        {
+          "viewId": "tactic-view",
+          "subViewId": "tactic-list"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "tactic-view",
+          "subViewId": "tactic-list",
+          "capabilityId": "tactic-list.show-tactic-rates"
+        }
+      ],
+      "coordinationType": "FilterLinking",
+      "evidence": {
+        "passageIds": [
+          72,
+          76,
+          78
+        ],
+        "quotes": [
+          "the selected matches"
+        ],
+        "reasoning": "The match selection determines which tactics populate the tactic list.",
+        "confidence": 0.96
+      }
+    },
+    {
+      "coordinationId": "coord-select-tactic-to-exploration",
+      "source": {
+        "viewId": "tactic-view",
+        "subViewId": "tactic-list"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "tactic-view",
+        "subViewId": "tactic-list",
+        "capabilityId": "tactic-list.select-tactic"
+      },
+      "targets": [
+        {
+          "viewId": "simulation-view",
+          "subViewId": "exploration-component"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "simulation-view",
+          "subViewId": "exploration-component",
+          "capabilityId": "exploration-component.show-adjustment-options"
+        }
+      ],
+      "coordinationType": "SelectionLinking",
+      "evidence": {
+        "passageIds": [
+          72,
+          85
+        ],
+        "quotes": [
+          "By selecting tactics of interest in the tactic view"
+        ],
+        "reasoning": "The selected tactic is propagated as the persistent target context in the exploration component.",
+        "confidence": 0.99
+      }
+    },
+    {
+      "coordinationId": "coord-apply-adjustment-to-evaluation",
+      "source": {
+        "viewId": "simulation-view",
+        "subViewId": "exploration-component"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "simulation-view",
+        "subViewId": "exploration-component",
+        "capabilityId": "exploration-component.apply-adjustment"
+      },
+      "targets": [
+        {
+          "viewId": "simulation-view",
+          "subViewId": "evaluation-component"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "simulation-view",
+          "subViewId": "evaluation-component",
+          "capabilityId": "evaluation-component.compare-strategies"
+        }
+      ],
+      "coordinationType": "StateTransfer",
+      "evidence": {
+        "passageIds": [
+          72,
+          86,
+          87
+        ],
+        "quotes": [
+          "record the adjustments they have tried in the evaluation component"
+        ],
+        "reasoning": "Applied adjustments are materialized as recorded strategy rows for comparison.",
+        "confidence": 0.97
+      }
+    },
+    {
+      "coordinationId": "coord-strategy-to-explanation",
+      "source": {
+        "viewId": "simulation-view",
+        "subViewId": "evaluation-component"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "simulation-view",
+        "subViewId": "evaluation-component",
+        "capabilityId": "evaluation-component.investigate-strategy"
+      },
+      "targets": [
+        {
+          "viewId": "simulation-view",
+          "subViewId": "explanation-component"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "simulation-view",
+          "subViewId": "explanation-component",
+          "capabilityId": "explanation-component.explain-adjustment"
+        }
+      ],
+      "coordinationType": "DetailsOnDemand",
+      "evidence": {
+        "passageIds": [
+          85,
+          88,
+          93
+        ],
+        "quotes": [
+          "investigate each of them"
+        ],
+        "reasoning": "Investigating a strategy reveals its focused simulation-process explanation.",
+        "confidence": 0.9
+      }
+    }
+  ]
+}

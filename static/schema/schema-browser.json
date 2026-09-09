@@ -9,42 +9,95 @@
             {
               "field": "paperName",
               "type": "string",
-              "meaning": "Paper identifier used in the project"
+              "meaning": "Name of the paper.",
+              "required": false
             },
             {
               "field": "systemInfo",
-              "type": "object",
-              "meaning": "High-level metadata about the system"
+              "type": "SystemInfo",
+              "meaning": "Information about the overall system, including taxonomy annotations.",
+              "required": true
             },
             {
               "field": "viewsInfo",
-              "type": "list",
-              "meaning": "Canonical top-level views in the system"
+              "type": "list of ViewSpec",
+              "meaning": "Canonical per-view specifications for the system.",
+              "required": true
             },
             {
               "field": "coordinationInfo",
-              "type": "list",
-              "meaning": "Cross-view or cross-subview coordination relationships"
+              "type": "list of ViewCoordinationInfo",
+              "meaning": "Coordination relationships between views or sub-views.",
+              "required": false
             }
           ]
         },
         {
-          "title": "Nested object: `systemInfo`",
+          "title": "Nested object: `SystemInfo`",
           "fields": [
             {
               "field": "systemName",
               "type": "string",
-              "meaning": "Name of the VA system"
+              "meaning": "Name of the visual analytics system, as used in the paper.",
+              "required": false
             },
             {
               "field": "dataOntology",
-              "type": "object",
-              "meaning": "High-level description of the underlying data"
+              "type": "DataOntology",
+              "meaning": "Data ontology annotation for the system, based on the provided data taxonomy. If the taxonomy cannot describe a case, use others(<description>) in the corresponding field.",
+              "required": false
             },
             {
               "field": "systemCategory",
-              "type": "list",
-              "meaning": "Taxonomy-based domain/task categorization"
+              "type": "list of SystemCategory",
+              "meaning": "Two-level system classification. Level-1 indicates the broad application domain; Level-2 indicates specific tasks/subdomains. Both levels allow others(<description>) when the taxonomy cannot describe a case.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `DataOntology`",
+          "fields": [
+            {
+              "field": "datasetType",
+              "type": "list of enum / string",
+              "meaning": "High-level dataset form(s) based on DatasetType taxonomy. Multiple values are allowed when a system uses multiple dataset forms. If not covered, use others(<description>).",
+              "required": false
+            },
+            {
+              "field": "dataType",
+              "type": "list of enum / string",
+              "meaning": "Data entity/structure types based on DataType taxonomy. Multiple values are allowed when a system uses multiple structures. If not covered, use others(<description>).",
+              "required": false
+            },
+            {
+              "field": "attributeType",
+              "type": "list of enum / string",
+              "meaning": "Attribute types involved in the system (categorical/ordinal/quantitative) based on AttributeType taxonomy. Multiple values are allowed. If not covered, use others(<description>).",
+              "required": false
+            },
+            {
+              "field": "orderingDirection",
+              "type": "list of enum / string",
+              "meaning": "Ordering/scale direction types (sequential/diverging/cyclic) based on OrderingDirection taxonomy, when applicable (e.g., color scales). Multiple values are allowed. If not covered, use others(<description>).",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `SystemCategory`",
+          "fields": [
+            {
+              "field": "level1",
+              "type": "enum / string",
+              "meaning": "High-level domain category (Level-1). Must be one of the predefined Level-1 categories or others(<description>).",
+              "required": true
+            },
+            {
+              "field": "level2",
+              "type": "list of enum / string",
+              "meaning": "Sub-category / task-level classification (Level-2). Multiple values are allowed when the system spans multiple sub-tasks. Each value must be one of the predefined Level-2 categories or others(<description>).",
+              "required": false
             }
           ]
         },
@@ -54,32 +107,50 @@
             {
               "field": "viewId",
               "type": "string",
-              "meaning": "Stable canonical view identifier"
+              "meaning": "Canonical identifier for this view. When omitted, a deterministic identifier can be generated.",
+              "required": false
             },
             {
               "field": "viewName",
               "type": "string",
-              "meaning": "Human-readable view name"
+              "meaning": "Human-readable label for this view, if available.",
+              "required": false
+            },
+            {
+              "field": "nameSource",
+              "type": "enum",
+              "meaning": "How viewName was obtained.",
+              "required": false
             },
             {
               "field": "aliases",
-              "type": "list",
-              "meaning": "Alternate names or figure callouts"
+              "type": "list of string",
+              "meaning": "Optional alternate labels or references used for this view (e.g., 'Fig. 1c').",
+              "required": false
             },
             {
               "field": "description",
               "type": "string",
-              "meaning": "Functional description of the view"
+              "meaning": "Brief description of the overall role of this top-level view.",
+              "required": false
             },
             {
               "field": "viewImages",
-              "type": "list",
-              "meaning": "Image paths associated with the view"
+              "type": "list of string",
+              "meaning": "List of local file paths to image assets representing this view (e.g., screenshots, figure sub-images, UI captures).",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Optional evidence supporting the existence and identity of this view.",
+              "required": false
             },
             {
               "field": "subViews",
-              "type": "list",
-              "meaning": "Logical subregions inside the view"
+              "type": "list of SubView",
+              "meaning": "List of sub-views contained in this view.",
+              "required": true
             }
           ]
         },
@@ -89,37 +160,62 @@
             {
               "field": "subViewId",
               "type": "string",
-              "meaning": "Stable canonical subview identifier"
+              "meaning": "Canonical identifier for this sub-view. When omitted, a deterministic identifier can be generated.",
+              "required": false
             },
             {
               "field": "subViewName",
               "type": "string",
-              "meaning": "Human-readable subview name"
+              "meaning": "Human-readable name/identifier for this sub-view, if available.",
+              "required": false
+            },
+            {
+              "field": "nameSource",
+              "type": "enum",
+              "meaning": "How subViewName was obtained.",
+              "required": false
+            },
+            {
+              "field": "aliases",
+              "type": "list of string",
+              "meaning": "Optional alternate labels or references used for this sub-view (e.g., figure callouts).",
+              "required": false
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Brief description of this sub-view, combining its approximate role/content and relative position (e.g., 'concept search panel on the left', 'detail table in the lower-right').",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Optional evidence supporting the sub-view as a coherent UI unit.",
+              "required": false
             },
             {
               "field": "isVisualizationView",
-              "type": "bool",
-              "meaning": "Whether the subview is visual or non-visual"
+              "type": "boolean",
+              "meaning": "Whether this sub-view is a visualization view. If true, viewStyleInfo must be provided and nonVisualViewSpec must be omitted. If false, nonVisualViewSpec must be provided and viewStyleInfo must be omitted.",
+              "required": true
             },
             {
               "field": "viewStyleInfo",
-              "type": "object",
-              "meaning": "Visual style description when the subview is visual"
+              "type": "ViewStyleInfo",
+              "meaning": "Visualization-oriented style specification. Provide when isVisualizationView is true.",
+              "required": false
             },
             {
               "field": "nonVisualViewSpec",
-              "type": "object",
-              "meaning": "Structural description when the subview is non-visual"
-            },
-            {
-              "field": "viewProcessingInfo",
-              "type": "object",
-              "meaning": "Processing or modeling steps behind the subview"
+              "type": "NonVisualViewSpec",
+              "meaning": "Non-visual view specification. Provide when isVisualizationView is false.",
+              "required": false
             },
             {
               "field": "capabilities",
-              "type": "list",
-              "meaning": "User-visible capabilities supported by the subview"
+              "type": "list of SubviewCapability",
+              "meaning": "User-visible capabilities of this sub-view. These capture what the user can directly do in the sub-view or what information the sub-view can directly provide.",
+              "required": false
             }
           ]
         },
@@ -129,22 +225,207 @@
             {
               "field": "capabilityId",
               "type": "string",
-              "meaning": "Stable canonical capability identifier"
+              "meaning": "Canonical identifier for this capability. When omitted, a deterministic identifier can be generated.",
+              "required": false
             },
             {
               "field": "capabilityKind",
               "type": "enum",
-              "meaning": "Whether the capability is Interaction or Information"
+              "meaning": "Whether this capability is an interaction affordance or an information affordance.",
+              "required": true
             },
             {
               "field": "capabilityName",
               "type": "string",
-              "meaning": "Short capability label"
+              "meaning": "Short label for the capability, e.g., `Search`, `Brush`, `Hover`, `Show Ranked Features`, or `Show Token Activations`.",
+              "required": true
             },
             {
               "field": "description",
               "type": "string",
-              "meaning": "What the user can do or read from the subview"
+              "meaning": "What the user can do in this sub-view or what information the user can directly obtain from it.",
+              "required": true
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Optional evidence supporting this capability extraction.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `ViewStyleInfo`",
+          "fields": [
+            {
+              "field": "layers",
+              "type": "list of LayerInfo",
+              "meaning": "Information about styles of multiple layers / marks in this view.",
+              "required": true
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Optional evidence supporting the visual style extraction.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `LayerInfo`",
+          "fields": [
+            {
+              "field": "layerId",
+              "type": "string",
+              "meaning": "Canonical identifier for this visual layer. When omitted, a deterministic identifier can be generated.",
+              "required": false
+            },
+            {
+              "field": "markType",
+              "type": "string",
+              "meaning": "Mark type, e.g., point, line, bar, area, node, edge, text.",
+              "required": true
+            },
+            {
+              "field": "encoding",
+              "type": "LayerEncoding",
+              "meaning": "Encodings on different channels for this layer.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `LayerEncoding`",
+          "fields": [
+            {
+              "field": "x",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded on the x channel (if any).",
+              "required": false
+            },
+            {
+              "field": "y",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded on the y channel (if any).",
+              "required": false
+            },
+            {
+              "field": "color",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded on the color channel (if any).",
+              "required": false
+            },
+            {
+              "field": "size",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded on the size channel (if any).",
+              "required": false
+            },
+            {
+              "field": "shape",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded on the shape channel (if any).",
+              "required": false
+            },
+            {
+              "field": "opacity",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded on the opacity channel (if any).",
+              "required": false
+            },
+            {
+              "field": "text",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded as textual labels or annotations (if any).",
+              "required": false
+            },
+            {
+              "field": "row",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded through row faceting or small multiples (if any).",
+              "required": false
+            },
+            {
+              "field": "column",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded through column faceting or small multiples (if any).",
+              "required": false
+            },
+            {
+              "field": "latitude",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded on map latitude or vertical geo position (if any).",
+              "required": false
+            },
+            {
+              "field": "longitude",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields encoded on map longitude or horizontal geo position (if any).",
+              "required": false
+            },
+            {
+              "field": "source",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields bound to edge/link sources in graph-like views (if any).",
+              "required": false
+            },
+            {
+              "field": "target",
+              "type": "list of EncodingInfo",
+              "meaning": "List of data fields bound to edge/link targets in graph-like views (if any).",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `EncodingInfo`",
+          "fields": [
+            {
+              "field": "field",
+              "type": "string",
+              "meaning": "Data field name as used in the system (e.g., 'time', 'country').",
+              "required": true
+            },
+            {
+              "field": "type",
+              "type": "string",
+              "meaning": "Data type or role of the field in the visualization, e.g., quantitative, ordinal, nominal, key, identifier, derived attribute, etc.",
+              "required": true
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Textual description of how this field is encoded or interpreted.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `NonVisualViewSpec`",
+          "fields": [
+            {
+              "field": "viewKind",
+              "type": "enum / string",
+              "meaning": "High-level kind of this non-visual view. Must be one of the predefined ViewKind values (e.g., Chatbox, StructuredText, Control, DataPreview, Navigation, Inspector, Form, DashboardContainer) or others(<description>).",
+              "required": true
+            },
+            {
+              "field": "subKind",
+              "type": "enum / string",
+              "meaning": "Optional finer-grained subtype under the chosen viewKind, used to capture form factors such as Card/MindMap/Markdown for structured text, Slider/Dropdown for controls, or Image/Table/JSON for previews.",
+              "required": false
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Textual description of the non-visual view, including its purpose, what content it shows, and how users interact with it.",
+              "required": true
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Optional evidence supporting the non-visual view extraction.",
+              "required": false
             }
           ]
         },
@@ -154,32 +435,119 @@
             {
               "field": "coordinationId",
               "type": "string",
-              "meaning": "Stable canonical coordination identifier"
+              "meaning": "Canonical identifier for this coordination relationship. When omitted, a deterministic identifier can be generated.",
+              "required": false
             },
             {
               "field": "source",
-              "type": "object",
-              "meaning": "Source view or subview"
+              "type": "ViewRef",
+              "meaning": "Canonical source view/sub-view that triggers the interaction.",
+              "required": true
             },
             {
               "field": "sourceCapabilityRef",
-              "type": "object",
-              "meaning": "Source capability that triggers the coordination"
+              "type": "CapabilityRef",
+              "meaning": "Preferred reference to the user-visible capability on the source sub-view that triggers this coordination.",
+              "required": false
             },
             {
               "field": "targets",
-              "type": "list",
-              "meaning": "Target view or subview nodes"
+              "type": "list of ViewRef",
+              "meaning": "Canonical target view/sub-view nodes that receive the effect.",
+              "required": true
             },
             {
               "field": "targetCapabilityRefs",
-              "type": "list",
-              "meaning": "Target capabilities affected by the coordination"
+              "type": "list of CapabilityRef",
+              "meaning": "Preferred references to the user-visible capabilities on target sub-views that are updated or activated by this coordination.",
+              "required": false
             },
             {
               "field": "coordinationType",
+              "type": "enum",
+              "meaning": "Canonical coordination mechanism describing how state or user-visible effects propagate between the source and target interface units.",
+              "required": true
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence supporting the coordination relationship as a whole.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `ViewRef`",
+          "fields": [
+            {
+              "field": "viewId",
               "type": "string",
-              "meaning": "Type of relationship, such as drill-down or parameter binding"
+              "meaning": "Canonical identifier of the parent view.",
+              "required": true
+            },
+            {
+              "field": "subViewId",
+              "type": "string",
+              "meaning": "Canonical identifier of the sub-view when the reference points below view level.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `CapabilityRef`",
+          "fields": [
+            {
+              "field": "viewId",
+              "type": "string",
+              "meaning": "Canonical identifier of the parent view.",
+              "required": true
+            },
+            {
+              "field": "subViewId",
+              "type": "string",
+              "meaning": "Canonical identifier of the parent sub-view.",
+              "required": true
+            },
+            {
+              "field": "capabilityId",
+              "type": "string",
+              "meaning": "Canonical identifier of the referenced capability.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `EvidenceReference`",
+          "fields": [
+            {
+              "field": "passageIds",
+              "type": "list of integer",
+              "meaning": "Ordered passage identifiers that support this extraction, if tracked.",
+              "required": false
+            },
+            {
+              "field": "figureRefs",
+              "type": "list of string",
+              "meaning": "Figure references such as 'Fig. 1a' or local image file names.",
+              "required": false
+            },
+            {
+              "field": "quotes",
+              "type": "list of string",
+              "meaning": "Short supporting quotes or evidence snippets.",
+              "required": false
+            },
+            {
+              "field": "reasoning",
+              "type": "string",
+              "meaning": "Brief explanation of how the evidence supports the structured item.",
+              "required": false
+            },
+            {
+              "field": "confidence",
+              "type": "number",
+              "meaning": "Optional confidence score for the extracted item.",
+              "required": false
             }
           ]
         }
@@ -194,27 +562,38 @@
             {
               "field": "paperName",
               "type": "string",
-              "meaning": "Paper identifier"
+              "meaning": "Short paper identifier used in the project.",
+              "required": true
             },
             {
               "field": "systemName",
               "type": "string",
-              "meaning": "System name"
+              "meaning": "Name of the system discussed in the paper.",
+              "required": false
             },
             {
               "field": "systemSpecPath",
               "type": "string",
-              "meaning": "Path to the linked system specification"
+              "meaning": "Relative path to the corresponding system specification file, if available.",
+              "required": false
             },
             {
               "field": "workflows",
-              "type": "list",
-              "meaning": "Author-intended workflows in the paper"
+              "type": "list of WorkflowSpec",
+              "meaning": "Author-intended workflows described in the paper.",
+              "required": true
             },
             {
               "field": "paperLevelClaims",
-              "type": "list",
-              "meaning": "Higher-level claims about intended use"
+              "type": "list of WorkflowClaim",
+              "meaning": "Higher-level claims about intended usage that apply across workflows.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence supporting the workflow extraction at paper level.",
+              "required": false
             }
           ]
         },
@@ -224,47 +603,74 @@
             {
               "field": "workflowId",
               "type": "string",
-              "meaning": "Stable canonical workflow identifier"
+              "meaning": "Stable identifier of the intended workflow.",
+              "required": false
             },
             {
               "field": "workflowTitle",
               "type": "string",
-              "meaning": "Name of the workflow"
+              "meaning": "Title or name of the intended workflow.",
+              "required": false
             },
             {
               "field": "workflowKind",
-              "type": "enum",
-              "meaning": "High-level workflow type"
+              "type": "enum / string",
+              "meaning": "High-level type of intended workflow.",
+              "required": false
             },
             {
               "field": "workflowGoal",
               "type": "string",
-              "meaning": "Main goal of the workflow"
+              "meaning": "Main goal of the intended workflow.",
+              "required": true
             },
             {
               "field": "description",
               "type": "string",
-              "meaning": "Free-text workflow summary"
+              "meaning": "Free-text summary of the intended end-to-end activity.",
+              "required": false
+            },
+            {
+              "field": "applicabilityContext",
+              "type": "string",
+              "meaning": "Task, data, starting point, actor, or scenario conditions under which this workflow applies. This is especially useful when a paper defines multiple workflows.",
+              "required": false
             },
             {
               "field": "targetUsers",
-              "type": "list",
-              "meaning": "Target user groups"
+              "type": "list of string",
+              "meaning": "Target user group(s) for this intended workflow when stated in the paper.",
+              "required": false
             },
             {
               "field": "stages",
-              "type": "list",
-              "meaning": "Ordered workflow stages"
+              "type": "list of WorkflowStage",
+              "meaning": "Ordered stages of the intended workflow.",
+              "required": true
             },
             {
               "field": "transitions",
-              "type": "list",
-              "meaning": "Transitions among stages"
+              "type": "list of WorkflowTransition",
+              "meaning": "Explicit or inferred transitions between workflow stages.",
+              "required": false
             },
             {
               "field": "expectedFinalOutcome",
               "type": "string",
-              "meaning": "Intended final outcome"
+              "meaning": "Expected final outcome if the workflow completes successfully.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence supporting the workflow as a whole.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether the workflow is explicitly described or synthesized.",
+              "required": false
             }
           ]
         },
@@ -274,47 +680,68 @@
             {
               "field": "stageId",
               "type": "string",
-              "meaning": "Stable stage identifier"
+              "meaning": "Stable identifier of the workflow stage.",
+              "required": false
             },
             {
-              "field": "stageIndex",
+              "field": "displayOrder",
               "type": "integer",
-              "meaning": "Order of the stage in the workflow"
+              "meaning": "1-based presentation order of the stage within the workflow. This does not establish a graph edge or require linear execution.",
+              "required": false
             },
             {
               "field": "stageTitle",
               "type": "string",
-              "meaning": "Human-readable stage label"
+              "meaning": "Short title of the intended stage when the paper names it explicitly.",
+              "required": false
             },
             {
-              "field": "stageGoal",
+              "field": "localGoal",
               "type": "string",
-              "meaning": "Local goal of the stage"
+              "meaning": "Why the intended process enters this stage.",
+              "required": true
             },
             {
-              "field": "description",
+              "field": "activitySummary",
               "type": "string",
-              "meaning": "Summary of the stage activity"
+              "meaning": "What the user is intended to do during this stage.",
+              "required": false
             },
             {
-              "field": "usedViews",
-              "type": "list",
-              "meaning": "Views or subviews expected in this stage"
+              "field": "usedSubViews",
+              "type": "list of ViewRef",
+              "meaning": "Canonical leaf sub-views expected to be used during this stage. Each reference must include subViewId.",
+              "required": false
             },
             {
               "field": "usedCapabilities",
-              "type": "list",
-              "meaning": "Capabilities expected in this stage"
+              "type": "list of CapabilityRef",
+              "meaning": "Subview capabilities expected to be used in this stage. These capture intended usage of subview-internal functions.",
+              "required": false
             },
             {
               "field": "usedCoordinations",
-              "type": "list",
-              "meaning": "Coordinations relied upon in this stage"
+              "type": "list of WorkflowCoordinationRef",
+              "meaning": "Coordinations the stage is expected to rely on. These capture intended cross-view behavior beyond individual subviews.",
+              "required": false
             },
             {
               "field": "expectedOutcome",
               "type": "string",
-              "meaning": "Expected result of the stage"
+              "meaning": "Expected result or decision support outcome of the stage.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence supporting this intended stage.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether the stage is directly stated or inferred from the paper.",
+              "required": false
             }
           ]
         },
@@ -324,29 +751,79 @@
             {
               "field": "sourceStageId",
               "type": "string",
-              "meaning": "Source stage identifier"
+              "meaning": "Source stage identifier.",
+              "required": true
             },
             {
               "field": "targetStageId",
               "type": "string",
-              "meaning": "Target stage identifier"
-            },
-            {
-              "field": "transitionType",
-              "type": "enum",
-              "meaning": "Transition type such as Next, Iterate, or DrillDown"
+              "meaning": "Target stage identifier.",
+              "required": true
             },
             {
               "field": "rationale",
               "type": "string",
-              "meaning": "Why the workflow moves this way"
+              "meaning": "Why the workflow is expected to move from the source stage to the target stage.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence establishing this directed stage-to-stage relation.",
+              "required": true
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether the transition is explicit or inferred.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `WorkflowCoordinationRef`",
+          "fields": [
+            {
+              "field": "coordinationId",
+              "type": "string",
+              "meaning": "Canonical coordination identifier from the system specification.",
+              "required": true
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Optional short note about how the referencing schema uses this coordination.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `WorkflowClaim`",
+          "fields": [
+            {
+              "field": "claimText",
+              "type": "string",
+              "meaning": "High-level author claim about how the system is intended to be used.",
+              "required": true
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence supporting the workflow-level claim.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether the claim is directly stated or inferred.",
+              "required": false
             }
           ]
         }
       ]
     },
     {
-      "title": "3. Case Study Usage",
+      "title": "3. Documented Case",
       "objects": [
         {
           "title": "Top-level object: `PaperUsageSpec`",
@@ -354,27 +831,44 @@
             {
               "field": "paperName",
               "type": "string",
-              "meaning": "Paper identifier"
+              "meaning": "Paper title.",
+              "required": false
             },
             {
               "field": "systemName",
               "type": "string",
-              "meaning": "System name"
+              "meaning": "System name, if available.",
+              "required": false
             },
             {
               "field": "systemSpecPath",
               "type": "string",
-              "meaning": "Path to the linked system specification"
+              "meaning": "Path to the linked system specification artifact when available.",
+              "required": false
             },
             {
               "field": "caseStudies",
-              "type": "list",
-              "meaning": "Case studies extracted from the paper"
+              "type": "list of CaseStudySpec",
+              "meaning": "All extracted case studies in this paper.",
+              "required": true
             },
             {
               "field": "paperLevelUsageClaims",
-              "type": "list",
-              "meaning": "Paper-level claims about usage"
+              "type": "list of string",
+              "meaning": "Optional paper-level claims about how the system supports usage.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Paper-level evidence when needed.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether paper-level usage claims are explicit or inferred.",
+              "required": false
             }
           ]
         },
@@ -384,47 +878,109 @@
             {
               "field": "caseId",
               "type": "string",
-              "meaning": "Stable case identifier"
+              "meaning": "Stable case identifier.",
+              "required": false
             },
             {
               "field": "caseTitle",
               "type": "string",
-              "meaning": "Human-readable case title"
+              "meaning": "Case study title or label.",
+              "required": false
             },
             {
               "field": "caseStudyKind",
-              "type": "enum",
-              "meaning": "Type of case study"
+              "type": "enum / string",
+              "meaning": "Type of case study.",
+              "required": false
             },
             {
               "field": "analyst",
-              "type": "object",
-              "meaning": "Analyst or user profile"
+              "type": "AnalystProfile",
+              "meaning": "Analyst/user profile for the case.",
+              "required": false
             },
             {
               "field": "scenario",
-              "type": "object",
-              "meaning": "Problem context and analysis goal"
+              "type": "ScenarioContext",
+              "meaning": "Problem context and overall goal.",
+              "required": true
             },
             {
               "field": "questions",
-              "type": "list",
-              "meaning": "Canonical question inventory"
+              "type": "list of QuestionItem",
+              "meaning": "Canonical question inventory for the case.",
+              "required": false
             },
             {
               "field": "hypotheses",
-              "type": "list",
-              "meaning": "Canonical hypothesis inventory"
+              "type": "list of HypothesisItem",
+              "meaning": "Canonical hypothesis inventory for the case.",
+              "required": false
             },
             {
               "field": "episodes",
-              "type": "list",
-              "meaning": "Main local phases in the case"
+              "type": "list of UsageEpisode",
+              "meaning": "Ordered documented-use segments reconstructed independently of Intended Workflow stages.",
+              "required": true
             },
             {
               "field": "finalOutcome",
-              "type": "object",
-              "meaning": "Final findings and decisions"
+              "type": "CaseOutcome",
+              "meaning": "Final findings and decisions from the case.",
+              "required": false
+            },
+            {
+              "field": "overallStrategySummary",
+              "type": "string",
+              "meaning": "High-level summary of the end-to-end strategy.",
+              "required": false
+            },
+            {
+              "field": "caseNarrativeSummary",
+              "type": "string",
+              "meaning": "Compact prose summary of the full case.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence for the case as a whole.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether the case segmentation is explicit or inferred.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `AnalystProfile`",
+          "fields": [
+            {
+              "field": "role",
+              "type": "enum / string",
+              "meaning": "Role of the analyst/user in this case study.",
+              "required": false
+            },
+            {
+              "field": "domainExpertise",
+              "type": "enum / string",
+              "meaning": "Domain expertise level of the user.",
+              "required": false
+            },
+            {
+              "field": "toolExpertise",
+              "type": "enum / string",
+              "meaning": "Experience level with the VA system or similar tools.",
+              "required": false
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Free-text characterization of the actor.",
+              "required": false
             }
           ]
         },
@@ -434,62 +990,185 @@
             {
               "field": "domainProblem",
               "type": "string",
-              "meaning": "Domain problem in the case"
+              "meaning": "Problem context in the domain.",
+              "required": true
             },
             {
               "field": "analysisGoal",
               "type": "string",
-              "meaning": "Main analysis goal"
+              "meaning": "Main goal of the case study analysis.",
+              "required": true
             },
             {
               "field": "datasetContext",
               "type": "string",
-              "meaning": "Short description of the data context"
+              "meaning": "Short description of the dataset involved.",
+              "required": false
             },
             {
-              "field": "initialQuestion",
+              "field": "stakes",
               "type": "string",
-              "meaning": "Initial question framing the case"
+              "meaning": "Why this analysis matters in the application context.",
+              "required": false
+            },
+            {
+              "field": "primaryQuestionId",
+              "type": "string",
+              "meaning": "Reference to the canonical primary question; question text is stored only in questions[].",
+              "required": false
             }
           ]
         },
         {
-          "title": "Nested object: `Episode`",
+          "title": "Nested object: `QuestionItem`",
+          "fields": [
+            {
+              "field": "questionId",
+              "type": "string",
+              "meaning": "Stable identifier of the question.",
+              "required": false
+            },
+            {
+              "field": "questionText",
+              "type": "string",
+              "meaning": "Canonical question phrasing.",
+              "required": true
+            },
+            {
+              "field": "status",
+              "type": "enum / string",
+              "meaning": "Reported question status; absence is not defaulted to Open.",
+              "required": false
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Optional elaboration of the question.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence for extracting this question.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether this question is explicit or inferred.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `HypothesisItem`",
+          "fields": [
+            {
+              "field": "hypothesisId",
+              "type": "string",
+              "meaning": "Stable identifier of the hypothesis.",
+              "required": false
+            },
+            {
+              "field": "hypothesisText",
+              "type": "string",
+              "meaning": "Canonical hypothesis statement.",
+              "required": true
+            },
+            {
+              "field": "status",
+              "type": "enum / string",
+              "meaning": "Reported hypothesis status; absence is not defaulted to Proposed.",
+              "required": false
+            },
+            {
+              "field": "relatedQuestionIds",
+              "type": "list of string",
+              "meaning": "Question IDs that this hypothesis addresses.",
+              "required": false
+            },
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Optional elaboration or scope of the hypothesis.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence for extracting this hypothesis.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether this hypothesis is explicit or inferred.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `UsageEpisode`",
           "fields": [
             {
               "field": "episodeId",
               "type": "string",
-              "meaning": "Stable episode identifier"
+              "meaning": "Stable episode identifier.",
+              "required": false
+            },
+            {
+              "field": "narrativeOrder",
+              "type": "integer",
+              "meaning": "Reported or reconstructed order of the episode within its case.",
+              "required": false
             },
             {
               "field": "episodeTitle",
               "type": "string",
-              "meaning": "Human-readable episode label"
+              "meaning": "Human-readable label for the episode.",
+              "required": false
             },
             {
               "field": "localGoal",
               "type": "string",
-              "meaning": "Goal of the episode"
+              "meaning": "Dominant local analytic goal of this documented-use segment. Intended Workflow segmentation does not determine this boundary.",
+              "required": true
             },
             {
               "field": "focusQuestionIds",
-              "type": "list",
-              "meaning": "Main questions driving the episode"
+              "type": "list of string",
+              "meaning": "Questions that dominate this episode.",
+              "required": false
             },
             {
-              "field": "strategyCanonical",
-              "type": "list",
-              "meaning": "Dominant strategy tags"
+              "field": "strategyText",
+              "type": "string",
+              "meaning": "Free-text summary of the episode strategy.",
+              "required": false
             },
             {
               "field": "steps",
-              "type": "list",
-              "meaning": "Ordered analytic steps within the episode"
+              "type": "list of UsageStep",
+              "meaning": "Ordered evidence-supported analytic moves in this episode.",
+              "required": true
             },
             {
-              "field": "episodeOutcomeSummary",
+              "field": "episodeOutcome",
               "type": "string",
-              "meaning": "What the episode achieved overall"
+              "meaning": "What the episode achieved overall.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence supporting the episode segmentation as a distinct local phase.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether this episode boundary is explicit or inferred.",
+              "required": false
             }
           ]
         },
@@ -499,120 +1178,351 @@
             {
               "field": "stepId",
               "type": "string",
-              "meaning": "Stable step identifier"
+              "meaning": "Stable step identifier.",
+              "required": false
             },
             {
-              "field": "stepIndex",
+              "field": "stepOrder",
               "type": "integer",
-              "meaning": "Order of the step inside the episode"
+              "meaning": "Reported or reconstructed order of the step within its episode.",
+              "required": false
             },
             {
-              "field": "rawNarrative",
+              "field": "narrativeSummary",
               "type": "string",
-              "meaning": "Original or paraphrased narrative evidence"
+              "meaning": "Conservative source-facing summary of the analytic move. This is not a normalized intent, operation, or strategy label.",
+              "required": false
             },
             {
               "field": "questionsAddressed",
-              "type": "list",
-              "meaning": "Questions directly addressed in this step"
+              "type": "list of string",
+              "meaning": "Questions directly addressed in this step.",
+              "required": false
             },
             {
-              "field": "intentCanonical",
-              "type": "list",
-              "meaning": "Normalized intent labels"
+              "field": "hypothesesTouched",
+              "type": "list of string",
+              "meaning": "Hypotheses touched in this step.",
+              "required": false
             },
             {
-              "field": "strategyCanonical",
-              "type": "list",
-              "meaning": "Normalized strategy labels"
+              "field": "intentText",
+              "type": "string",
+              "meaning": "Source-facing statement of the immediate intent.",
+              "required": false
             },
             {
-              "field": "operationCanonical",
-              "type": "list",
-              "meaning": "Normalized operation labels"
+              "field": "operationText",
+              "type": "string",
+              "meaning": "Source-facing description of what was done.",
+              "required": false
             },
             {
-              "field": "usedViews",
-              "type": "list",
-              "meaning": "Views or subviews used in the step"
+              "field": "usedSubViews",
+              "type": "list of ViewRef",
+              "meaning": "Canonical sub-views directly supported by the source as used in this step. Parent-view-only references are not accepted.",
+              "required": false
             },
             {
               "field": "usedCapabilities",
-              "type": "list",
-              "meaning": "Capabilities used in the step"
+              "type": "list of CapabilityRef",
+              "meaning": "Subview capabilities used in this step. These capture what the analyst directly did in a sub-view or what the analyst directly read from it.",
+              "required": false
+            },
+            {
+              "field": "targetDataDescription",
+              "type": "list of string",
+              "meaning": "Data subsets/entities under action in this step.",
+              "required": false
             },
             {
               "field": "observations",
-              "type": "list",
-              "meaning": "Observations produced in the step"
+              "type": "list of ObservationItem",
+              "meaning": "Observations produced in this step.",
+              "required": false
             },
             {
               "field": "producedInsights",
-              "type": "list",
-              "meaning": "Insights produced in the step"
+              "type": "list of InsightItem",
+              "meaning": "Insights or intermediate results produced by this step.",
+              "required": false
             },
             {
               "field": "decision",
-              "type": "object",
-              "meaning": "Decision made at the end of the step"
+              "type": "DecisionItem",
+              "meaning": "Decision made at the end of the step.",
+              "required": false
             },
             {
-              "field": "outcomeSummary",
+              "field": "documentedOutcome",
               "type": "string",
-              "meaning": "Short summary of the step result"
+              "meaning": "Source-facing result documented for this step.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "How directly this step is supported by the source narrative.",
+              "required": false
+            },
+            {
+              "field": "sourceEvidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence for the whole step.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `ObservationItem`",
+          "fields": [
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "What the analyst noticed.",
+              "required": true
+            },
+            {
+              "field": "basedOnViews",
+              "type": "list of ViewRef",
+              "meaning": "Views that directly support the observation.",
+              "required": false
+            },
+            {
+              "field": "targetDataDescription",
+              "type": "list of string",
+              "meaning": "Data subset or objects involved in the observation.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence for this observation item.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether the observation is explicit or inferred.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `InsightItem`",
+          "fields": [
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Source-facing statement of the interpretation or understanding formed.",
+              "required": true
+            },
+            {
+              "field": "relatedQuestionIds",
+              "type": "list of string",
+              "meaning": "Questions answered or affected by this insight.",
+              "required": false
+            },
+            {
+              "field": "relatedHypothesisIds",
+              "type": "list of string",
+              "meaning": "Hypotheses addressed by this insight.",
+              "required": false
+            },
+            {
+              "field": "supportedByViews",
+              "type": "list of ViewRef",
+              "meaning": "Views supporting the insight.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence for this insight.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether the insight is explicit or inferred.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `DecisionItem`",
+          "fields": [
+            {
+              "field": "description",
+              "type": "string",
+              "meaning": "Decision or next analytic commitment made at this point.",
+              "required": true
+            },
+            {
+              "field": "rationale",
+              "type": "string",
+              "meaning": "Why this decision was made.",
+              "required": false
+            },
+            {
+              "field": "targetQuestionIds",
+              "type": "list of string",
+              "meaning": "Questions impacted by the decision.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence for the decision.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether the decision is explicit or inferred.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "title": "Nested object: `CaseOutcome`",
+          "fields": [
+            {
+              "field": "finalInsights",
+              "type": "list of InsightItem",
+              "meaning": "Final findings produced by the case study.",
+              "required": false
+            },
+            {
+              "field": "finalDecisions",
+              "type": "list of DecisionItem",
+              "meaning": "Final decisions or next actions.",
+              "required": false
+            },
+            {
+              "field": "unresolvedQuestionIds",
+              "type": "list of string",
+              "meaning": "Questions left open after the case.",
+              "required": false
+            },
+            {
+              "field": "claimedSystemValue",
+              "type": "string",
+              "meaning": "How the paper claims the system helped in this case.",
+              "required": false
+            },
+            {
+              "field": "evidence",
+              "type": "EvidenceReference",
+              "meaning": "Evidence for the case-level outcome summary.",
+              "required": false
+            },
+            {
+              "field": "inferenceType",
+              "type": "enum / string",
+              "meaning": "Whether this outcome is explicit or inferred.",
+              "required": false
             }
           ]
         }
       ]
-    },
-    {
-      "title": "Relation Across Layers",
-      "objects": []
-    },
-    {
-      "title": "Implementation Files",
-      "objects": []
     }
   ],
   "examples": [
     {
-      "id": "BDIViz",
-      "paperTitle": "BDIViz: An Interactive Visualization System for Biomedical Schema Matching with LLM-Powered Validation",
-      "interfaceImage": "static/schema/system-interface-figures/BDIViz.png",
+      "id": "TacSimurTacticBased",
+      "systemName": "Tac-Simur",
+      "paperTitle": "Tac-Simur: Tactic-based Simulative Visual Analytics of Table Tennis",
+      "year": 2020,
+      "domain": "Sports analytics",
+      "description": "Explore table-tennis tactics, simulate adjustments, and interpret their effects on match performance.",
+      "explorerSystemId": "TacSimurTacticBased",
+      "explorerUrl": "https://va-usage.github.io/explorer/?sys=TacSimurTacticBased",
+      "interfaceImage": "assets/2-schema/examples/TacSimurTacticBased/interface.png",
+      "interfaceFigureId": "fig_5",
+      "interfaceCaption": "Fig. 5. The system interface. The donut charts and the pie charts encode the scoring rates and utilization rates, respectively. (A) is the player view which displays all matches of Ito Mima and her opponents. It provides navigation of matches. (B) is the tactic view which displays the tactics specified by stroke placement at the serve phase. It provides navigation of tactics. (C) is the simulation view which is under the exploration mode. It contains (D), the exploration component for implementation of adjustments and (E), the evaluation component for evaluation of adjustments. (D) displays all of the adjustment options specified by stroke placement and stroke technique. (E) displays the three optimum strategies generated by the system.",
       "paths": {
-        "system": "static/schema/examples/BDIViz/system-spec.json",
-        "workflow": "static/schema/examples/BDIViz/paper-workflow-spec.json",
-        "usage": "static/schema/examples/BDIViz/paper-usage-spec.json"
+        "system": "assets/2-schema/examples/TacSimurTacticBased/system-spec.json",
+        "workflow": "assets/2-schema/examples/TacSimurTacticBased/paper-workflow-spec.json",
+        "usage": "assets/2-schema/examples/TacSimurTacticBased/paper-usage-spec.json"
+      },
+      "evidencePaths": {
+        "passages": "TacSimurTacticBased/passages/passages.json",
+        "figures": "TacSimurTacticBased/figures/figures.json",
+        "figureManifest": "TacSimurTacticBased/figures/figure-manifest.json",
+        "viewManifest": "TacSimurTacticBased/view-images/manifest.json"
+      },
+      "counts": {
+        "views": 3,
+        "workflows": 1,
+        "stages": 4,
+        "cases": 2,
+        "episodes": 7,
+        "steps": 14
       }
     },
     {
-      "id": "ConceptViz",
-      "paperTitle": "ConceptViz: A Visual Analytics Approach for Exploring Concepts in Large Language Models",
-      "interfaceImage": "static/schema/system-interface-figures/ConceptViz.png",
+      "id": "DemographicVis",
+      "systemName": "DemographicVis",
+      "paperTitle": "DemographicVis: Analyzing Demographic Information based on User Generated Content",
+      "year": 2015,
+      "domain": "Social media analytics",
+      "description": "Connect demographic groups with topic interests and linguistic features in user-generated content.",
+      "explorerSystemId": "DemographicVis",
+      "explorerUrl": "https://va-usage.github.io/explorer/?sys=DemographicVis",
+      "interfaceImage": "assets/2-schema/examples/DemographicVis/interface.png",
+      "interfaceFigureId": "fig_1",
+      "interfaceCaption": "Figure 1: DemographicVis interface: A) Parallel Sets with word cloud view that connects demographic groups to user generated content, B) user cluster view that groups users based on topic interests, C) feature ranking view that presents the predicative power of various features, D) posts view showing details on demand.",
       "paths": {
-        "system": "static/schema/examples/ConceptViz/system-spec.json",
-        "workflow": "static/schema/examples/ConceptViz/paper-workflow-spec.json",
-        "usage": "static/schema/examples/ConceptViz/paper-usage-spec.json"
+        "system": "assets/2-schema/examples/DemographicVis/system-spec.json",
+        "workflow": "assets/2-schema/examples/DemographicVis/paper-workflow-spec.json",
+        "usage": "assets/2-schema/examples/DemographicVis/paper-usage-spec.json"
+      },
+      "evidencePaths": {
+        "passages": "DemographicVis/passages/passages.json",
+        "figures": "DemographicVis/figures/figures.json",
+        "figureManifest": "DemographicVis/figures/figure-manifest.json",
+        "viewManifest": "DemographicVis/view-images/manifest.json"
+      },
+      "counts": {
+        "views": 4,
+        "workflows": 3,
+        "stages": 7,
+        "cases": 2,
+        "episodes": 4,
+        "steps": 8
       }
     },
     {
-      "id": "DMap",
-      "paperTitle": "D-Map: Visual analysis of ego-centric information diffusion patterns in social media",
-      "interfaceImage": "static/schema/system-interface-figures/DMap.png",
+      "id": "RuleMatrix",
+      "systemName": "RuleMatrix",
+      "paperTitle": "RuleMatrix: Visualizing and Understanding Classifiers with Rules",
+      "year": 2019,
+      "domain": "Explainable machine learning",
+      "description": "Inspect rule-based explanations to understand, verify, and identify failures in classifiers.",
+      "explorerSystemId": "RuleMatrix",
+      "explorerUrl": "https://va-usage.github.io/explorer/?sys=RuleMatrix",
+      "interfaceImage": "assets/2-schema/examples/RuleMatrix/interface.png",
+      "interfaceFigureId": "fig_1",
+      "interfaceCaption": "Fig. 1. Understanding the behavior of a trained neural network using the explanatory visual interface of RuleMatrix. The user uses the control panel (A) to specify the detail information to visualize (e.g., dataset, level of detail, rule filters). The rule-based representation is visualized as a matrix (B), where each row represents a rule, and each column is a feature used in the rules. The user can also filter the data or use a customized input in the data filter (C) and navigate the filtered dataset in the data table (D).",
       "paths": {
-        "system": "static/schema/examples/DMap/system-spec.json",
-        "workflow": "static/schema/examples/DMap/paper-workflow-spec.json",
-        "usage": "static/schema/examples/DMap/paper-usage-spec.json"
-      }
-    },
-    {
-      "id": "FluxFlow",
-      "paperTitle": "#FluxFlow: Visual Analysis of Anomalous Information Spreading on Social Media",
-      "interfaceImage": "static/schema/system-interface-figures/FluxFlow.png",
-      "paths": {
-        "system": "static/schema/examples/FluxFlow/system-spec.json",
-        "workflow": "static/schema/examples/FluxFlow/paper-workflow-spec.json",
-        "usage": "static/schema/examples/FluxFlow/paper-usage-spec.json"
+        "system": "assets/2-schema/examples/RuleMatrix/system-spec.json",
+        "workflow": "assets/2-schema/examples/RuleMatrix/paper-workflow-spec.json",
+        "usage": "assets/2-schema/examples/RuleMatrix/paper-usage-spec.json"
+      },
+      "evidencePaths": {
+        "passages": "RuleMatrix/passages/passages.json",
+        "figures": "RuleMatrix/figures/figures.json",
+        "figureManifest": "RuleMatrix/figures/figure-manifest.json",
+        "viewManifest": "RuleMatrix/view-images/manifest.json"
+      },
+      "counts": {
+        "views": 4,
+        "workflows": 1,
+        "stages": 3,
+        "cases": 2,
+        "episodes": 5,
+        "steps": 12
       }
     }
   ]

@@ -1,0 +1,34 @@
+[
+  {
+    "fig_id": "fig_1",
+    "caption": "Figure 1: DemographicVis interface: A) Parallel Sets with word cloud view that connects demographic groups to user generated content, B) user cluster view that groups users based on topic interests, C) feature ranking view that presents the predicative power of various features, D) posts view showing details on demand."
+  },
+  {
+    "fig_id": "fig_2",
+    "caption": "Figure 2: Demographic distribution on gender, age, education, and employment status based on the collected data."
+  },
+  {
+    "fig_id": "fig_3",
+    "caption": "Figure 3: System architecture of DemographicVis. Section 3, 4, and 5 introduce the Data Collection, Data Analysis, and Interactive Visualization component respectively."
+  },
+  {
+    "fig_id": "fig_4",
+    "caption": "Figure 4: Hovering mouse over demographic group “Female, 21-29, Bachelor degree” leads to the highlighting of the two topics that summarize the interests of the group."
+  },
+  {
+    "fig_id": "fig_5",
+    "caption": "Figure 5: Feature table with linguistic features expanded. Five highest ranked linguistic features are displayed for analysis."
+  },
+  {
+    "fig_id": "fig_6",
+    "caption": "Figure 6: Female, 17 or younger, less than high school degree and the corresponding topic of interest."
+  },
+  {
+    "fig_id": "fig_7",
+    "caption": "Figure 7: Female, 18-20, Some college but no degree and related topics."
+  },
+  {
+    "fig_id": "fig_8",
+    "caption": "Figure 8: Cluster view that groups Reddit users based on their topic interests. One group with two demographic groups is enlarged and their shared topic is shown."
+  }
+]

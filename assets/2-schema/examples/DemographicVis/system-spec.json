@@ -1,0 +1,1263 @@
+{
+  "paperName": "DemographicVis",
+  "systemInfo": {
+    "systemName": "DemographicVis",
+    "dataOntology": {
+      "datasetType": [
+        "Tables",
+        "Text",
+        "ClusterSetLists",
+        "Temporal"
+      ],
+      "dataType": [
+        "Items",
+        "Attributes",
+        "Position"
+      ],
+      "attributeType": [
+        "Categorical",
+        "Ordinal",
+        "Quantitative"
+      ]
+    },
+    "systemCategory": [
+      {
+        "level1": "B Social / Info Ecosystem",
+        "level2": [
+          "B1 Topic/Propagation",
+          "B3 Community/Interaction"
+        ]
+      }
+    ]
+  },
+  "viewsInfo": [
+    {
+      "viewId": "demographic-topic-view",
+      "viewName": "Parallel Sets with word cloud view",
+      "nameSource": "caption",
+      "aliases": [
+        "Figure 1A",
+        "ParSets+word cloud view"
+      ],
+      "description": "Combined upper-left view connecting demographic categories to modeled topics through rotated Parallel Sets, topic streams, and interactive word clouds.",
+      "viewImages": [
+        "view-images/1.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          2,
+          56,
+          57,
+          59,
+          63
+        ],
+        "figureRefs": [
+          "Figure 1A"
+        ],
+        "quotes": [
+          "we combine transformed Parallel Sets with interactive word clouds"
+        ],
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "parallel-sets",
+          "subViewName": "Parallel Sets",
+          "nameSource": "explicit",
+          "description": "Rotated Parallel Sets on the left showing sex, age, and education categories and their combinations.",
+          "evidence": {
+            "passageIds": [
+              58,
+              59,
+              60,
+              61
+            ],
+            "figureRefs": [
+              "Figure 1A"
+            ],
+            "confidence": 0.99
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "parallel-sets.ribbons",
+                "markType": "ribbon",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "starting demographic dimension category",
+                      "type": "categorical",
+                      "description": "Ribbon color is assigned from the interactively selected starting dimension."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "number of users in adjacent-category combination",
+                      "type": "quantitative",
+                      "description": "Ribbon width is proportional to the number of users in the connected demographic categories."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "parallel-sets.labels",
+                "markType": "text",
+                "encoding": {
+                  "text": [
+                    {
+                      "field": "demographic dimension and category",
+                      "type": "categorical",
+                      "description": "Dimension labels appear above the axes and category labels at category centers."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                59,
+                60
+              ],
+              "figureRefs": [
+                "Figure 1A",
+                "source-corpus/view-images/DemographicVis/1.png"
+              ],
+              "confidence": 0.98
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "parallel-sets.read-demographic-flows",
+              "capabilityKind": "Information",
+              "capabilityName": "Read demographic flows",
+              "description": "Read the relationships and relative user counts among sex, age, and education categories.",
+              "evidence": {
+                "passageIds": [
+                  59,
+                  60
+                ],
+                "figureRefs": [
+                  "Figure 1A"
+                ],
+                "confidence": 0.98
+              }
+            },
+            {
+              "capabilityId": "parallel-sets.show-linked-demographic-group",
+              "capabilityKind": "Information",
+              "capabilityName": "Show linked demographic group",
+              "description": "Highlight the demographic group or groups corresponding to a hovered topic or cluster group.",
+              "evidence": {
+                "passageIds": [
+                  64,
+                  71
+                ],
+                "figureRefs": [
+                  "Figure 4"
+                ],
+                "quotes": [
+                  "highlighting of the corresponding demographic group in the ParSets"
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "parallel-sets.hover-demographic-group",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Hover demographic group",
+              "description": "Hover a ribbon to emphasize it and its demographic variables while dimming other ribbons.",
+              "evidence": {
+                "passageIds": [
+                  61,
+                  64
+                ],
+                "figureRefs": [
+                  "Figure 4"
+                ],
+                "quotes": [
+                  "hovering the mouse over a certain demographic group would highlight the corresponding topic feature(s)"
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "parallel-sets.pin-ribbon",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Pin ribbon selection",
+              "description": "Click a ribbon to keep it highlighted after the pointer leaves.",
+              "evidence": {
+                "passageIds": [
+                  61
+                ],
+                "quotes": [
+                  "clicking on a ribbon will keep the ribbon highlighted when hovering out"
+                ],
+                "confidence": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "topic-streams",
+          "subViewName": "Topic streams",
+          "nameSource": "explicit",
+          "description": "Small temporal streams between the Parallel Sets and word cloud, one per topic.",
+          "evidence": {
+            "passageIds": [
+              62,
+              63,
+              64
+            ],
+            "figureRefs": [
+              "Figure 1A"
+            ],
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "topic-streams.areas",
+                "markType": "area",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "posting time",
+                      "type": "temporal",
+                      "description": "Horizontal position follows the topic time span from late 2008 to early 2015."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "topic prevalence over time",
+                      "type": "quantitative",
+                      "description": "Area height portrays the temporal trend of a topic."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "topic",
+                      "type": "categorical",
+                      "description": "Each topic stream has a distinct color matching the topic display."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                63
+              ],
+              "figureRefs": [
+                "Figure 1A",
+                "source-corpus/view-images/DemographicVis/1.png"
+              ],
+              "confidence": 0.95
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "topic-streams.read-topic-trends",
+              "capabilityKind": "Information",
+              "capabilityName": "Read topic trends",
+              "description": "Read the temporal trend associated with each modeled topic.",
+              "evidence": {
+                "passageIds": [
+                  63
+                ],
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "topic-streams.compare-discussion-volume",
+              "capabilityKind": "Information",
+              "capabilityName": "Compare discussion volume",
+              "description": "Compare topic prevalence by volume and identify the most frequently discussed topics for a demographic group.",
+              "evidence": {
+                "passageIds": [
+                  63,
+                  97,
+                  100,
+                  105
+                ],
+                "figureRefs": [
+                  "Figure 1A"
+                ],
+                "quotes": [
+                  "pick topics that are discussed most often by volume"
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "topic-streams.hover-topic",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Hover topic",
+              "description": "Hover a topic stream to highlight the demographic group or groups interested in that topic.",
+              "evidence": {
+                "passageIds": [
+                  64
+                ],
+                "quotes": [
+                  "hovering over a particular topic stream would highlight the demographic group(s)"
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "topic-streams.show-linked-topics",
+              "capabilityKind": "Information",
+              "capabilityName": "Show linked topics",
+              "description": "Show and emphasize topics associated with a hovered demographic group or cluster.",
+              "evidence": {
+                "passageIds": [
+                  38,
+                  64,
+                  71
+                ],
+                "figureRefs": [
+                  "Figure 4"
+                ],
+                "confidence": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "word-cloud",
+          "subViewName": "Word Cloud",
+          "nameSource": "explicit",
+          "description": "Ranked bigram word cloud for a topic on the right side of the combined view.",
+          "evidence": {
+            "passageIds": [
+              57,
+              62,
+              63,
+              65
+            ],
+            "figureRefs": [
+              "Figure 1A"
+            ],
+            "confidence": 0.99
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "word-cloud.bigrams",
+                "markType": "text",
+                "encoding": {
+                  "size": [
+                    {
+                      "field": "bigram probability in topic",
+                      "type": "quantitative",
+                      "description": "Font size increases with bigram probability."
+                    }
+                  ],
+                  "opacity": [
+                    {
+                      "field": "bigram rank or importance",
+                      "type": "ordinal",
+                      "description": "Opacity helps distinguish highly ranked bigrams."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "bigram and leading-rank number",
+                      "type": "text",
+                      "description": "Text shows the bigram and numbers the leading bigrams by precise rank."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                63
+              ],
+              "figureRefs": [
+                "Figure 1A",
+                "source-corpus/view-images/DemographicVis/1.png"
+              ],
+              "confidence": 0.99
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "word-cloud.read-ranked-bigrams",
+              "capabilityKind": "Information",
+              "capabilityName": "Read ranked bigrams",
+              "description": "Read the most probable bigrams that summarize a topic and their relative and numbered ranks.",
+              "evidence": {
+                "passageIds": [
+                  63
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "word-cloud.open-bigram-posts",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Open bigram posts",
+              "description": "Click a bigram to request posts containing that bigram in the Posts view.",
+              "evidence": {
+                "passageIds": [
+                  65
+                ],
+                "quotes": [
+                  "clicking on a bigram in a topic brings up a list of posts that contain the bigram"
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "word-cloud.show-linked-topic-terms",
+              "capabilityKind": "Information",
+              "capabilityName": "Show linked topic terms",
+              "description": "Display the terms for topics linked to a hovered demographic group or cluster.",
+              "evidence": {
+                "passageIds": [
+                  38,
+                  64,
+                  71
+                ],
+                "figureRefs": [
+                  "Figure 4"
+                ],
+                "confidence": 0.98
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "display-controls",
+          "subViewName": "Display controls",
+          "nameSource": "generated",
+          "description": "Controls beneath the Parallel Sets for choosing the primary axis and graph normalization.",
+          "evidence": {
+            "passageIds": [
+              60
+            ],
+            "figureRefs": [
+              "source-corpus/view-images/DemographicVis/1.png"
+            ],
+            "confidence": 0.96
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Control",
+            "subKind": "Dropdown",
+            "description": "Dropdown controls select the starting demographic dimension and the graph-normalization setting.",
+            "evidence": {
+              "passageIds": [
+                60
+              ],
+              "figureRefs": [
+                "source-corpus/view-images/DemographicVis/1.png"
+              ],
+              "confidence": 0.96
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "display-controls.choose-starting-dimension",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Choose starting dimension",
+              "description": "Choose the first Parallel Sets dimension, which determines color assignment.",
+              "evidence": {
+                "passageIds": [
+                  60
+                ],
+                "confidence": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "user-cluster-view",
+      "viewName": "User Cluster View",
+      "nameSource": "explicit",
+      "aliases": [
+        "Figure 1B",
+        "cluster view"
+      ],
+      "description": "t-SNE view grouping Reddit users by topic-distribution similarity and encoding demographic attributes with glyphs.",
+      "viewImages": [
+        "view-images/2.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          66,
+          67,
+          68,
+          69
+        ],
+        "figureRefs": [
+          "Figure 1B",
+          "Figure 8"
+        ],
+        "confidence": 1.0
+      },
+      "subViews": [
+        {
+          "subViewId": "user-cluster-plot",
+          "subViewName": "User cluster plot",
+          "nameSource": "inferred",
+          "description": "Spatial t-SNE glyph plot of Reddit users grouped by similarity in topic interests.",
+          "evidence": {
+            "passageIds": [
+              67,
+              68,
+              69
+            ],
+            "figureRefs": [
+              "Figure 1B",
+              "Figure 8"
+            ],
+            "confidence": 0.99
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "user-cluster-plot.user-glyphs",
+                "markType": "glyph",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "t-SNE dimension 1",
+                      "type": "derived quantitative position",
+                      "description": "Horizontal position is derived from topic-distribution similarity."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "t-SNE dimension 2",
+                      "type": "derived quantitative position",
+                      "description": "Vertical position is derived from topic-distribution similarity."
+                    }
+                  ],
+                  "shape": [
+                    {
+                      "field": "gender",
+                      "type": "categorical",
+                      "description": "Standard male or female symbol forms the glyph."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "age group",
+                      "type": "ordinal",
+                      "description": "Outer-ring fill increases by one fifth for each age tier."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "education level",
+                      "type": "categorical",
+                      "description": "The inner circle contains the first letter of the education level."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "gender",
+                      "type": "categorical",
+                      "description": "The displayed glyph colors distinguish the two gender categories."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                68,
+                69
+              ],
+              "figureRefs": [
+                "Figure 1B",
+                "source-corpus/view-images/DemographicVis/2.png"
+              ],
+              "confidence": 0.98
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "user-cluster-plot.read-interest-clusters",
+              "capabilityKind": "Information",
+              "capabilityName": "Read interest clusters",
+              "description": "See whether users and demographic groups have cohesive, distinct, or overlapping topic interests.",
+              "evidence": {
+                "passageIds": [
+                  67,
+                  69,
+                  70
+                ],
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "user-cluster-plot.hover-demographic-group",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Hover demographic group",
+              "description": "Hover a user glyph or demographic group to highlight other users in the same group and linked groups and topics in coordinated views.",
+              "evidence": {
+                "passageIds": [
+                  70,
+                  71
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "user-cluster-plot.show-linked-users",
+              "capabilityKind": "Information",
+              "capabilityName": "Show linked users",
+              "description": "Highlight corresponding users when a demographic group or topic is highlighted in the combined demographic-topic view.",
+              "evidence": {
+                "passageIds": [
+                  71
+                ],
+                "confidence": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "glyph-legend",
+          "subViewName": "Glyph legend",
+          "nameSource": "inferred",
+          "description": "Legend explaining the gender, age, and education glyph encodings.",
+          "evidence": {
+            "passageIds": [
+              69
+            ],
+            "figureRefs": [
+              "Figure 1B"
+            ],
+            "confidence": 0.99
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "StructuredText",
+            "subKind": "TableLike",
+            "description": "Legend mapping symbols, ring fill, and letters to gender, age-group, and education values.",
+            "evidence": {
+              "passageIds": [
+                69
+              ],
+              "figureRefs": [
+                "source-corpus/view-images/DemographicVis/2.png"
+              ],
+              "confidence": 1.0
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "glyph-legend.decode-glyphs",
+              "capabilityKind": "Information",
+              "capabilityName": "Decode demographic glyphs",
+              "description": "Decode gender, age group, and education from each user glyph.",
+              "evidence": {
+                "passageIds": [
+                  69
+                ],
+                "confidence": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "feature-ranking-view",
+      "viewName": "Feature ranking view",
+      "nameSource": "explicit",
+      "aliases": [
+        "Figure 1C",
+        "feature table"
+      ],
+      "description": "Expandable table comparing feature contributions and cumulative predictive accuracy across demographic variables.",
+      "viewImages": [
+        "view-images/3.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          46,
+          48,
+          49,
+          50,
+          72,
+          73,
+          74
+        ],
+        "figureRefs": [
+          "Figure 1C",
+          "Figure 5"
+        ],
+        "confidence": 1.0
+      },
+      "subViews": [
+        {
+          "subViewId": "feature-ranking-table",
+          "subViewName": "Feature table",
+          "nameSource": "explicit",
+          "description": "Table with feature rows, demographic-variable columns, a contribution section, and a cumulative-AUC section.",
+          "evidence": {
+            "passageIds": [
+              48,
+              49,
+              50,
+              73,
+              74
+            ],
+            "figureRefs": [
+              "Figure 5"
+            ],
+            "confidence": 1.0
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "feature-ranking-table.cells",
+                "markType": "cell",
+                "encoding": {
+                  "row": [
+                    {
+                      "field": "feature or cumulative feature set",
+                      "type": "categorical",
+                      "description": "Rows align individual feature groups or cumulative feature combinations."
+                    }
+                  ],
+                  "column": [
+                    {
+                      "field": "demographic variable",
+                      "type": "categorical",
+                      "description": "Columns align demographic values being predicted."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "single-feature contribution",
+                      "type": "quantitative",
+                      "description": "Blue cell opacity represents the contribution percentage in the top table."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "contribution or AUC value",
+                      "type": "quantitative",
+                      "description": "Cell text reports the predictive contribution or cumulative accuracy."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "feature-ranking-table.accuracy-bars",
+                "markType": "bar",
+                "encoding": {
+                  "size": [
+                    {
+                      "field": "cumulative AUC accuracy",
+                      "type": "quantitative",
+                      "description": "Horizontal bar length represents cumulative predictive accuracy in the bottom table."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                48,
+                49,
+                50,
+                74
+              ],
+              "figureRefs": [
+                "Figure 5",
+                "source-corpus/view-images/DemographicVis/3.png"
+              ],
+              "confidence": 0.99
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "feature-ranking-table.read-feature-contributions",
+              "capabilityKind": "Information",
+              "capabilityName": "Read feature contributions",
+              "description": "Compare how topic, linguistic, subreddit, and other features contribute to predicting demographic variables.",
+              "evidence": {
+                "passageIds": [
+                  48,
+                  49,
+                  73,
+                  74
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "feature-ranking-table.read-cumulative-accuracy",
+              "capabilityKind": "Information",
+              "capabilityName": "Read cumulative accuracy",
+              "description": "Read cumulative AUC values as progressively more feature groups are incorporated.",
+              "evidence": {
+                "passageIds": [
+                  48,
+                  50,
+                  74
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "feature-ranking-table.expand-linguistic-features",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Expand linguistic features",
+              "description": "Expand the linguistic-feature row to show the five highest-ranked LIWC dimensions.",
+              "evidence": {
+                "passageIds": [
+                  76,
+                  77
+                ],
+                "figureRefs": [
+                  "Figure 5"
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "feature-ranking-table.inspect-feature-definition",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Inspect feature definition",
+              "description": "Hover a linguistic-feature cell to display its definition.",
+              "evidence": {
+                "passageIds": [
+                  76
+                ],
+                "confidence": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "posts-view",
+      "viewName": "Posts view",
+      "nameSource": "caption",
+      "aliases": [
+        "Figure 1D",
+        "post view"
+      ],
+      "description": "Details-on-demand view listing posts containing a selected bigram and showing the selected post in context.",
+      "viewImages": [
+        "view-images/4.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          2,
+          65
+        ],
+        "figureRefs": [
+          "Figure 1D"
+        ],
+        "confidence": 1.0
+      },
+      "subViews": [
+        {
+          "subViewId": "posts-table",
+          "subViewName": "Post list",
+          "nameSource": "inferred",
+          "description": "Tabular list of posts containing the requested bigram.",
+          "evidence": {
+            "passageIds": [
+              65
+            ],
+            "figureRefs": [
+              "Figure 1D"
+            ],
+            "confidence": 0.99
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "TableView",
+            "subKind": "Table",
+            "description": "Table showing anonymized user, post title or text, subreddit/topic, votes, and timestamp for matching posts.",
+            "evidence": {
+              "passageIds": [
+                65
+              ],
+              "figureRefs": [
+                "source-corpus/view-images/DemographicVis/4.png"
+              ],
+              "confidence": 0.99
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "posts-table.show-matching-posts",
+              "capabilityKind": "Information",
+              "capabilityName": "Show matching posts",
+              "description": "List Reddit posts that contain the bigram clicked in a topic word cloud.",
+              "evidence": {
+                "passageIds": [
+                  65,
+                  100
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "capabilityId": "posts-table.select-post",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select post",
+              "description": "Select a listed post for detailed reading in the lower detail region.",
+              "evidence": {
+                "figureRefs": [
+                  "source-corpus/view-images/DemographicVis/4.png"
+                ],
+                "confidence": 0.92
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "post-detail",
+          "subViewName": "Post detail",
+          "nameSource": "inferred",
+          "description": "Lower detail region showing the title and full selected post text with the matched bigram emphasized.",
+          "evidence": {
+            "passageIds": [
+              65
+            ],
+            "figureRefs": [
+              "source-corpus/view-images/DemographicVis/4.png"
+            ],
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Inspector",
+            "subKind": "TextSnippet",
+            "description": "Text inspector for reading the selected Reddit post and understanding the selected bigram in context.",
+            "evidence": {
+              "passageIds": [
+                65
+              ],
+              "figureRefs": [
+                "Figure 1D"
+              ],
+              "confidence": 0.99
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "post-detail.read-bigram-context",
+              "capabilityKind": "Information",
+              "capabilityName": "Read bigram context",
+              "description": "Read how the selected bigram is used in an underlying post together with post metadata.",
+              "evidence": {
+                "passageIds": [
+                  65
+                ],
+                "confidence": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coordinationInfo": [
+    {
+      "coordinationId": "coord-starting-dimension-parsets",
+      "source": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "display-controls"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "display-controls",
+        "capabilityId": "display-controls.choose-starting-dimension"
+      },
+      "targets": [
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "parallel-sets"
+        }
+      ],
+      "coordinationType": "ParameterBinding",
+      "evidence": {
+        "passageIds": [
+          60
+        ],
+        "figureRefs": [
+          "Figure 1A",
+          "source-corpus/view-images/DemographicVis/1.png"
+        ],
+        "quotes": [
+          "the first dimension in ParSets determines the color assignment"
+        ],
+        "reasoning": "The selected starting-dimension parameter determines the Parallel Sets first dimension and its color assignment.",
+        "confidence": 1.0
+      }
+    },
+    {
+      "coordinationId": "coord-parsets-topics-hover",
+      "source": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "parallel-sets"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "parallel-sets",
+        "capabilityId": "parallel-sets.hover-demographic-group"
+      },
+      "targets": [
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "topic-streams"
+        },
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "word-cloud"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "topic-streams",
+          "capabilityId": "topic-streams.show-linked-topics"
+        },
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "word-cloud",
+          "capabilityId": "word-cloud.show-linked-topic-terms"
+        }
+      ],
+      "coordinationType": "BrushingLinking",
+      "evidence": {
+        "passageIds": [
+          39,
+          64
+        ],
+        "figureRefs": [
+          "Figure 4"
+        ],
+        "quotes": [
+          "hovering the mouse over a certain demographic group would highlight the corresponding topic feature(s)"
+        ],
+        "confidence": 1.0
+      }
+    },
+    {
+      "coordinationId": "coord-topic-parsets-hover",
+      "source": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "topic-streams"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "topic-streams",
+        "capabilityId": "topic-streams.hover-topic"
+      },
+      "targets": [
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "parallel-sets"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "parallel-sets",
+          "capabilityId": "parallel-sets.show-linked-demographic-group"
+        }
+      ],
+      "coordinationType": "BrushingLinking",
+      "evidence": {
+        "passageIds": [
+          64
+        ],
+        "quotes": [
+          "hovering over a particular topic stream would highlight the demographic group(s)"
+        ],
+        "confidence": 1.0
+      }
+    },
+    {
+      "coordinationId": "coord-cluster-demographic-topics-hover",
+      "source": {
+        "viewId": "user-cluster-view",
+        "subViewId": "user-cluster-plot"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "user-cluster-view",
+        "subViewId": "user-cluster-plot",
+        "capabilityId": "user-cluster-plot.hover-demographic-group"
+      },
+      "targets": [
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "parallel-sets"
+        },
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "topic-streams"
+        },
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "word-cloud"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "parallel-sets",
+          "capabilityId": "parallel-sets.show-linked-demographic-group"
+        },
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "topic-streams",
+          "capabilityId": "topic-streams.show-linked-topics"
+        },
+        {
+          "viewId": "demographic-topic-view",
+          "subViewId": "word-cloud",
+          "capabilityId": "word-cloud.show-linked-topic-terms"
+        }
+      ],
+      "coordinationType": "BrushingLinking",
+      "evidence": {
+        "passageIds": [
+          71
+        ],
+        "quotes": [
+          "Hovering over a certain demographic group in the cluster view will lead to highlighting of the corresponding demographic group in the ParSets and the corresponding topics."
+        ],
+        "confidence": 1.0
+      }
+    },
+    {
+      "coordinationId": "coord-parsets-cluster-hover",
+      "source": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "parallel-sets"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "parallel-sets",
+        "capabilityId": "parallel-sets.hover-demographic-group"
+      },
+      "targets": [
+        {
+          "viewId": "user-cluster-view",
+          "subViewId": "user-cluster-plot"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "user-cluster-view",
+          "subViewId": "user-cluster-plot",
+          "capabilityId": "user-cluster-plot.show-linked-users"
+        }
+      ],
+      "coordinationType": "BrushingLinking",
+      "evidence": {
+        "passageIds": [
+          71
+        ],
+        "quotes": [
+          "when highlighting a particular demographic group or a topic in the ParSets+word cloud view, the corresponding group will be highlighted in the cluster view"
+        ],
+        "confidence": 1.0
+      }
+    },
+    {
+      "coordinationId": "coord-topic-cluster-hover",
+      "source": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "topic-streams"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "topic-streams",
+        "capabilityId": "topic-streams.hover-topic"
+      },
+      "targets": [
+        {
+          "viewId": "user-cluster-view",
+          "subViewId": "user-cluster-plot"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "user-cluster-view",
+          "subViewId": "user-cluster-plot",
+          "capabilityId": "user-cluster-plot.show-linked-users"
+        }
+      ],
+      "coordinationType": "BrushingLinking",
+      "evidence": {
+        "passageIds": [
+          71
+        ],
+        "quotes": [
+          "when highlighting a particular demographic group or a topic in the ParSets+word cloud view, the corresponding group will be highlighted in the cluster view"
+        ],
+        "confidence": 1.0
+      }
+    },
+    {
+      "coordinationId": "coord-bigram-post-details",
+      "source": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "word-cloud"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "demographic-topic-view",
+        "subViewId": "word-cloud",
+        "capabilityId": "word-cloud.open-bigram-posts"
+      },
+      "targets": [
+        {
+          "viewId": "posts-view",
+          "subViewId": "posts-table"
+        },
+        {
+          "viewId": "posts-view",
+          "subViewId": "post-detail"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "posts-view",
+          "subViewId": "posts-table",
+          "capabilityId": "posts-table.show-matching-posts"
+        },
+        {
+          "viewId": "posts-view",
+          "subViewId": "post-detail",
+          "capabilityId": "post-detail.read-bigram-context"
+        }
+      ],
+      "coordinationType": "DetailsOnDemand",
+      "evidence": {
+        "passageIds": [
+          65
+        ],
+        "figureRefs": [
+          "Figure 1D"
+        ],
+        "quotes": [
+          "clicking on a bigram in a topic brings up a list of posts that contain the bigram"
+        ],
+        "confidence": 1.0
+      }
+    }
+  ]
+}

@@ -1,3 +1,35 @@
-assets/
 .DS_Store
-static/images/.DS_Store
+
+# Keep local and historical materials private by default.
+assets/*
+
+# Current paper and the figures linked from the project page.
+!assets/paper.pdf
+!assets/figures/
+assets/figures/*
+!assets/figures/schema.pdf
+!assets/figures/explorer.pdf
+!assets/figures/extraction.pdf
+!assets/figures/collection.pdf
+!assets/figures/benchmark-construction-ecoalvis.pdf
+!assets/figures/workflow-case-mapping-ecoalvis.pdf
+
+# Current schema and the three explicitly released knowledge base records.
+!assets/2-schema/
+assets/2-schema/*
+!assets/2-schema/README.md
+!assets/2-schema/schema-overview.md
+!assets/2-schema/field-dictionary.md
+!assets/2-schema/source-code.md
+!assets/2-schema/source-code/
+assets/2-schema/source-code/*
+!assets/2-schema/source-code/schema_common.py
+!assets/2-schema/source-code/system_spec_schema.py
+!assets/2-schema/source-code/intended_workflow_schema.py
+!assets/2-schema/source-code/case_study_schema.py
+!assets/2-schema/examples/
+assets/2-schema/examples/*
+!assets/2-schema/examples/README.md
+!assets/2-schema/examples/TacSimurTacticBased/
+!assets/2-schema/examples/DemographicVis/
+!assets/2-schema/examples/RuleMatrix/

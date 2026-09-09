@@ -1,0 +1,974 @@
+{
+  "paperName": "DemographicVis",
+  "systemName": "DemographicVis",
+  "systemSpecPath": "system-spec.json",
+  "caseStudies": [
+    {
+      "caseId": "young-ladies-interests",
+      "caseTitle": "What are young ladies interested in?",
+      "caseStudyKind": "ScenarioDemonstration",
+      "scenario": {
+        "domainProblem": "Understanding the topic interests expressed in Reddit posts by young female demographic groups.",
+        "analysisGoal": "Characterize and compare the interests of teenage girls and college-age young women.",
+        "datasetContext": "Survey-linked Reddit posts from users grouped by sex, age, and education.",
+        "stakes": "The analysis may reveal meaningful cultural interests and potentially concerning discussion themes.",
+        "primaryQuestionId": "q-young-ladies"
+      },
+      "questions": [
+        {
+          "questionId": "q-young-ladies",
+          "questionText": "What are young ladies interested in?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              80,
+              81,
+              84
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesisId": "h-reddit-sample",
+          "hypothesisText": "The Japanese-comics interest among the youngest group is due to the particular Reddit sample.",
+          "status": "Rejected",
+          "relatedQuestionIds": [
+            "q-young-ladies"
+          ],
+          "evidence": {
+            "passageIds": [
+              83
+            ],
+            "quotes": [
+              "At first we thought this finding is due to the particular sample on Reddit."
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "teenage-girls",
+          "narrativeOrder": 1,
+          "episodeTitle": "Examine the youngest female group",
+          "localGoal": "Identify the prominent interests of females aged 17 or younger with less than a high-school degree and interpret a concerning term.",
+          "focusQuestionIds": [
+            "q-young-ladies"
+          ],
+          "strategyText": "Hover the demographic group to reveal its most probable topic, drill into a concerning bigram through source posts, and compare one finding against prior research.",
+          "steps": [
+            {
+              "stepId": "identify-teenage-topic",
+              "stepOrder": 1,
+              "narrativeSummary": "The analysis begins with the group “female, 17 or younger, less than high school degree” and hovers over it to reveal its most probable topic.",
+              "questionsAddressed": [
+                "q-young-ladies"
+              ],
+              "intentText": "Examine the interests of teenage girls attending high school or middle school.",
+              "operationText": "Hover over the selected demographic group to highlight its corresponding topic.",
+              "usedSubViews": [
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "parallel-sets"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "topic-streams"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "word-cloud"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "parallel-sets",
+                  "capabilityId": "parallel-sets.hover-demographic-group"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "topic-streams",
+                  "capabilityId": "topic-streams.show-linked-topics"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "word-cloud",
+                  "capabilityId": "word-cloud.read-ranked-bigrams"
+                }
+              ],
+              "targetDataDescription": [
+                "female users aged 17 or younger with less than a high-school degree"
+              ],
+              "observations": [
+                {
+                  "description": "The highlighted topic contains terms about the Japanese graphic novel “nurarihyon mago,” nail polish, and panic attacks.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "demographic-topic-view",
+                      "subViewId": "word-cloud"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "most probable topic for the selected group"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      81
+                    ],
+                    "figureRefs": [
+                      "Figure 6"
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "Japanese comics, makeup-related terms, and “panic attack” were identified in the group's most probable topic.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  81,
+                  82
+                ],
+                "figureRefs": [
+                  "Figure 6"
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "stepId": "inspect-panic-attack-posts",
+              "stepOrder": 2,
+              "narrativeSummary": "The term “panic attack” is clicked to inspect posts in which it occurs.",
+              "questionsAddressed": [
+                "q-young-ladies"
+              ],
+              "intentText": "Understand the potentially concerning “panic attack” term in context.",
+              "operationText": "Click the term and inspect the matching Reddit posts.",
+              "usedSubViews": [
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "word-cloud"
+                },
+                {
+                  "viewId": "posts-view",
+                  "subViewId": "posts-table"
+                },
+                {
+                  "viewId": "posts-view",
+                  "subViewId": "post-detail"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "word-cloud",
+                  "capabilityId": "word-cloud.open-bigram-posts"
+                },
+                {
+                  "viewId": "posts-view",
+                  "subViewId": "posts-table",
+                  "capabilityId": "posts-table.show-matching-posts"
+                },
+                {
+                  "viewId": "posts-view",
+                  "subViewId": "post-detail",
+                  "capabilityId": "post-detail.read-bigram-context"
+                }
+              ],
+              "targetDataDescription": [
+                "posts containing the term “panic attack”"
+              ],
+              "observations": [
+                {
+                  "description": "The opened posts discuss mental illness.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "posts-view",
+                      "subViewId": "post-detail"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      81
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "The mental-illness context makes the “panic attack” topic potentially concerning for this young group.",
+                  "relatedQuestionIds": [
+                    "q-young-ladies"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "posts-view",
+                      "subViewId": "post-detail"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      81
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The selected term was grounded in posts discussing mental illness.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  81
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "stepId": "compare-external-finding",
+              "stepOrder": 3,
+              "narrativeSummary": "The Japanese-comics finding is compared with a prior study of 75,000 Facebook users.",
+              "questionsAddressed": [
+                "q-young-ladies"
+              ],
+              "hypothesesTouched": [
+                "h-reddit-sample"
+              ],
+              "intentText": "Assess whether the comics interest may be peculiar to the Reddit sample.",
+              "operationText": "Compare the result with a reported Facebook study.",
+              "observations": [
+                {
+                  "description": "The Facebook study also found dominant Japanese-comics interests among young users.",
+                  "targetDataDescription": [
+                    "reported interests of 75,000 Facebook users"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      83
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "The agreement with the Facebook study argues against treating the Japanese-comics finding as only a peculiarity of the Reddit sample.",
+                  "relatedQuestionIds": [
+                    "q-young-ladies"
+                  ],
+                  "relatedHypothesisIds": [
+                    "h-reddit-sample"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      83
+                    ],
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ],
+              "documentedOutcome": "The initial sample-specific explanation was not sustained by the comparison.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  83
+                ],
+                "confidence": 1.0
+              }
+            }
+          ],
+          "episodeOutcome": "The youngest group was characterized by Japanese-comics and makeup interests, while post inspection exposed a mental-health context for “panic attack”; external research weakened the sample-artifact explanation.",
+          "evidence": {
+            "passageIds": [
+              81,
+              82,
+              83
+            ],
+            "figureRefs": [
+              "Figure 6"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "college-women",
+          "narrativeOrder": 2,
+          "episodeTitle": "Examine college-age young women",
+          "localGoal": "Identify the interests of females aged 18–20 with some college and compare them with the younger group.",
+          "focusQuestionIds": [
+            "q-young-ladies"
+          ],
+          "strategyText": "Select the next age/education group, read its two highlighted topics, and synthesize continuity and evolution relative to the prior group.",
+          "steps": [
+            {
+              "stepId": "identify-college-topics",
+              "stepOrder": 1,
+              "narrativeSummary": "The analysis moves to “female, 18-20, some college but no degree,” and selects the group to reveal two descriptive topics.",
+              "questionsAddressed": [
+                "q-young-ladies"
+              ],
+              "intentText": "Characterize the interests of likely college students.",
+              "operationText": "Select the group and read its two highlighted topic word clouds.",
+              "usedSubViews": [
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "parallel-sets"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "topic-streams"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "word-cloud"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "parallel-sets",
+                  "capabilityId": "parallel-sets.hover-demographic-group"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "topic-streams",
+                  "capabilityId": "topic-streams.show-linked-topics"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "word-cloud",
+                  "capabilityId": "word-cloud.read-ranked-bigrams"
+                }
+              ],
+              "targetDataDescription": [
+                "female users aged 18–20 with some college but no degree"
+              ],
+              "observations": [
+                {
+                  "description": "One highlighted topic includes makeup terms such as “makeupexchange comments” and “urban decay”; the other includes “male female,” “gender identity,” and “birth control.”",
+                  "basedOnViews": [
+                    {
+                      "viewId": "demographic-topic-view",
+                      "subViewId": "word-cloud"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      84
+                    ],
+                    "figureRefs": [
+                      "Figure 7"
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "Makeup and gender-identity-related discussions were identified for the college-age group.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  84,
+                  85
+                ],
+                "figureRefs": [
+                  "Figure 7"
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "stepId": "compare-interest-evolution",
+              "stepOrder": 2,
+              "narrativeSummary": "The college-age topics are compared with the interests observed for the younger generation.",
+              "questionsAddressed": [
+                "q-young-ladies"
+              ],
+              "intentText": "Determine what continues and what changes across the two young female groups.",
+              "operationText": "Compare the documented topic terms between the two successive groups.",
+              "producedInsights": [
+                {
+                  "description": "Makeup interest continues into the 18–20 group, while discussion also evolves toward gender identity and related issues.",
+                  "relatedQuestionIds": [
+                    "q-young-ladies"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      84
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The narrative identifies both continuity and evolution in interests between the younger and college-age groups.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  84
+                ],
+                "confidence": 1.0
+              }
+            }
+          ],
+          "episodeOutcome": "The older young-women group retained makeup-related interests while adding discussion of gender identity and birth control.",
+          "evidence": {
+            "passageIds": [
+              84,
+              85
+            ],
+            "figureRefs": [
+              "Figure 7"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "description": "Across the two young female groups, makeup-related discussion persists, while the older group also discusses gender identity and birth control.",
+            "relatedQuestionIds": [
+              "q-young-ladies"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "demographic-topic-view",
+                "subViewId": "word-cloud"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                81,
+                84
+              ],
+              "figureRefs": [
+                "Figure 6",
+                "Figure 7"
+              ],
+              "confidence": 1.0
+            },
+            "inferenceType": "CrossModalSynthesis"
+          },
+          {
+            "description": "The youngest group's “panic attack” term leads to posts about mental illness and is treated as potentially concerning.",
+            "relatedQuestionIds": [
+              "q-young-ladies"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "posts-view",
+                "subViewId": "post-detail"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                81
+              ],
+              "confidence": 1.0
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "claimedSystemValue": "DemographicVis links demographic combinations to interpretable topic terms and lets the analyst inspect source posts for contextual understanding.",
+        "evidence": {
+          "passageIds": [
+            81,
+            84
+          ],
+          "figureRefs": [
+            "Figure 6",
+            "Figure 7"
+          ],
+          "confidence": 0.99
+        },
+        "inferenceType": "CrossModalSynthesis"
+      },
+      "overallStrategySummary": "Move through two related demographic groups, inspect their highlighted topics, use post details for ambiguous terms, and compare the resulting interests across age/education groups.",
+      "caseNarrativeSummary": "The demonstration first examines teenage girls, finding Japanese-comics, makeup, and a concerning mental-health term, then examines college-age young women and finds continued makeup interest plus gender-identity discussion.",
+      "evidence": {
+        "passageIds": [
+          79,
+          80,
+          81,
+          83,
+          84
+        ],
+        "figureRefs": [
+          "Figure 6",
+          "Figure 7"
+        ],
+        "confidence": 1.0
+      },
+      "inferenceType": "Explicit"
+    },
+    {
+      "caseId": "interest-diversity-overlap",
+      "caseTitle": "Exploring diversity and overlap in interests among demographic groups",
+      "caseStudyKind": "ScenarioDemonstration",
+      "scenario": {
+        "domainProblem": "Understanding whether demographic groups on Reddit have cohesive, distinct, or overlapping topic interests.",
+        "analysisGoal": "Inspect user-interest clusters and explain a mixed cluster through its demographic composition and shared topic.",
+        "datasetContext": "409 survey-linked Reddit users embedded by similarity of their topic distributions.",
+        "stakes": "Discovering shared interests can reveal relationships between otherwise different demographic groups.",
+        "primaryQuestionId": "q-overlap"
+      },
+      "questions": [
+        {
+          "questionId": "q-overlap",
+          "questionText": "Which demographic groups have distinct interests, and which groups share similar interests?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              87,
+              88,
+              89
+            ],
+            "confidence": 0.99
+          },
+          "inferenceType": "StrongInference"
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesisId": "h-mixed-shared-interest",
+          "hypothesisText": "A mixed cluster containing two demographic groups indicates that those groups share a topic interest.",
+          "status": "Supported",
+          "relatedQuestionIds": [
+            "q-overlap"
+          ],
+          "evidence": {
+            "passageIds": [
+              89
+            ],
+            "quotes": [
+              "the clusters with different demographic groups denote groups that share similar interests"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "scan-cluster-structure",
+          "narrativeOrder": 1,
+          "episodeTitle": "Scan the interest-cluster overview",
+          "localGoal": "Identify separable, cohesive, and mixed user clusters.",
+          "focusQuestionIds": [
+            "q-overlap"
+          ],
+          "strategyText": "Inspect the cluster layout and decode glyphs to compare the demographic composition of outer and central clusters.",
+          "steps": [
+            {
+              "stepId": "inspect-separable-clusters",
+              "stepOrder": 1,
+              "narrativeSummary": "The cluster view is scanned to find separable and cohesive groups around its outer area.",
+              "questionsAddressed": [
+                "q-overlap"
+              ],
+              "intentText": "Identify demographic groups whose users have distinct and cohesive interests.",
+              "operationText": "Read the spatial clusters and demographic glyphs in the user cluster view.",
+              "usedSubViews": [
+                {
+                  "viewId": "user-cluster-view",
+                  "subViewId": "user-cluster-plot"
+                },
+                {
+                  "viewId": "user-cluster-view",
+                  "subViewId": "glyph-legend"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "user-cluster-view",
+                  "subViewId": "user-cluster-plot",
+                  "capabilityId": "user-cluster-plot.read-interest-clusters"
+                },
+                {
+                  "viewId": "user-cluster-view",
+                  "subViewId": "glyph-legend",
+                  "capabilityId": "glyph-legend.decode-glyphs"
+                }
+              ],
+              "targetDataDescription": [
+                "female 21–29 bachelor-degree group",
+                "male 17-or-younger less-than-high-school group",
+                "outer user clusters"
+              ],
+              "observations": [
+                {
+                  "description": "A large orange cluster at the top and a blue cluster at the bottom are separable and cohesive.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "user-cluster-view",
+                      "subViewId": "user-cluster-plot"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      89
+                    ],
+                    "figureRefs": [
+                      "Figure 8"
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "The two example demographic groups have fairly distinct but internally cohesive interests.",
+                  "relatedQuestionIds": [
+                    "q-overlap"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "user-cluster-view",
+                      "subViewId": "user-cluster-plot"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      89
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The overview reveals demographic groups with distinct, cohesive topic interests.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  88,
+                  89
+                ],
+                "figureRefs": [
+                  "Figure 8"
+                ],
+                "confidence": 1.0
+              }
+            }
+          ],
+          "episodeOutcome": "Separable outer clusters were interpreted as demographic groups with distinct and cohesive interests.",
+          "evidence": {
+            "passageIds": [
+              89
+            ],
+            "figureRefs": [
+              "Figure 8"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "analyze-mixed-cluster",
+          "narrativeOrder": 2,
+          "episodeTitle": "Explain a mixed cluster",
+          "localGoal": "Determine why two different demographic groups appear in the same cluster.",
+          "focusQuestionIds": [
+            "q-overlap"
+          ],
+          "strategyText": "Choose a mixed cluster, hover its groups to reveal a shared topic, then inspect posts and subreddit context to interpret that topic.",
+          "steps": [
+            {
+              "stepId": "trace-shared-topic",
+              "stepOrder": 1,
+              "narrativeSummary": "The example focuses on a mixed cluster containing females aged 21–29 with some college and males aged 30–39 with master's degrees; hovering over the two groups reveals their common topic.",
+              "questionsAddressed": [
+                "q-overlap"
+              ],
+              "hypothesesTouched": [
+                "h-mixed-shared-interest"
+              ],
+              "intentText": "Identify the topic that explains the mixed cluster.",
+              "operationText": "Read the two demographic groups shown in the enlarged Figure 8 example, then hover the groups in the cluster view and read the corresponding highlighted topic.",
+              "usedSubViews": [
+                {
+                  "viewId": "user-cluster-view",
+                  "subViewId": "user-cluster-plot"
+                },
+                {
+                  "viewId": "user-cluster-view",
+                  "subViewId": "glyph-legend"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "topic-streams"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "word-cloud"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "user-cluster-view",
+                  "subViewId": "user-cluster-plot",
+                  "capabilityId": "user-cluster-plot.read-interest-clusters"
+                },
+                {
+                  "viewId": "user-cluster-view",
+                  "subViewId": "glyph-legend",
+                  "capabilityId": "glyph-legend.decode-glyphs"
+                },
+                {
+                  "viewId": "user-cluster-view",
+                  "subViewId": "user-cluster-plot",
+                  "capabilityId": "user-cluster-plot.hover-demographic-group"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "topic-streams",
+                  "capabilityId": "topic-streams.show-linked-topics"
+                },
+                {
+                  "viewId": "demographic-topic-view",
+                  "subViewId": "word-cloud",
+                  "capabilityId": "word-cloud.read-ranked-bigrams"
+                }
+              ],
+              "targetDataDescription": [
+                "female 21–29 some-college users",
+                "male 30–39 master's-degree users",
+                "one mixed cluster"
+              ],
+              "observations": [
+                {
+                  "description": "The enlarged Figure 8 example contains users from the two specified demographic groups.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "user-cluster-view",
+                      "subViewId": "user-cluster-plot"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      89,
+                      90
+                    ],
+                    "figureRefs": [
+                      "Figure 8"
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "description": "The coordinated topic display shows a common topic for the two groups.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "demographic-topic-view",
+                      "subViewId": "word-cloud"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      89
+                    ],
+                    "figureRefs": [
+                      "Figure 8"
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "A shared topic candidate was identified for the mixed cluster.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  89,
+                  90
+                ],
+                "figureRefs": [
+                  "Figure 8"
+                ],
+                "confidence": 1.0
+              }
+            },
+            {
+              "stepId": "inspect-supporting-posts",
+              "stepOrder": 2,
+              "narrativeSummary": "The posts and subreddits associated with the two groups are examined to interpret the shared topic.",
+              "questionsAddressed": [
+                "q-overlap"
+              ],
+              "hypothesesTouched": [
+                "h-mixed-shared-interest"
+              ],
+              "intentText": "Verify what shared interest the common topic represents.",
+              "operationText": "Examine relevant posts and the subreddits in which the groups published them; the source does not identify a specific interface path for this examination.",
+              "targetDataDescription": [
+                "posts and subreddits associated with the two groups"
+              ],
+              "observations": [
+                {
+                  "description": "The posts and subreddit context center on “weight loss” and “lose weight.”",
+                  "evidence": {
+                    "passageIds": [
+                      89
+                    ],
+                    "quotes": [
+                      "Through a quick examination of the posts and subreddit"
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "description": "The two otherwise different demographic groups share an interest in weight loss.",
+                  "relatedQuestionIds": [
+                    "q-overlap"
+                  ],
+                  "relatedHypothesisIds": [
+                    "h-mixed-shared-interest"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "user-cluster-view",
+                      "subViewId": "user-cluster-plot"
+                    },
+                    {
+                      "viewId": "demographic-topic-view",
+                      "subViewId": "word-cloud"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      89
+                    ],
+                    "figureRefs": [
+                      "Figure 8"
+                    ],
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "documentedOutcome": "The common topic was interpreted as a shared weight-loss interest, supporting the mixed-cluster hypothesis.",
+              "inferenceType": "Explicit",
+              "sourceEvidence": {
+                "passageIds": [
+                  89
+                ],
+                "quotes": [
+                  "Through a quick examination of the posts and subreddit"
+                ],
+                "confidence": 1.0
+              }
+            }
+          ],
+          "episodeOutcome": "The mixed cluster was explained by a shared interest in weight loss between two different demographic groups.",
+          "evidence": {
+            "passageIds": [
+              89,
+              90
+            ],
+            "figureRefs": [
+              "Figure 8"
+            ],
+            "confidence": 1.0
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "description": "Separable outer clusters correspond to groups with distinct cohesive interests, while the investigated mixed cluster joins two demographic groups through a shared weight-loss interest.",
+            "relatedQuestionIds": [
+              "q-overlap"
+            ],
+            "relatedHypothesisIds": [
+              "h-mixed-shared-interest"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "user-cluster-view",
+                "subViewId": "user-cluster-plot"
+              },
+              {
+                "viewId": "demographic-topic-view",
+                "subViewId": "word-cloud"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                89
+              ],
+              "figureRefs": [
+                "Figure 8"
+              ],
+              "confidence": 1.0
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "claimedSystemValue": "Coordinated cluster, demographic, and topic views make distinct and overlapping interests discoverable; examination of posts and subreddit context helps interpret the shared topic.",
+        "evidence": {
+          "passageIds": [
+            89
+          ],
+          "figureRefs": [
+            "Figure 8"
+          ],
+          "confidence": 0.98
+        },
+        "inferenceType": "CrossModalSynthesis"
+      },
+      "overallStrategySummary": "Scan the topic-based user clusters, focus on a mixed cluster, reveal its coordinated demographic and topic context, and inspect posts to explain the shared interest.",
+      "caseNarrativeSummary": "The demonstration first identifies separable demographic clusters, then investigates a mixed cluster and finds that females aged 21–29 with some college and males aged 30–39 with master's degrees share a weight-loss interest.",
+      "evidence": {
+        "passageIds": [
+          87,
+          88,
+          89,
+          90,
+          91
+        ],
+        "figureRefs": [
+          "Figure 8"
+        ],
+        "confidence": 1.0
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "paperLevelUsageClaims": [
+    "DemographicVis supports comparing and making sense of demographic groups through user-generated Reddit content."
+  ],
+  "evidence": {
+    "passageIds": [
+      78,
+      79,
+      81,
+      84,
+      89
+    ],
+    "figureRefs": [
+      "Figure 6",
+      "Figure 7",
+      "Figure 8"
+    ],
+    "confidence": 1.0
+  },
+  "inferenceType": "Explicit"
+}

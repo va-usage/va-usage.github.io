@@ -1,0 +1,122 @@
+{
+  "paper_name": "RuleMatrix",
+  "interface_figure_id": "fig_1",
+  "needs_manual_review": false,
+  "interface_selection_reason": "Selected fig_1 as the unique interface figure because it has the highest interface score (1.00); next best score is 0.10.",
+  "figures": [
+    {
+      "fig_id": "fig_1",
+      "caption": "Fig. 1. Understanding the behavior of a trained neural network using the explanatory visual interface of RuleMatrix. The user uses the control panel (A) to specify the detail information to visualize (e.g., dataset, level of detail, rule filters). The rule-based representation is visualized as a matrix (B), where each row represents a rule, and each column is a feature used in the rules. The user can also filter the data or use a customized input in the data filter (C) and navigate the filtered dataset in the data table (D).",
+      "image_path": "figures/fig_1.png",
+      "primary_role": "interface",
+      "role_scores": {
+        "interface": 1.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows the complete full main system interface of RuleMatrix, with all multiple coordinated panels (control panel, rule visualization matrix, data filter, data table) that form the overall application layout, fitting the definition of interface.",
+      "interface_rank": 1,
+      "is_interface_figure": true,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_2",
+      "caption": "Fig. 2. The pipeline for creating a rule-based explanation interface. The rule induction step (1) takes (A) the training data and (B) the model to be explained as input, and produces (C) a rule list that approximates the original model. Then the rule list is filtered (2) according to user-specified thresholds of support and confidence. The rule list is visualized as RuleMatrix (3) to help users navigate and analyze the rules.",
+      "image_path": "figures/fig_2.png",
+      "primary_role": "intended_workflow",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 1.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure depicts the complete step-by-step pipeline/process for creating the rule-based explanation interface, which aligns with the definition of intended_workflow.",
+      "interface_rank": 3,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_3",
+      "caption": "Fig. 3. The performance of the algorithm under different sampling rates. The x-axis shows the logarithms of the sampling rates. The blue, orange, and green lines show the average fidelities and average lengths of the extracted rule lists on the Abalone, Bank Marketing and Pima datasets for 10 runs.",
+      "image_path": "figures/fig_3.png",
+      "primary_role": "evaluation",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 1.0,
+        "other": 0.0
+      },
+      "rationale": "This figure plots experimental performance results of the algorithm across different sampling rates and multiple datasets, which is an evaluation of algorithm performance.",
+      "interface_rank": 4,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_4",
+      "caption": "Fig. 4. The visualization design. A: The data flow visualizes the data that satisfies a rule as a flow into the rule, providing an overall sense of the order of the rules. B: The rule matrix presents each rule as a row and each feature as a column. The clauses are visualized as glyphs in the corresponding cells. Users can click to expand a glyph to see the details of the distribution and the interval of the clause. C: The support view shows the fidelity of the rule for the provided data, and the evidence of the model’s predictions and errors under a certain rule. 1 - 3 : The designs of the glyph, the fidelity visualization, and the evidence visualization.",
+      "image_path": "figures/fig_4.png",
+      "primary_role": "other",
+      "role_scores": {
+        "interface": 0.1,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.9
+      },
+      "rationale": "This figure is a schematic illustration explaining the design of all visualization components and views of the proposed system, it is not a screenshot of the complete running system interface, nor does it fit the definitions of single view, intended workflow, case study, or evaluation result.",
+      "interface_rank": 2,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_5",
+      "caption": "Fig. 5. Using the RuleMatrix to understand a neural network trained on the Breast Cancer Wisconsin (Original) dataset.",
+      "image_path": "figures/fig_5.png",
+      "primary_role": "case_study",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.2,
+        "intended_workflow": 0.0,
+        "case_study": 0.8,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows a concrete use example and analysis walkthrough of applying the RuleMatrix approach to understand a neural network on the real-world Breast Cancer Wisconsin dataset, matching the case study role. It is a single visualization view, but its primary purpose is demonstrating this concrete analysis use case.",
+      "interface_rank": 5,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_6",
+      "caption": "Fig. 6. The use case of understanding a neural network trained on Pima Indian Diabetes dataset. A: The initial visualization of the list of 22 extracted rules, with an overall fidelity of 91%. The neural network has an accuracy of 79% on the training data. B: The applied data filter. The ranges of the features are highlighted with light blue. C: The visualization of the rule list with the filtered data. The accuracy of the original model drops to only 56%.",
+      "image_path": "figures/fig_6.png",
+      "primary_role": "case_study",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.1,
+        "intended_workflow": 0.0,
+        "case_study": 0.95,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows a concrete step-by-step analysis walkthrough/use example of understanding a trained neural network on the Pima Indian Diabetes dataset, which fits the definition of a case study. It demonstrates the analysis process in a specific use case rather than showing the full system interface, a general intended workflow, or abstract algorithm/evaluation results.",
+      "interface_rank": 6,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    }
+  ]
+}

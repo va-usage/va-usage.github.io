@@ -1,0 +1,569 @@
+{
+  "sample_id": "p11_prefix01",
+  "task": "Predict the next meaningful local analytic advance after the completed prefix. Use A (available system functionality), B (the general intended workflow), C (the initial case context), and D (completed episodes and their attached images). The workflow is a general guide: stages can be revisited, combined, or skipped; it is not the observed case trajectory and no current workflow stage is supplied. Predict a local goal and sets of canonical subview and capability references from A, with a short rationale grounded in the available context. Do not report the outcome of an action that has not yet occurred. A documented continuation is one possible analytic move, not necessarily the only defensible move. Return a JSON object with local_goal (string), used_subviews (objects with viewId and subViewId), used_capabilities (objects with viewId, subViewId and capabilityId), and rationale (string).",
+  "system_context": {
+    "systemName": "Action-Evaluator",
+    "views": [
+      {
+        "viewId": "player-view",
+        "viewName": "Player View",
+        "description": "Left-hand navigation view for finding important players and similar players.",
+        "subViews": [
+          {
+            "subViewId": "player-ranking-list",
+            "subViewName": "Player Ranking List",
+            "description": "Upper-left sortable player list with name labels and action-count indicators.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "player-ranking-list.show-ranked-players",
+                "capabilityName": "Show Ranked Players",
+                "capabilityKind": "Information",
+                "description": "Shows players with total and successful pass, dribble, and shot counts for importance comparison."
+              },
+              {
+                "capabilityId": "player-ranking-list.filter-players",
+                "capabilityName": "Filter Players",
+                "capabilityKind": "Interaction",
+                "description": "Filters displayed players by team, role, and top-n importance."
+              },
+              {
+                "capabilityId": "player-ranking-list.sort-players",
+                "capabilityName": "Sort Players",
+                "capabilityKind": "Interaction",
+                "description": "Sorts the player list by all or successful actions for pass, dribble, or shot."
+              },
+              {
+                "capabilityId": "player-ranking-list.select-player",
+                "capabilityName": "Select Player",
+                "capabilityKind": "Interaction",
+                "description": "Selects a player for analysis in the action view."
+              }
+            ]
+          },
+          {
+            "subViewId": "player-projection",
+            "subViewName": "Player Projection Component",
+            "description": "Lower-left scatterplot for navigating players by modeled decision-style similarity.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "player-projection.show-similar-players",
+                "capabilityName": "Show Similar Players",
+                "capabilityKind": "Information",
+                "description": "Shows player similarity through distance between projected glyphs and summarizes performance through glyph metrics."
+              },
+              {
+                "capabilityId": "player-projection.select-player",
+                "capabilityName": "Select Player",
+                "capabilityKind": "Interaction",
+                "description": "Selects a glyph's player for analysis in the action view."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "viewId": "action-view",
+        "viewName": "Action View",
+        "description": "Central investigation view for comparing a selected player's scores by match situation and action choice.",
+        "subViews": [
+          {
+            "subViewId": "match-situation-list",
+            "subViewName": "Match Situation List",
+            "description": "Left portion of the action view, combining a start-region heatmap with a sortable list of tactical match situations and their score summaries.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "match-situation-list.show-situations",
+                "capabilityName": "Show Match Situations",
+                "capabilityKind": "Information",
+                "description": "Shows tactics, defensive pressure, average reward and risk, and action frequency for each match situation."
+              },
+              {
+                "capabilityId": "match-situation-list.select-start-region",
+                "capabilityName": "Select Start Region",
+                "capabilityKind": "Interaction",
+                "description": "Selects actions by their start region in the player action heatmap."
+              },
+              {
+                "capabilityId": "match-situation-list.sort-situations",
+                "capabilityName": "Sort Match Situations",
+                "capabilityKind": "Interaction",
+                "description": "Sorts match-situation rows by the available metrics."
+              },
+              {
+                "capabilityId": "match-situation-list.select-situation",
+                "capabilityName": "Select Match Situation",
+                "capabilityKind": "Interaction",
+                "description": "Selects a match situation whose action choices and scores are shown in the action score list."
+              }
+            ]
+          },
+          {
+            "subViewId": "action-score-list",
+            "subViewName": "Action Score List",
+            "description": "Right portion of the action view, listing action choices under the selected situation with summary bars, expandable histograms, and match-level details.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "action-score-list.show-action-choices",
+                "capabilityName": "Show Action Choices",
+                "capabilityKind": "Information",
+                "description": "Shows action choices for the selected match situation with context, reward, risk, and frequency."
+              },
+              {
+                "capabilityId": "action-score-list.filter-action-choices",
+                "capabilityName": "Filter Action Choices",
+                "capabilityKind": "Interaction",
+                "description": "Filters action choices by pitch region or reward, risk, and frequency ranges."
+              },
+              {
+                "capabilityId": "action-score-list.sort-action-choices",
+                "capabilityName": "Sort Action Choices",
+                "capabilityKind": "Interaction",
+                "description": "Sorts action-choice rows by available metrics."
+              },
+              {
+                "capabilityId": "action-score-list.unfold-details",
+                "capabilityName": "Unfold Details",
+                "capabilityKind": "Interaction",
+                "description": "Expands summary bars into score histograms or opens a match-level sub-list."
+              },
+              {
+                "capabilityId": "action-score-list.highlight-score-bin",
+                "capabilityName": "Highlight Score Bin",
+                "capabilityKind": "Interaction",
+                "description": "Highlights the same actions across score histograms by clicking a histogram bar."
+              },
+              {
+                "capabilityId": "action-score-list.add-to-explanation",
+                "capabilityName": "Add Actions to Explanation",
+                "capabilityKind": "Interaction",
+                "description": "Adds an action-choice group to the explanation view for comparison and improvement analysis."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "viewId": "explanation-view",
+        "viewName": "Explanation View",
+        "description": "Right-hand view for comparing selected action choices and inspecting alternatives for individual actions.",
+        "subViews": [
+          {
+            "subViewId": "record-list",
+            "subViewName": "Record List",
+            "description": "Upper comparison list that records selected player/action-choice groups and exposes their individual actions.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "record-list.compare-actions",
+                "capabilityName": "Compare Selected Actions",
+                "capabilityKind": "Information",
+                "description": "Compares selected action choices from different players using diagrams and reward, risk, and frequency bars."
+              },
+              {
+                "capabilityId": "record-list.unfold-actions",
+                "capabilityName": "Unfold Individual Actions",
+                "capabilityKind": "Interaction",
+                "description": "Unfolds a selected group into individual actions with time and scores."
+              },
+              {
+                "capabilityId": "record-list.sort-actions",
+                "capabilityName": "Sort Individual Actions",
+                "capabilityKind": "Interaction",
+                "description": "Sorts individual actions by occurrence time or action score."
+              },
+              {
+                "capabilityId": "record-list.select-individual-action",
+                "capabilityName": "Select Individual Action",
+                "capabilityKind": "Interaction",
+                "description": "Selects an individual action for display in the ghost pitch."
+              }
+            ]
+          },
+          {
+            "subViewId": "ghost-pitch",
+            "subViewName": "Ghost Pitch",
+            "description": "Lower pitch view showing an individual action, player locations, and modeled score increments for alternative outcomes.",
+            "isVisualizationView": true,
+            "capabilities": [
+              {
+                "capabilityId": "ghost-pitch.show-action-alternatives",
+                "capabilityName": "Show Action and Alternatives",
+                "capabilityKind": "Information",
+                "description": "Shows player locations, the actual action, and score increments for alternative end locations or action types."
+              },
+              {
+                "capabilityId": "ghost-pitch.switch-score-type",
+                "capabilityName": "Switch Score Type",
+                "capabilityKind": "Interaction",
+                "description": "Switches the alternative outcome map between reward and risk scores."
+              },
+              {
+                "capabilityId": "ghost-pitch.switch-action-type",
+                "capabilityName": "Switch Action Type",
+                "capabilityKind": "Interaction",
+                "description": "Switches among alternative pass, dribble, and shot types."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "coordinations": [
+      {
+        "coordinationId": "coord-player-ranking-to-action",
+        "source": {
+          "viewId": "player-view",
+          "subViewId": "player-ranking-list"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "player-view",
+          "subViewId": "player-ranking-list",
+          "capabilityId": "player-ranking-list.select-player"
+        },
+        "targets": [
+          {
+            "viewId": "action-view",
+            "subViewId": "match-situation-list"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "action-view",
+            "subViewId": "match-situation-list",
+            "capabilityId": "match-situation-list.show-situations"
+          }
+        ],
+        "coordinationType": "SelectionLinking"
+      },
+      {
+        "coordinationId": "coord-player-projection-to-action",
+        "source": {
+          "viewId": "player-view",
+          "subViewId": "player-projection"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "player-view",
+          "subViewId": "player-projection",
+          "capabilityId": "player-projection.select-player"
+        },
+        "targets": [
+          {
+            "viewId": "action-view",
+            "subViewId": "match-situation-list"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "action-view",
+            "subViewId": "match-situation-list",
+            "capabilityId": "match-situation-list.show-situations"
+          }
+        ],
+        "coordinationType": "SelectionLinking"
+      },
+      {
+        "coordinationId": "coord-situation-to-action-scores",
+        "source": {
+          "viewId": "action-view",
+          "subViewId": "match-situation-list"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "action-view",
+          "subViewId": "match-situation-list",
+          "capabilityId": "match-situation-list.select-situation"
+        },
+        "targets": [
+          {
+            "viewId": "action-view",
+            "subViewId": "action-score-list"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "action-view",
+            "subViewId": "action-score-list",
+            "capabilityId": "action-score-list.show-action-choices"
+          }
+        ],
+        "coordinationType": "FilterLinking"
+      },
+      {
+        "coordinationId": "coord-action-choice-to-record-list",
+        "source": {
+          "viewId": "action-view",
+          "subViewId": "action-score-list"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "action-view",
+          "subViewId": "action-score-list",
+          "capabilityId": "action-score-list.add-to-explanation"
+        },
+        "targets": [
+          {
+            "viewId": "explanation-view",
+            "subViewId": "record-list"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "explanation-view",
+            "subViewId": "record-list",
+            "capabilityId": "record-list.compare-actions"
+          }
+        ],
+        "coordinationType": "StateTransfer"
+      },
+      {
+        "coordinationId": "coord-record-to-ghost-pitch",
+        "source": {
+          "viewId": "explanation-view",
+          "subViewId": "record-list"
+        },
+        "sourceCapabilityRef": {
+          "viewId": "explanation-view",
+          "subViewId": "record-list",
+          "capabilityId": "record-list.select-individual-action"
+        },
+        "targets": [
+          {
+            "viewId": "explanation-view",
+            "subViewId": "ghost-pitch"
+          }
+        ],
+        "targetCapabilityRefs": [
+          {
+            "viewId": "explanation-view",
+            "subViewId": "ghost-pitch",
+            "capabilityId": "ghost-pitch.show-action-alternatives"
+          }
+        ],
+        "coordinationType": "DetailsOnDemand"
+      }
+    ]
+  },
+  "workflow_context": {
+    "interpretation": "All reported intended workflows are supplied uniformly for this system. Transitions express allowed or suggested progressions; inferred transitions are labeled and are not compulsory. No workflow-to-current-case alignment is given.",
+    "workflows": [
+      {
+        "workflowId": "comprehensive-player-action-evaluation",
+        "workflowTitle": "Comprehensive Player Action Evaluation",
+        "workflowGoal": "Evaluate a soccer player's actions in context and obtain guidance for improving action choices.",
+        "description": "Analysts navigate to a player, investigate that player's scores by match situation and action choice, then compare selected actions and inspect alternatives for explanation and improvement.",
+        "applicabilityContext": "Used by soccer analysts and coaches evaluating offensive pass, dribble, or shot actions in event data with team tactics and player-location context.",
+        "stages": [
+          {
+            "stageId": "navigate-player",
+            "stageTitle": "Player Navigation",
+            "localGoal": "Find a target player for evaluation or a similar player whose stronger performance can provide a comparison reference.",
+            "activitySummary": "Filter and sort the player ranking list to find important players, inspect the player projection for decision-style similarity, and select a player for action analysis.",
+            "expectedOutcome": "A target player, or a similar better-performing comparison player, is selected and establishes the context for action analysis.",
+            "usedSubViews": [
+              {
+                "viewId": "player-view",
+                "subViewId": "player-ranking-list"
+              },
+              {
+                "viewId": "player-view",
+                "subViewId": "player-projection"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "player-view",
+                "subViewId": "player-ranking-list",
+                "capabilityId": "player-ranking-list.show-ranked-players"
+              },
+              {
+                "viewId": "player-view",
+                "subViewId": "player-ranking-list",
+                "capabilityId": "player-ranking-list.filter-players"
+              },
+              {
+                "viewId": "player-view",
+                "subViewId": "player-ranking-list",
+                "capabilityId": "player-ranking-list.sort-players"
+              },
+              {
+                "viewId": "player-view",
+                "subViewId": "player-ranking-list",
+                "capabilityId": "player-ranking-list.select-player"
+              },
+              {
+                "viewId": "player-view",
+                "subViewId": "player-projection",
+                "capabilityId": "player-projection.show-similar-players"
+              },
+              {
+                "viewId": "player-view",
+                "subViewId": "player-projection",
+                "capabilityId": "player-projection.select-player"
+              }
+            ]
+          },
+          {
+            "stageId": "investigate-actions",
+            "stageTitle": "Action Investigation",
+            "localGoal": "Understand the selected player's strengths and weaknesses across match situations and identify action choices needing improvement.",
+            "activitySummary": "Choose actions by spatial region, inspect and sort match situations, select a situation, then filter, sort, compare, and unfold the scores of its action choices before adding choices of interest for explanation.",
+            "expectedOutcome": "Relevant match situations and action choices are identified, compared on reward and risk, and selected for explanation.",
+            "usedSubViews": [
+              {
+                "viewId": "action-view",
+                "subViewId": "match-situation-list"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "action-score-list"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "action-view",
+                "subViewId": "match-situation-list",
+                "capabilityId": "match-situation-list.show-situations"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "match-situation-list",
+                "capabilityId": "match-situation-list.select-start-region"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "match-situation-list",
+                "capabilityId": "match-situation-list.sort-situations"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "match-situation-list",
+                "capabilityId": "match-situation-list.select-situation"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "action-score-list",
+                "capabilityId": "action-score-list.show-action-choices"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "action-score-list",
+                "capabilityId": "action-score-list.filter-action-choices"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "action-score-list",
+                "capabilityId": "action-score-list.sort-action-choices"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "action-score-list",
+                "capabilityId": "action-score-list.unfold-details"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "action-score-list",
+                "capabilityId": "action-score-list.highlight-score-bin"
+              },
+              {
+                "viewId": "action-view",
+                "subViewId": "action-score-list",
+                "capabilityId": "action-score-list.add-to-explanation"
+              }
+            ]
+          },
+          {
+            "stageId": "explain-and-improve",
+            "stageTitle": "Action Explanation",
+            "localGoal": "Explain why selected action choices underperform and obtain concrete guidance for improving them.",
+            "activitySummary": "Compare selected choices across players in the record list, unfold and select an individual action, then inspect its spatial context and modeled alternative outcomes in the ghost pitch while switching score or action type as needed.",
+            "expectedOutcome": "The analyst obtains an explanation of an action's outcome and a concrete alternative action or destination that could improve reward or risk.",
+            "usedSubViews": [
+              {
+                "viewId": "explanation-view",
+                "subViewId": "record-list"
+              },
+              {
+                "viewId": "explanation-view",
+                "subViewId": "ghost-pitch"
+              }
+            ],
+            "usedCapabilities": [
+              {
+                "viewId": "explanation-view",
+                "subViewId": "record-list",
+                "capabilityId": "record-list.compare-actions"
+              },
+              {
+                "viewId": "explanation-view",
+                "subViewId": "record-list",
+                "capabilityId": "record-list.unfold-actions"
+              },
+              {
+                "viewId": "explanation-view",
+                "subViewId": "record-list",
+                "capabilityId": "record-list.sort-actions"
+              },
+              {
+                "viewId": "explanation-view",
+                "subViewId": "record-list",
+                "capabilityId": "record-list.select-individual-action"
+              },
+              {
+                "viewId": "explanation-view",
+                "subViewId": "ghost-pitch",
+                "capabilityId": "ghost-pitch.show-action-alternatives"
+              },
+              {
+                "viewId": "explanation-view",
+                "subViewId": "ghost-pitch",
+                "capabilityId": "ghost-pitch.switch-score-type"
+              },
+              {
+                "viewId": "explanation-view",
+                "subViewId": "ghost-pitch",
+                "capabilityId": "ghost-pitch.switch-action-type"
+              }
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "sourceStageId": "navigate-player",
+            "targetStageId": "investigate-actions",
+            "rationale": "Once a player is selected, the action view becomes the intended place to inspect that player's actions.",
+            "inferenceType": "Explicit"
+          },
+          {
+            "sourceStageId": "investigate-actions",
+            "targetStageId": "explain-and-improve",
+            "rationale": "Choices discovered during investigation are deliberately added to the explanation view for comparison and action-level explanation.",
+            "inferenceType": "Explicit"
+          },
+          {
+            "sourceStageId": "investigate-actions",
+            "targetStageId": "navigate-player",
+            "rationale": "After evaluating a target player's action choices, analysts can return to player navigation to find a similar, better-performing comparison player before reinvestigating that player's choices.",
+            "inferenceType": "CrossModalSynthesis"
+          }
+        ]
+      }
+    ]
+  },
+  "case_context": {
+    "initial_context": "Explore improvement opportunities for French forwards’ action choices."
+  },
+  "completed_prefix": [
+    {
+      "episode": 1,
+      "local_goal": "Identify a forward with underperforming action choices.",
+      "completed_steps": [
+        "E2 filtered to French forwards, found Mbappé had the most shots but no goal and a low reward score, and selected him for improvement analysis."
+      ],
+      "images": [
+        "../next-analytic-move-v2-pilot-r2-2026-09-08/images/actionevaluator_case_2/ep_01_01.png"
+      ]
+    }
+  ]
+}

@@ -14122,5 +14122,106 @@
     "prediction_metric_scope": "The selected model and round; these scores are distinct from the sample-level averages.",
     "reference_note": "The next episode, its images, and reference labels were withheld from the predictor. Scores measure agreement with the documented continuation; other useful next moves may differ.",
     "selection_note": "These are the three illustrative cases discussed in the paper. The full study includes samples with increased, unchanged, and decreased agreement."
+  },
+  "locators": {
+    "p04_prefix01": {
+      "image": "images/ECoalVis-case-study.png?v=2",
+      "figure": 7,
+      "width": 1695,
+      "height": 638,
+      "regions": {
+        "input": [
+          {
+            "label": "A",
+            "bbox": [
+              2,
+              3,
+              578,
+              386
+            ]
+          }
+        ],
+        "target": [
+          {
+            "label": "B",
+            "bbox": [
+              582,
+              3,
+              1238,
+              386
+            ]
+          }
+        ]
+      }
+    },
+    "p17_prefix01": {
+      "image": "images/CommonsenseVIS-case-study.png?v=cropped",
+      "figure": 5,
+      "width": 1059,
+      "height": 660,
+      "regions": {
+        "input": [
+          {
+            "label": "A",
+            "bbox": [
+              33,
+              11,
+              633,
+              356
+            ]
+          }
+        ],
+        "target": [
+          {
+            "label": "B",
+            "bbox": [
+              33,
+              365,
+              633,
+              624
+            ]
+          }
+        ]
+      }
+    },
+    "p11_prefix01": {
+      "image": "images/ActionEvaluator-case-study.png",
+      "figure": 8,
+      "width": 689,
+      "height": 1091,
+      "regions": {
+        "input": [
+          {
+            "label": "A",
+            "bbox": [
+              9,
+              6,
+              342,
+              360
+            ]
+          }
+        ],
+        "target": [
+          {
+            "label": "C",
+            "bbox": [
+              9,
+              367,
+              245,
+              587
+            ]
+          },
+          {
+            "label": "D",
+            "bbox": [
+              251,
+              367,
+              679,
+              587
+            ]
+          }
+        ]
+      }
+    }
   }
 }

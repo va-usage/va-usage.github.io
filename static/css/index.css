@@ -1449,3 +1449,35 @@ main > .section,
   line-height:1.7;
   color:var(--muted);
 }
+
+/* Original case-study overview beside the episode evidence. */
+.episode-evidence-layout {
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 180px;
+  gap:1rem;
+  align-items:start;
+  margin-top:1rem;
+}
+.episode-evidence-layout .episode-images { margin-top:0; min-width:0; }
+.episode-locator { margin:0; padding:.6rem; border:1px solid var(--line); border-radius:8px; background:#fafbf9; }
+.episode-locator figcaption { font-size:.72rem; font-weight:600; line-height:1.4; margin-bottom:.55rem; }
+.episode-locator figcaption small { display:block; font-weight:400; color:var(--muted); margin-top:.2rem; }
+.episode-locator-map { position:relative; display:block; background:#fff; line-height:0; }
+.episode-locator-map img { display:block; width:100%; height:auto; }
+.episode-locator-box { position:absolute; box-sizing:border-box; border:2px solid #c44b13; background:rgba(240,137,47,.16); pointer-events:none; }
+.episode-locator-box > span { position:absolute; top:0; left:0; padding:1px 3px; color:white; background:#a83f0d; font-size:10px; font-weight:700; line-height:1.2; }
+.episode-locator p { display:flex; align-items:center; gap:.3rem; font-size:.67rem; line-height:1.4; color:var(--muted); margin:.5rem 0 0; }
+.episode-locator p > span { width:9px; height:9px; flex-shrink:0; border:2px solid #c44b13; background:rgba(240,137,47,.16); }
+@media(max-width:600px) {
+  .episode-evidence-layout { grid-template-columns:minmax(0,1fr) 112px; gap:.5rem; }
+  .episode-locator { padding:.35rem; }
+  .episode-locator figcaption { font-size:.64rem; }
+}
+
+button.episode-locator-map { width:100%; padding:0; border:0; cursor:zoom-in; font:inherit; text-align:left; }
+button.episode-locator-map:focus-visible { outline:3px solid var(--forest-700); outline-offset:3px; }
+#case-figure-dialog { width:min(1120px, 94vw); max-height:92vh; }
+#case-figure-dialog .dialog-heading h2 { font-size:1rem; }
+#case-figure-dialog .dialog-body { max-height:calc(92vh - 85px); overflow:auto; }
+#case-figure-content .episode-locator-box { border-width:3px; }
+#case-figure-content .episode-locator-box > span { font-size:14px; }

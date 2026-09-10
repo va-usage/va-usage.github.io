@@ -22,7 +22,16 @@ const PredictionExamples = (() => {
     return `<div class="chips">${refs.map(ref => {const key=refKey(ref),match=target ? target.has(key) : null;const label=names.get(key) || ref.capabilityId || ref.subViewId;return `<span class="chip ${target ? (match ? 'match' : 'miss') : ''}" title="${html([ref.viewId,ref.subViewId,ref.capabilityId].filter(Boolean).join(' / '))}${target ? (match ? ' — in documented reference' : ' — outside documented reference') : ''}">${target ? `<span aria-hidden="true">${match ? '✓ ' : '+ '}</span>` : ''}${html(label)}</span>`;}).join('')}</div>`;
   }
   function images(paths, role, system) {
-    return `<div class="episode-images">${paths.map(path => {const mapped=state.data.assets[`${role}:${path}`];if(!mapped) return '<p class="load-error">Source image unavailable.</p>';const url=BASE+mapped;return `<a href="${html(url)}" target="_blank" rel="noopener" aria-label="Open ${html(system)} ${role === 'input' ? 'observed' : 'reference'} image"><img src="${html(url)}" loading="lazy" decoding="async" alt="${html(system)}: ${role === 'input' ? 'source evidence for the completed analysis' : 'withheld source evidence for the documented continuation'}"></a>`;}).join('')}</div>`;
+    const evidence = `<div class="episode-images">${paths.map(path => {const mapped=state.data.assets[`${role}:${path}`];if(!mapped) return '<p class="load-error">Source image unavailable.</p>';const url=BASE+mapped;return `<a href="${html(url)}" target="_blank" rel="noopener" aria-label="Open ${html(system)} ${role === 'input' ? 'observed' : 'reference'} image"><img src="${html(url)}" loading="lazy" decoding="async" alt="${html(system)}: ${role === 'input' ? 'source evidence for the completed analysis' : 'withheld source evidence for the documented continuation'}"></a>`;}).join('')}</div>`;
+    const locator = state.data.locators?.[state.sample];
+    if (!locator) return evidence;
+    const regions = locator.regions[role] || [];
+    const label = `Figure ${locator.figure} · ${regions.map(region => region.label).join(' + ')}`;
+    const boxes = regions.map(region => {
+      const [x1,y1,x2,y2] = region.bbox;
+      return `<span class="episode-locator-box" style="left:${x1/locator.width*100}%;top:${y1/locator.height*100}%;width:${(x2-x1)/locator.width*100}%;height:${(y2-y1)/locator.height*100}%"><span>${html(region.label)}</span></span>`;
+    }).join('');
+    return `<div class="episode-evidence-layout">${evidence}<figure class="episode-locator"><figcaption>In the original case study<small>${html(label)}</small></figcaption><button type="button" class="episode-locator-map" aria-haspopup="dialog" aria-label="Open ${html(system)} full case-study figure. Highlighted regions: ${html(label)}"><img src="${html(BASE+locator.image)}" loading="lazy" decoding="async" alt="${html(system)} original case-study figure ${locator.figure}">${boxes}</button><p><span aria-hidden="true"></span> This episode’s region${regions.length > 1 ? 's' : ''}</p></figure></div>`;
   }
   function systemHTML(record) {
     const names = referenceNames(record);
@@ -71,7 +80,7 @@ const PredictionExamples = (() => {
   function select(sample,updateHash=true) {if(!sampleIds.includes(sample) || !state.data) return;state.sample=sample;renderSample(updateHash);}
   async function load() {
     try {
-      const response=await fetch(BASE+'payload.json');if(!response.ok) throw new Error('Prediction examples unavailable');
+      const response=await fetch(BASE+'payload.json?v=20260910-locators5');if(!response.ok) throw new Error('Prediction examples unavailable');
       const data=await response.json();
       if(sampleIds.some(sid=>!data.records.some(x=>x.sample_id===sid))) throw new Error('Incomplete sample collection');
       state.data=data;
@@ -84,6 +93,23 @@ const PredictionExamples = (() => {
     }
   }
   function init() {
+    const dialog = document.getElementById('case-figure-dialog');
+    const content = document.getElementById('case-figure-content');
+    document.getElementById('sample-panel').addEventListener('click', event => {
+      const trigger = event.target.closest('button.episode-locator-map');
+      if (!trigger) return;
+      const title = `Original case study · ${trigger.closest('figure').querySelector('figcaption small').textContent}`;
+      document.getElementById('case-figure-title').textContent = title;
+      content.replaceChildren(...Array.from(trigger.children, node => node.cloneNode(true)));
+      content.querySelector('img').loading = 'eager';
+      dialog.showModal();
+    });
+    dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (event.target !== dialog) return;
+      const bounds = dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+    });
     document.querySelectorAll('[data-sample]').forEach(tab=>{
       tab.addEventListener('click',()=>select(tab.dataset.sample));
       tab.addEventListener('keydown',event=>{const keys=['ArrowRight','ArrowLeft','Home','End'];if(!keys.includes(event.key))return;event.preventDefault();let index=sampleIds.indexOf(tab.dataset.sample);index=event.key==='Home'?0:event.key==='End'?sampleIds.length-1:(index+(event.key==='ArrowRight'?1:-1)+sampleIds.length)%sampleIds.length;select(sampleIds[index]);document.querySelector(`[data-sample="${sampleIds[index]}"]`).focus();});
